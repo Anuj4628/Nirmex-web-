@@ -1,0 +1,125 @@
+/**
+ * NIRMEX METAL INDUSTRIES - INDUSTRIAL RED MATERIAL DROPDOWN
+ * - Matches precisely the ProductsMegaMenu design language:
+ *   - Background: linear-gradient(180deg, #BA0500 0%, #960100 100%)
+ *   - Border: 1px solid rgba(255, 255, 255, 0.22)
+ *   - Border radius: 12px
+ *   - Elevation shadow and fade-in animation
+ *   - Link hover states, typography, padding and chevron
+ */
+
+.nirmex-material-menu {
+  position: absolute;
+  top: calc(100% + 8px);
+  left: 50%;
+  transform: translateX(-50%);
+  width: 270px;
+  max-width: min(270px, calc(100vw - 32px));
+  background-color: #A80300;
+  background: linear-gradient(180deg, #BA0500 0%, #960100 100%);
+  border: 1px solid rgba(255, 255, 255, 0.22);
+  border-radius: 12px;
+  box-shadow: 0 18px 45px -6px rgba(0, 0, 0, 0.58),
+              0 8px 18px -4px rgba(0, 0, 0, 0.35);
+  z-index: 1200;
+  box-sizing: border-box;
+  animation: nirmex-dropdown-fade 180ms cubic-bezier(0.16, 1, 0.3, 1) forwards;
+  text-align: left;
+  font-family: 'Plus Jakarta Sans', 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  padding: 8px 10px;
+}
+
+/* Invisible hover bridge to eliminate pointer dropouts */
+.nirmex-material-menu__hover-bridge {
+  position: absolute;
+  top: -14px;
+  left: 0;
+  width: 100%;
+  height: 16px;
+  background: transparent;
+  pointer-events: auto;
+}
+
+/* Upward pointing notch centered directly under navbar item */
+.nirmex-material-menu__notch {
+  position: absolute;
+  top: -8px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 16px;
+  height: 8px;
+  line-height: 0;
+  pointer-events: none;
+  z-index: 10;
+}
+
+.nirmex-material-menu__notch polygon {
+  fill: #BA0500;
+}
+
+/* Material List */
+.nirmex-material-menu__list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.nirmex-material-menu__item {
+  margin: 0;
+  padding: 0;
+}
+
+/* Clean Material Text Link */
+.nirmex-material-link {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 6px 10px;
+  border-radius: 6px;
+  text-decoration: none;
+  color: #FFFFFF;
+  transition: background-color 140ms ease, transform 140ms ease;
+  user-select: none;
+  cursor: pointer;
+}
+
+.nirmex-material-link:hover {
+  background-color: rgba(255, 255, 255, 0.15);
+  transform: translateX(2px);
+}
+
+.nirmex-material-link__name {
+  font-family: 'Plus Jakarta Sans', 'Inter', sans-serif;
+  font-size: 13px;
+  font-weight: 500;
+  color: #FFFFFF;
+  letter-spacing: -0.01em;
+  white-space: nowrap;
+}
+
+.nirmex-material-link__chevron {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  color: rgba(255, 255, 255, 0.7);
+  margin-left: 8px;
+  font-size: 14px;
+  line-height: 1;
+  flex-shrink: 0;
+  transition: transform 140ms ease, color 140ms ease;
+}
+
+.nirmex-material-link:hover .nirmex-material-link__chevron {
+  color: #FFFFFF;
+  transform: translateX(2px);
+}
+
+/* Responsive safeguard */
+@media (max-width: 768px) {
+  .nirmex-material-menu {
+    display: none;
+  }
+}

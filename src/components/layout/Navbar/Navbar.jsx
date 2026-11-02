@@ -3,6 +3,7 @@ import { useNavigate, useLocation } from 'react-router-dom';
 import NavItem from './NavItem';
 import MobileMenu from './MobileMenu';
 import ProductsMegaMenu from './ProductsMegaMenu';
+import MaterialDropdown from './MaterialDropdown';
 import Button from '@/components/common/Button/Button';
 import { NAV_ITEMS, CTA_CONFIG } from '@/config/navigation.config';
 import { useScrollPosition } from '@/hooks/useScrollPosition';
@@ -29,10 +30,12 @@ export const Navbar = () => {
   const [activeItemId, setActiveItemId] = useState('home');
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [megaMenuOpen, setMegaMenuOpen] = useState(false);
+  const [materialMenuOpen, setMaterialMenuOpen] = useState(false);
   const { isScrolled } = useScrollPosition(20);
 
   const headerRef = useRef(null);
   const megaMenuTimerRef = useRef(null);
+  const materialMenuTimerRef = useRef(null);
 
   // Sync active nav item with route changes
   useEffect(() => {
@@ -104,12 +107,14 @@ export const Navbar = () => {
     const handleKeyDown = (e) => {
       if (e.key === 'Escape') {
         setMegaMenuOpen(false);
+        setMaterialMenuOpen(false);
       }
     };
 
     const handleClickOutside = (e) => {
       if (headerRef.current && !headerRef.current.contains(e.target)) {
         setMegaMenuOpen(false);
+        setMaterialMenuOpen(false);
       }
     };
 
@@ -125,9 +130,14 @@ export const Navbar = () => {
   const handleSelectItem = (id) => {
     setActiveItemId(id);
     if (id === 'product') {
+      setMaterialMenuOpen(false);
       setMegaMenuOpen((prev) => !prev);
+    } else if (id === 'material') {
+      setMegaMenuOpen(false);
+      setMaterialMenuOpen((prev) => !prev);
     } else {
       setMegaMenuOpen(false);
+      setMaterialMenuOpen(false);
       if (id === 'home') {
         navigate('/');
         window.scrollTo({ top: 0, behavior: 'smooth' });
@@ -153,12 +163,22 @@ export const Navbar = () => {
     if (megaMenuTimerRef.current) {
       clearTimeout(megaMenuTimerRef.current);
     }
+    if (materialMenuTimerRef.current) {
+      clearTimeout(materialMenuTimerRef.current);
+    }
     if (id === 'product') {
+      setMaterialMenuOpen(false);
       setMegaMenuOpen(true);
+    } else if (id === 'material') {
+      setMegaMenuOpen(false);
+      setMaterialMenuOpen(true);
     } else {
       // Smooth delay before closing when hovering other items
       megaMenuTimerRef.current = setTimeout(() => {
         setMegaMenuOpen(false);
+      }, 100);
+      materialMenuTimerRef.current = setTimeout(() => {
+        setMaterialMenuOpen(false);
       }, 100);
     }
   };
@@ -167,6 +187,10 @@ export const Navbar = () => {
     if (id === 'product') {
       megaMenuTimerRef.current = setTimeout(() => {
         setMegaMenuOpen(false);
+      }, 180);
+    } else if (id === 'material') {
+      materialMenuTimerRef.current = setTimeout(() => {
+        setMaterialMenuOpen(false);
       }, 180);
     }
   };
@@ -200,6 +224,7 @@ export const Navbar = () => {
               window.scrollTo({ top: 0, behavior: 'smooth' });
               setActiveItemId('home');
               setMegaMenuOpen(false);
+              setMaterialMenuOpen(false);
             }}
           >
             <img
@@ -235,6 +260,9 @@ export const Navbar = () => {
 
             {NAV_ITEMS.map((item) => {
               const isProduct = item.id === 'product';
+              const isMaterial = item.id === 'material';
+              const hasDropdown = isProduct || isMaterial;
+              const isDropdownOpen = (isProduct && megaMenuOpen) || (isMaterial && materialMenuOpen);
               return (
                 <NavItem
                   key={item.id}
@@ -242,8 +270,8 @@ export const Navbar = () => {
                   isActive={activeItemId === item.id}
                   onSelect={handleSelectItem}
                   itemRef={(el) => (itemRefs.current[item.id] = el)}
-                  hasDropdown={isProduct}
-                  isDropdownOpen={isProduct && megaMenuOpen}
+                  hasDropdown={hasDropdown}
+                  isDropdownOpen={isDropdownOpen}
                   onMouseEnter={() => handleMouseEnterItem(item.id)}
                   onMouseLeave={() => handleMouseLeaveItem(item.id)}
                 >
@@ -254,6 +282,16 @@ export const Navbar = () => {
                       onItemClick={() => {
                         setActiveItemId('product');
                         setMegaMenuOpen(false);
+                      }}
+                    />
+                  )}
+                  {isMaterial && (
+                    <MaterialDropdown
+                      isOpen={materialMenuOpen}
+                      onClose={() => setMaterialMenuOpen(false)}
+                      onItemClick={() => {
+                        setActiveItemId('material');
+                        setMaterialMenuOpen(false);
                       }}
                     />
                   )}
