@@ -95,18 +95,19 @@
 }
 
 /* ==========================================================================
-   1. CONTACT HERO SECTION
+   1. CONTACT HERO SECTION (FULL SCREEN VIEWPORT)
    ========================================================================== */
 .nirmex-contact-hero {
   position: relative;
   width: 100%;
-  min-height: 620px;
+  min-height: calc(100vh - var(--navbar-height-desktop, 94px));
+  min-height: calc(100dvh - var(--navbar-height-desktop, 94px));
   display: flex;
   align-items: center;
   background-color: #0F172A;
   overflow: hidden;
-  padding-top: 5.5rem;
-  padding-bottom: 5.5rem;
+  padding-top: 3.5rem;
+  padding-bottom: 3.5rem;
   box-sizing: border-box;
 }
 
@@ -1063,9 +1064,10 @@
 
 @media (max-width: 768px) {
   .nirmex-contact-hero {
-    min-height: auto;
-    padding-top: 3.5rem;
-    padding-bottom: 4rem;
+    min-height: calc(100vh - var(--navbar-height-desktop, 94px));
+    min-height: calc(100dvh - var(--navbar-height-desktop, 94px));
+    padding-top: 2.5rem;
+    padding-bottom: 2.5rem;
   }
 
   .nirmex-contact-hero__card {
