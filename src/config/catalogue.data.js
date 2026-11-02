@@ -40,9 +40,9 @@ export const resolveCatalogueAsset = (partialPath) => {
     }
   }
 
-  // Substring match
-  const fileName = normalized.split('/').pop();
-  if (fileName) {
+  // Substring match ONLY if no specific directory path was provided
+  if (!normalized.includes('/')) {
+    const fileName = normalized;
     for (const key of Object.keys(assetImages)) {
       const normKey = key.replace(/\\/g, '/').toLowerCase();
       if (normKey.includes(fileName)) {
@@ -937,20 +937,33 @@ export const getButtWeldFolderForMaterial = (materialSlug) => {
 export const getButtWeldImageForMaterial = (materialSlug, typeSlug) => {
   const folder = getButtWeldFolderForMaterial(materialSlug);
   const type = (typeSlug || '').toLowerCase();
+  const isWebpFolder = folder === 'SS' || folder === 'Monel';
 
   let filePatterns = [];
   if (type.includes('90-degree') || type.includes('90-elbow') || type === '90-lr-elbow') {
-    filePatterns = ['90-degree-long-radius-elbow.jpeg', '90-degree-long-radius-elbow.webp', '90-degree-long-radius-elbow.jpg'];
+    filePatterns = isWebpFolder
+      ? ['90-degree-long-radius-elbow.webp', '90-degree-long-radius-elbow.jpeg', '90-degree-long-radius-elbow.jpg']
+      : ['90-degree-long-radius-elbow.jpeg', '90-degree-long-radius-elbow.webp', '90-degree-long-radius-elbow.jpg'];
   } else if (type.includes('45-degree') || type.includes('45-elbow') || type === '45-lr-elbow') {
-    filePatterns = ['45-degree-long-radius-elbow.jpeg', '45-degree-long-radius-elbow.webp', '45-degree-long-radius-elbow.jpg'];
+    filePatterns = isWebpFolder
+      ? ['45-degree-long-radius-elbow.webp', '45-degree-long-radius-elbow.jpeg', '45-degree-long-radius-elbow.jpg']
+      : ['45-degree-long-radius-elbow.jpeg', '45-degree-long-radius-elbow.webp', '45-degree-long-radius-elbow.jpg'];
   } else if (type.includes('equal-tee') || type === 'equal-tee' || type === 'straight-tee') {
-    filePatterns = ['equal-tee.jpeg', 'equal-tee.webp', 'equal-tee.jpg'];
+    filePatterns = isWebpFolder || folder === 'nilkle'
+      ? ['equal-tee.webp', 'equal-tee.jpeg', 'equal-tee.jpg']
+      : ['equal-tee.jpeg', 'equal-tee.webp', 'equal-tee.jpg'];
   } else if (type.includes('reducing-tee') || type === 'reducing-tee') {
-    filePatterns = ['reducing-tee.jpeg', 'reducing tee.jpeg', 'reducing-tee.webp', 'reducing-tee.jpg'];
+    filePatterns = isWebpFolder
+      ? ['reducing-tee.webp', 'reducing-tee.jpeg', 'reducing tee.jpeg', 'reducing-tee.jpg']
+      : ['reducing-tee.jpeg', 'reducing tee.jpeg', 'reducing-tee.webp', 'reducing-tee.jpg'];
   } else if (type.includes('180-degree') || type.includes('return-bend') || type === '180-return-bend') {
-    filePatterns = ['180-degree-return-bend.jpeg', '180-degree-return-bend.webp', '180-degree-return-bend.jpg'];
+    filePatterns = isWebpFolder
+      ? ['180-degree-return-bend.webp', '180-degree-return-bend.jpeg', '180-degree-return-bend.jpg']
+      : ['180-degree-return-bend.jpeg', '180-degree-return-bend.webp', '180-degree-return-bend.jpg'];
   } else if (type.includes('pipe-bend') || type.includes('piping-bend') || type === 'pipe-bend') {
-    filePatterns = ['pipe-bend.jpeg', 'pipe-bend.webp', 'pipe-bend.jpg'];
+    filePatterns = isWebpFolder
+      ? ['pipe-bend.webp', 'pipe-bend.jpeg', 'pipe-bend.jpg']
+      : ['pipe-bend.jpeg', 'pipe-bend.webp', 'pipe-bend.jpg'];
   }
 
   for (const pat of filePatterns) {
