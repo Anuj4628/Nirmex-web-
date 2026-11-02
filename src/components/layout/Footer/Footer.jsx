@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { Link } from 'react-router-dom';
 import nirmexLogo from '@/assets/logos/nirmex-logo.png';
 import { SITE_CONFIG } from '@/config/site.config';
 import './Footer.css';
@@ -312,6 +313,50 @@ export const Footer = () => {
             </div>
           </div>
 
+        </div>
+
+        {/* =================================================================
+            PRODUCTS & MATERIALS DIRECTORY STRIP (Section 23)
+            ================================================================= */}
+        <div className="nirmex-footer__directory">
+          <div className="nirmex-footer__directory-col">
+            <h4 className="nirmex-footer__directory-title">
+              <span className="footer-title-dot" aria-hidden="true" />
+              Industrial Products
+            </h4>
+            <div className="nirmex-footer__directory-links">
+              <Link to="/products/flanges" className="nirmex-footer__dir-link">Flanges</Link>
+              <Link to="/products/forging" className="nirmex-footer__dir-link">Forged Fittings</Link>
+              <Link to="/products/butt-weld-fittings" className="nirmex-footer__dir-link">Butt Weld Fittings</Link>
+              <Link to="/products/fasteners" className="nirmex-footer__dir-link">Fasteners</Link>
+              <Link to="/products/pipes-tubes" className="nirmex-footer__dir-link">Pipes &amp; Tubes</Link>
+              <Link to="/products/sheets-plates" className="nirmex-footer__dir-link">Sheets &amp; Plates</Link>
+              <Link to="/products/rods-bars" className="nirmex-footer__dir-link">Rods &amp; Bars</Link>
+              <Link to="/products/dairy-pharma-fittings" className="nirmex-footer__dir-link">Dairy &amp; Pharma Fittings</Link>
+              <Link to="/products/flat-bars" className="nirmex-footer__dir-link">Flat Bars</Link>
+              <Link to="/products/circle" className="nirmex-footer__dir-link">Circles</Link>
+            </div>
+          </div>
+
+          <div className="nirmex-footer__directory-col">
+            <h4 className="nirmex-footer__directory-title">
+              <span className="footer-title-dot" aria-hidden="true" />
+              Certified Materials
+            </h4>
+            <div className="nirmex-footer__directory-links">
+              <Link to="/stainless-steel" className="nirmex-footer__dir-link">Stainless Steel</Link>
+              <Link to="/carbon-steel" className="nirmex-footer__dir-link">Carbon Steel</Link>
+              <Link to="/alloy-steel" className="nirmex-footer__dir-link">Alloy Steel</Link>
+              <Link to="/duplex-super-duplex" className="nirmex-footer__dir-link">Duplex + Super Duplex</Link>
+              <Link to="/nickel-alloy" className="nirmex-footer__dir-link">Nickel Alloy</Link>
+              <Link to="/inconel" className="nirmex-footer__dir-link">Inconel</Link>
+              <Link to="/monel" className="nirmex-footer__dir-link">Monel</Link>
+              <Link to="/hastelloy" className="nirmex-footer__dir-link">Hastelloy</Link>
+              <Link to="/titanium" className="nirmex-footer__dir-link">Titanium</Link>
+              <Link to="/copper" className="nirmex-footer__dir-link">Copper</Link>
+              <Link to="/high-alloy" className="nirmex-footer__dir-link">High Alloy</Link>
+            </div>
+          </div>
         </div>
 
         {/* =================================================================

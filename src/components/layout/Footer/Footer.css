@@ -6,7 +6,7 @@
 .nirmex-footer {
   position: relative;
   width: 100%;
-  background-color: #070C18; /* Deep industrial carbon/navy foundation */
+  background-color: #1A202C; /* Dark gray, NOT pure black (Section 23) */
   color: #CBD5E1;
   box-sizing: border-box;
   overflow: hidden;
@@ -436,6 +436,57 @@
     opacity: 1;
     transform: translateY(0);
   }
+}
+
+/* ==========================================================================
+   PRODUCTS & MATERIALS DIRECTORY STRIP (Section 23)
+   ========================================================================== */
+.nirmex-footer__directory {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 2.5rem;
+  padding: 2.5rem 0;
+  margin-top: 2rem;
+  border-top: 1px solid rgba(255, 255, 255, 0.08);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.nirmex-footer__directory-col {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.nirmex-footer__directory-title {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 14px;
+  font-weight: 800;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: #FFFFFF;
+  margin: 0;
+}
+
+.nirmex-footer__directory-links {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px 16px;
+}
+
+.nirmex-footer__dir-link {
+  font-size: 13px;
+  color: #94A3B8;
+  text-decoration: none;
+  transition: color 150ms ease, transform 150ms ease;
+  display: inline-flex;
+  align-items: center;
+}
+
+.nirmex-footer__dir-link:hover {
+  color: var(--color-brand-red, #E10600);
+  transform: translateX(2px);
 }
 
 /* ==========================================================================

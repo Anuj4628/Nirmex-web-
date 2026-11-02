@@ -39,13 +39,33 @@ export const Navbar = () => {
 
   // Sync active nav item with route changes
   useEffect(() => {
-    if (location.pathname.startsWith('/products/')) {
+    const path = location.pathname.toLowerCase();
+    const isMaterialPath = [
+      '/stainless-steel',
+      '/carbon-steel',
+      '/alloy-steel',
+      '/duplex-super-duplex',
+      '/duplex-stainless-steel',
+      '/super-duplex-stainless-steel',
+      '/nickel-alloy',
+      '/inconel',
+      '/monel',
+      '/hastelloy',
+      '/titanium',
+      '/copper',
+      '/aluminium',
+      '/high-alloy',
+    ].some((m) => path === m || path.startsWith(m + '/')) || path.startsWith('/materials') || path.startsWith('/material');
+
+    if (isMaterialPath) {
+      setActiveItemId('material');
+    } else if (path.startsWith('/products/') || path.includes('-manufactured-in-mumbai')) {
       setActiveItemId('product');
-    } else if (location.pathname === '/about' || location.pathname === '/about-us') {
+    } else if (path === '/about' || path === '/about-us') {
       setActiveItemId('about');
-    } else if (location.pathname === '/contact' || location.pathname === '/contact-us') {
+    } else if (path === '/contact' || path === '/contact-us') {
       setActiveItemId('contact');
-    } else if (location.pathname === '/' && !location.hash) {
+    } else if (path === '/' && !location.hash) {
       setActiveItemId('home');
     }
   }, [location.pathname, location.hash]);

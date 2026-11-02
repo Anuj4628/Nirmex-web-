@@ -1,4 +1,5 @@
 import React from 'react';
+import { useNavigate } from 'react-router-dom';
 import { AVAILABLE_MATERIALS } from '@/config/materialsMenu.data';
 import './MaterialDropdown.css';
 
@@ -11,12 +12,17 @@ import './MaterialDropdown.css';
  * - Upward pointer notch pointing directly to the active navbar item
  * - Clean subtle right-facing chevrons (›)
  * - Names only — simple, clean, and consistent
+ * - Seamless direct navigation to dedicated material pages (/stainless-steel, etc.)
  */
 export const MaterialDropdown = ({ isOpen, onClose, onItemClick }) => {
+  const navigate = useNavigate();
   if (!isOpen) return null;
 
   const handleLinkClick = (e, item) => {
     e.preventDefault();
+    const destination = `/${item.slug || item.id}`;
+    navigate(destination);
+    window.scrollTo({ top: 0, behavior: 'smooth' });
     if (onItemClick) {
       onItemClick(item);
     }
@@ -46,7 +52,7 @@ export const MaterialDropdown = ({ isOpen, onClose, onItemClick }) => {
         {AVAILABLE_MATERIALS.map((mat) => (
           <li key={mat.id} role="none" className="nirmex-material-menu__item">
             <a
-              href={`#material-${mat.id}`}
+              href={`/${mat.slug || mat.id}`}
               className="nirmex-material-link"
               role="menuitem"
               onClick={(e) => handleLinkClick(e, mat)}
