@@ -196,7 +196,7 @@ export const PRODUCT_TAXONOMY = [
     slug: 'butt-weld-fittings',
     name: 'Butt Weld Fittings',
     displayName: 'Butt Weld Pipe Fittings',
-    showTypes: false,
+    showTypes: true,
     showGrades: true,
     categoryDivision: 'Manufacture Division',
     shortDesc: 'Seamless & welded long radius elbows, equal/reducing tees, concentric reducers, and caps to ASME B16.9.',
@@ -914,8 +914,197 @@ export const FORGED_FITTING_TYPES = [
   },
 ];
 
-// ============================================================================
-// 4. VERIFIED GRADES DATABASE (Technical Specifications & Chemical Properties)
+/**
+ * Resolves the matching asset folder name for butt weld fittings based on material slug
+ */
+export const getButtWeldFolderForMaterial = (materialSlug) => {
+  const m = (materialSlug || '').toLowerCase();
+  if (m.includes('carbon')) return 'carbon';
+  if (m.includes('copper') || m.includes('cupro') || m.includes('brass')) return 'copper';
+  if (m.includes('duplex') || m.includes('super-duplex')) return 'duplesx and super duples';
+  if (m.includes('inconel') || m.includes('iconel')) return 'iconel';
+  if (m.includes('monel')) return 'Monel';
+  if (m.includes('titanium') || m.includes('titainium')) return 'titainium';
+  if (m.includes('alloy') && !m.includes('nickel') && !m.includes('copper')) return 'alloy steel';
+  if (m.includes('nickel') || m.includes('nikle')) return 'nilkle';
+  if (m.includes('hastelloy')) return 'iconel'; // Hastelloy nickel superalloy fallback
+  return 'SS'; // Stainless Steel default
+};
+
+/**
+ * Resolves material-wise authentic butt weld fitting type images directly from src/assets/types of product/buttweld/
+ */
+export const getButtWeldImageForMaterial = (materialSlug, typeSlug) => {
+  const folder = getButtWeldFolderForMaterial(materialSlug);
+  const type = (typeSlug || '').toLowerCase();
+
+  let filePatterns = [];
+  if (type.includes('90-degree') || type.includes('90-elbow') || type === '90-lr-elbow') {
+    filePatterns = ['90-degree-long-radius-elbow.jpeg', '90-degree-long-radius-elbow.webp', '90-degree-long-radius-elbow.jpg'];
+  } else if (type.includes('45-degree') || type.includes('45-elbow') || type === '45-lr-elbow') {
+    filePatterns = ['45-degree-long-radius-elbow.jpeg', '45-degree-long-radius-elbow.webp', '45-degree-long-radius-elbow.jpg'];
+  } else if (type.includes('equal-tee') || type === 'equal-tee' || type === 'straight-tee') {
+    filePatterns = ['equal-tee.jpeg', 'equal-tee.webp', 'equal-tee.jpg'];
+  } else if (type.includes('reducing-tee') || type === 'reducing-tee') {
+    filePatterns = ['reducing-tee.jpeg', 'reducing tee.jpeg', 'reducing-tee.webp', 'reducing-tee.jpg'];
+  } else if (type.includes('180-degree') || type.includes('return-bend') || type === '180-return-bend') {
+    filePatterns = ['180-degree-return-bend.jpeg', '180-degree-return-bend.webp', '180-degree-return-bend.jpg'];
+  } else if (type.includes('pipe-bend') || type.includes('piping-bend') || type === 'pipe-bend') {
+    filePatterns = ['pipe-bend.jpeg', 'pipe-bend.webp', 'pipe-bend.jpg'];
+  }
+
+  for (const pat of filePatterns) {
+    const res = resolveCatalogueAsset(`types of product/buttweld/${folder}/${pat}`);
+    if (res) return res;
+  }
+  return '';
+};
+
+/**
+ * Resolves material-wise authentic butt weld fitting hero image directly from src/assets/Product Images/Butt weld fit/
+ */
+export const getButtWeldHeroImage = (materialSlug) => {
+  const s = (materialSlug || '').toLowerCase();
+  let candidate = '';
+  if (s === 'stainless-steel') candidate = resolveCatalogueAsset('Product Images/Butt weld fit/stainless steel.jpg');
+  else if (s === 'carbon-steel') candidate = resolveCatalogueAsset('Product Images/Butt weld fit/carbon.jpg');
+  else if (s === 'alloy-steel') candidate = resolveCatalogueAsset('Product Images/Butt weld fit/alloy steel.jpg');
+  else if (s.includes('super-duplex')) candidate = resolveCatalogueAsset('Product Images/Butt weld fit/super duplex.jpeg');
+  else if (s.includes('duplex')) candidate = resolveCatalogueAsset('Product Images/Butt weld fit/duplex.jpeg');
+  else if (s.includes('nickel') || s.includes('nikle')) candidate = resolveCatalogueAsset('Product Images/Butt weld fit/nikle.jpg');
+  else if (s.includes('monel')) candidate = resolveCatalogueAsset('Product Images/Butt weld fit/monel.jpeg');
+  else if (s.includes('inconel') || s.includes('iconel')) candidate = resolveCatalogueAsset('Product Images/Butt weld fit/iconel.jpg');
+  else if (s.includes('hastelloy')) candidate = resolveCatalogueAsset('Product Images/Butt weld fit/hastelloy.webp');
+  else if (s.includes('titanium') || s.includes('titainium')) candidate = resolveCatalogueAsset('Product Images/Butt weld fit/titainium.webp');
+  else if (s.includes('copper') || s.includes('cupro') || s.includes('brass')) candidate = resolveCatalogueAsset('our product images/butt weld fittings.png');
+  return candidate || resolveCatalogueAsset('Product Section/Manufacturer division/Butt weld fit/stainless steel.jpg') || resolveCatalogueAsset('our product images/butt weld fittings.png');
+};
+
+export const BUTT_WELD_BASE_TYPES = [
+  {
+    id: '90-degree-long-radius-elbow',
+    slug: '90-degree-long-radius-elbow',
+    aliases: ['90-lr-elbow', '90-degree-elbow', '90-elbow'],
+    nameSuffix: '90° Long Radius Elbow',
+    shortCode: '90° LR ELBOW',
+    shortDesc: 'Seamless and welded 90-degree direction change fitting engineered to ASME B16.9 with centerline radius of 1.5D.',
+    purpose: 'Provides smooth 90-degree flow turning with low pressure loss across critical process piping, pipelines, and industrial boilers.',
+    standards: 'ASME B16.9, MSS SP-43, DIN 2605, EN 10253-2',
+    features: [
+      'Engineered with 1.5 x NPS radius for laminar fluid velocity and minimized friction loss',
+      'Bevelled weld ends machined to ASME B16.25 for full-penetration butt welding',
+      'Available in seamless (SCH 10S to SCH XXS) and welded format with 100% radiography',
+    ],
+    applications: ['Oil & gas transmission headers', 'Power plant steam lines', 'Chemical reactor feed loops', 'Marine seawater systems'],
+    relatedTypeSlugs: ['45-degree-long-radius-elbow', 'equal-tee', 'reducing-tee', 'pipe-bend'],
+  },
+  {
+    id: '45-degree-long-radius-elbow',
+    slug: '45-degree-long-radius-elbow',
+    aliases: ['45-lr-elbow', '45-degree-elbow', '45-elbow'],
+    nameSuffix: '45° Long Radius Elbow',
+    shortCode: '45° LR ELBOW',
+    shortDesc: 'Smooth 45-degree piping angle transition with low flow resistance and uniform wall thickness distribution.',
+    purpose: 'Changes piping trajectory by 45 degrees where gentle redirection is required to avoid cavitation and severe flow turbulence.',
+    standards: 'ASME B16.9, MSS SP-43, DIN 2605, EN 10253-2',
+    features: [
+      'Uniform wall thickness throughout curved arc under high hoop stresses',
+      'Minimizes hydrodynamic head loss compared to abrupt 90-degree turns',
+      'Supplied with square-cut bevel ends ready for automated orbital welding',
+    ],
+    applications: ['Slurry and hydro-transport piping', 'Boiler feedwater piping', 'Compressor station manifolding', 'Offshore platform piping'],
+    relatedTypeSlugs: ['90-degree-long-radius-elbow', 'pipe-bend', 'equal-tee', '180-degree-return-bend'],
+  },
+  {
+    id: 'equal-tee',
+    slug: 'equal-tee',
+    aliases: ['straight-tee', 'tee'],
+    nameSuffix: 'Equal Tee (Straight Tee)',
+    shortCode: 'EQUAL TEE',
+    shortDesc: '90-degree straight branch connection with identical run and branch nominal pipe sizes for fluid division.',
+    purpose: 'Engineered with reinforced crotch wall thickness to split fluid streams into two 90-degree pathways without localized stress concentration.',
+    standards: 'ASME B16.9, DIN 2615, EN 10253-2',
+    features: [
+      'Full branch bore provides unrestricted flow capacity across high-volume pipelines',
+      'Forged or hydroformed body eliminating welded seam vulnerability at the branch junction',
+      '100% hydrostatic and PMI inspected according to EN 10204 3.1 standards',
+    ],
+    applications: ['Main headers and branch distribution lines', 'Refinery distillation columns', 'Firewater ring mains', 'Chemical dosing headers'],
+    relatedTypeSlugs: ['reducing-tee', '90-degree-long-radius-elbow', 'pipe-bend'],
+  },
+  {
+    id: 'reducing-tee',
+    slug: 'reducing-tee',
+    aliases: ['reducer-tee'],
+    nameSuffix: 'Reducing Tee',
+    shortCode: 'REDUCING TEE',
+    shortDesc: 'Engineered branch tee with reduced outlet diameter for direct line branching without separate reducer fittings.',
+    purpose: 'Permits direct takeoff into smaller branch lines while preserving main header flow rate and structural integrity.',
+    standards: 'ASME B16.9, DIN 2615, EN 10253-2',
+    features: [
+      'Smooth tapered transition between large header bore and reduced branch port',
+      'Eliminates need for extra pipe welds and reducing couplings',
+      'Available across standard ASME schedule wall thicknesses from SCH 10 to SCH 160',
+    ],
+    applications: ['Utility station bypass loops', 'Sampling point takeoffs', 'Instrument manifold connections', 'Secondary process distribution'],
+    relatedTypeSlugs: ['equal-tee', '90-degree-long-radius-elbow', '45-degree-long-radius-elbow'],
+  },
+  {
+    id: '180-degree-return-bend',
+    slug: '180-degree-return-bend',
+    aliases: ['180-return-bend', 'return-bend', 'u-bend'],
+    nameSuffix: '180° Return Bend',
+    shortCode: '180° BEND',
+    shortDesc: 'Continuous 180-degree U-turn fitting engineered for heat exchanger tube bundles, coil loops, and fired heaters.',
+    purpose: 'Reverses fluid path direction by 180 degrees with tight center-to-center spacing optimized for heat transfer efficiency.',
+    standards: 'ASME B16.9, DIN 2605',
+    features: [
+      'Compact loop geometry specifically sized for shell and tube exchanger tube sheets',
+      'High thermal fatigue resistance under repeated heating and cooling cycles',
+      'Fully solution annealed and pickling-passivated to prevent intergranular corrosion',
+    ],
+    applications: ['Heat exchanger hairpin bends', 'Cracking furnace tube banks', 'Reboiler coils', 'Evaporator loops'],
+    relatedTypeSlugs: ['pipe-bend', '90-degree-long-radius-elbow', '45-degree-long-radius-elbow'],
+  },
+  {
+    id: 'pipe-bend',
+    slug: 'pipe-bend',
+    aliases: ['piping-bend', '3d-bend', '5d-bend', 'induction-bend'],
+    nameSuffix: 'Piping Bend (3D / 5D Bend)',
+    shortCode: 'PIPE BEND',
+    shortDesc: 'Large radius induction or cold pipe bend (3D, 5D, 6D) providing ultra-low pressure drop for pigging and slurry lines.',
+    purpose: 'Custom radius bend engineered to facilitate passage of pipeline inspection gauges (PIGs) while minimizing erosive wear.',
+    standards: 'ASME B16.49, PFI ES-24',
+    features: [
+      'Extended radius (3D, 5D, 6D, 8D) virtually eliminates turbulence and localized cavitation',
+      'Straight tangent ends on both sides enable easy field alignment and butt welding',
+      'Strict control of wall thinning and out-of-roundness ovality during induction bending',
+    ],
+    applications: ['Cross-country piggable pipelines', 'Abrasive slurry transport', 'Subsea risers and flowlines', 'Hydraulic dredge discharge'],
+    relatedTypeSlugs: ['90-degree-long-radius-elbow', '45-degree-long-radius-elbow', '180-degree-return-bend'],
+  },
+];
+
+export const getButtWeldTypesForMaterial = (materialSlug) => {
+  const material = getMaterialBySlug(materialSlug) || MATERIALS[0];
+  const matName = material.name;
+
+  return BUTT_WELD_BASE_TYPES.map((type) => {
+    const image = getButtWeldImageForMaterial(material.slug, type.slug);
+    if (!image) return null; // Filters out types that do not have assets for this material
+    return {
+      ...type,
+      name: `${matName} ${type.nameSuffix}`,
+      image,
+    };
+  }).filter(Boolean);
+};
+
+export const BUTT_WELD_TYPES = BUTT_WELD_BASE_TYPES.map((t) => ({
+  ...t,
+  name: `Stainless Steel ${t.nameSuffix}`,
+  image: getButtWeldImageForMaterial('stainless-steel', t.slug),
+}));
 // ============================================================================
 
 export const GRADES_DB = {
@@ -1487,9 +1676,19 @@ export const getForgedFittingTypeBySlug = (typeSlug, materialSlug) => {
   };
 };
 
+export const getButtWeldTypeBySlug = (typeSlug, materialSlug) => {
+  if (!typeSlug) return null;
+  const s = typeSlug.toLowerCase();
+  const all = getButtWeldTypesForMaterial(materialSlug);
+  const found = all.find((t) => t.slug === s || (t.aliases && t.aliases.includes(s)));
+  if (found) return found;
+  return all[0] || null;
+};
+
 export const getTypesForProduct = (productSlug, materialSlug) => {
   if (productSlug === 'flanges') return FLANGE_TYPES;
   if (productSlug === 'fasteners') return getFastenerTypesForMaterial(materialSlug);
+  if (productSlug === 'butt-weld-fittings' || productSlug === 'buttweld') return getButtWeldTypesForMaterial(materialSlug);
   if (productSlug === 'forged-fittings' || productSlug === 'forging') {
     return FORGED_FITTING_TYPES.map((type) => ({
       ...type,
@@ -1548,8 +1747,8 @@ export const getCompositeProduct = (materialSlug, productSlug) => {
     heroImage = getFastenerHeroImage(material.slug);
   } else if (taxonomy.slug === 'forging' || taxonomy.slug === 'forged-fittings') {
     heroImage = getForgingImageForMaterial(material.slug, 'elbow') || resolveCatalogueAsset('our product images/forged fittings.png') || resolveCatalogueAsset('Product Section/Manufacturer division/Forged Fittings/stainles steel.jpg');
-  } else if (taxonomy.slug === 'butt-weld-fittings') {
-    heroImage = resolveCatalogueAsset('our product images/butt weld fittings.png');
+  } else if (taxonomy.slug === 'butt-weld-fittings' || taxonomy.slug === 'buttweld') {
+    heroImage = getButtWeldHeroImage(material.slug) || resolveCatalogueAsset('our product images/butt weld fittings.png');
   } else if (taxonomy.slug === 'pipes-tubes') {
     heroImage = resolveCatalogueAsset('our product images/pipes and tubes.png');
   } else if (taxonomy.slug === 'sheets-plates') {

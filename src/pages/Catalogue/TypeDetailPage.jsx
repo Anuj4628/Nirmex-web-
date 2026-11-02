@@ -5,6 +5,7 @@ import {
   getFlangeTypeBySlug,
   getFastenerTypeBySlug,
   getForgedFittingTypeBySlug,
+  getButtWeldTypeBySlug,
   getTypesForProduct,
 } from '@/config/catalogue.data';
 import { getFlangeMaterialData } from '@/config/flangeMaterials.data';
@@ -49,6 +50,8 @@ export const TypeDetailPage = () => {
     let typeObj = null;
     if (taxonomy.slug === 'fasteners') {
       typeObj = getFastenerTypeBySlug(typeSlug, materialSlug);
+    } else if (taxonomy.slug === 'butt-weld-fittings' || taxonomy.slug === 'buttweld') {
+      typeObj = getButtWeldTypeBySlug(typeSlug, materialSlug);
     } else if (taxonomy.slug === 'forged-fittings' || taxonomy.slug === 'forging') {
       typeObj = getForgedFittingTypeBySlug(typeSlug, materialSlug);
     }
