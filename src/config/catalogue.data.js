@@ -24,18 +24,30 @@ export const resolveCatalogueAsset = (partialPath) => {
   if (!partialPath) return '';
   const normalized = partialPath.replace(/\\/g, '/').toLowerCase();
   
-  // Exact suffix match
+  // Exact suffix match (normalizing backslashes for cross-platform compatibility)
   for (const key of Object.keys(assetImages)) {
-    if (key.toLowerCase().endsWith(normalized)) {
+    const normKey = key.replace(/\\/g, '/').toLowerCase();
+    if (normKey.endsWith(normalized)) {
+      return assetImages[key];
+    }
+  }
+
+  // Path containment match
+  for (const key of Object.keys(assetImages)) {
+    const normKey = key.replace(/\\/g, '/').toLowerCase();
+    if (normKey.includes(normalized)) {
       return assetImages[key];
     }
   }
 
   // Substring match
   const fileName = normalized.split('/').pop();
-  for (const key of Object.keys(assetImages)) {
-    if (key.toLowerCase().includes(fileName)) {
-      return assetImages[key];
+  if (fileName) {
+    for (const key of Object.keys(assetImages)) {
+      const normKey = key.replace(/\\/g, '/').toLowerCase();
+      if (normKey.includes(fileName)) {
+        return assetImages[key];
+      }
     }
   }
   return '';
@@ -543,104 +555,201 @@ export const FLANGE_TYPES = [
   },
 ];
 
-export const FASTENER_TYPES = [
+/**
+ * Resolves the matching asset folder name for fasteners based on material slug
+ */
+export const getFastenerFolderForMaterial = (materialSlug) => {
+  const m = (materialSlug || '').toLowerCase();
+  if (m.includes('carbon')) return 'Carbon';
+  if (m.includes('copper') || m.includes('cupro') || m.includes('brass')) return 'copper';
+  if (m.includes('hastelloy')) return 'hastelloy';
+  if (m.includes('inconel') || m.includes('iconel')) return 'iconel';
+  if (m.includes('monel')) return 'monel';
+  if (m.includes('titanium') || m.includes('titainium')) return 'titainium';
+  if (m.includes('duplex') || m.includes('super-duplex')) return 'duplex&superduplex';
+  if (m.includes('nickel') || m.includes('nikle')) return 'nikle';
+  if (m.includes('alloy') && !m.includes('nickel') && !m.includes('copper')) return 'Carbon'; // Alloy Steel high tensile
+  return 'SS'; // Stainless Steel default
+};
+
+/**
+ * Resolves material-wise authentic fastener type images directly from src/assets/types of product/fasteners/
+ */
+export const getFastenerImageForMaterial = (materialSlug, typeSlug) => {
+  const folder = getFastenerFolderForMaterial(materialSlug);
+  const type = (typeSlug || '').toLowerCase();
+
+  let filePatterns = [];
+  if (type.includes('bolt') || type.includes('stud')) {
+    filePatterns = ['bolts.jpeg', 'bolts.jpg', 'bolts.png'];
+  } else if (type.includes('nut')) {
+    filePatterns = ['nuts.jpeg', 'nut.jpeg', 'nuts.jpg', 'nuts.png'];
+  } else if (type.includes('washer')) {
+    filePatterns = ['washers.jpeg', 'washer.jpeg', 'washers.jpg', 'washers.png'];
+  } else if (type.includes('anchor')) {
+    filePatterns = ['anchors.jpeg', 'anchor.jpeg', 'anchors.jpg', 'anchors.png'];
+  } else if (type.includes('retain') || type.includes('ring') || type.includes('circlip')) {
+    filePatterns = ['retain rings.jpeg', 'ratian rings.jpeg', 'retain rings.jpg', 'retain rings.png'];
+  }
+
+  // 1. Direct match in selected material folder
+  for (const pat of filePatterns) {
+    const res = resolveCatalogueAsset(`types of product/fasteners/${folder}/${pat}`);
+    if (res) return res;
+  }
+
+  // 2. Duplex fallback to SS
+  if (folder === 'duplex&superduplex') {
+    for (const pat of filePatterns) {
+      const res = resolveCatalogueAsset(`types of product/fasteners/SS/${pat}`);
+      if (res) return res;
+    }
+  }
+
+  // 3. Nickel fallback to Inconel (nickel superalloy)
+  if (folder === 'nikle') {
+    for (const pat of filePatterns) {
+      const res = resolveCatalogueAsset(`types of product/fasteners/iconel/${pat}`);
+      if (res) return res;
+    }
+  }
+
+  // 4. Default fallback to SS
+  for (const pat of filePatterns) {
+    const res = resolveCatalogueAsset(`types of product/fasteners/SS/${pat}`);
+    if (res) return res;
+  }
+
+  return '';
+};
+
+/**
+ * Resolves material-wise authentic fastener hero image directly from src/assets/Product Images/Fasteners/
+ */
+export const getFastenerHeroImage = (materialSlug) => {
+  const s = (materialSlug || '').toLowerCase();
+  let candidate = '';
+  if (s === 'stainless-steel') candidate = resolveCatalogueAsset('Product Images/Fasteners/stainless-steel.webp');
+  else if (s === 'carbon-steel') candidate = resolveCatalogueAsset('Product Images/Fasteners/carbon.jpeg');
+  else if (s === 'alloy-steel') candidate = resolveCatalogueAsset('Product Images/Fasteners/alloy steel.avif');
+  else if (s.includes('super-duplex')) candidate = resolveCatalogueAsset('Product Images/Fasteners/super duplex.jpeg');
+  else if (s.includes('duplex')) candidate = resolveCatalogueAsset('Product Images/Fasteners/duplex.jpg');
+  else if (s.includes('nickel') || s.includes('nikle')) candidate = resolveCatalogueAsset('Product Images/Fasteners/nikle.jpeg');
+  else if (s.includes('monel')) candidate = resolveCatalogueAsset('Product Images/Fasteners/monel.png');
+  else if (s.includes('inconel') || s.includes('iconel')) candidate = resolveCatalogueAsset('Product Images/Fasteners/iconel.jpeg');
+  else if (s.includes('hastelloy')) candidate = resolveCatalogueAsset('Product Images/Fasteners/Hastelloy.jpeg');
+  else if (s.includes('titanium') || s.includes('titainium')) candidate = resolveCatalogueAsset('Product Images/Fasteners/titainium.jpeg');
+  else if (s.includes('copper') || s.includes('cupro') || s.includes('brass')) candidate = resolveCatalogueAsset('our product images/fasteners.png');
+  return candidate || resolveCatalogueAsset('Product Section/Manufacturer division/Fasteners/stainless-steel.webp') || resolveCatalogueAsset('our product images/fasteners.png');
+};
+
+export const FASTENER_BASE_TYPES = [
   {
-    id: 'stud-bolts',
-    slug: 'stud-bolts',
-    name: 'Stud Bolts with 2 Heavy Hex Nuts',
-    image: resolveCatalogueAsset('our product images/fasteners.png') || resolveCatalogueAsset('Product Section/Manufacturer division/Fasteners/stainless-steel.webp'),
-    shortDesc: 'Continuously threaded alloy & stainless rods supplied with two matched heavy hex nuts.',
-    purpose: 'Primary pressure boundary fasteners for ASME B16.5 and B16.47 flange bolting, pressure vessels, and high-pressure valve bonnet assemblies.',
-    standards: 'ASTM A193 Gr. B7/B8/B8M/B16, ASTM A194 Gr. 2H/8/8M, ASME B18.31.2',
+    id: 'bolts',
+    slug: 'bolts',
+    aliases: ['stud-bolts', 'hex-head-bolts', 'bolts-and-studs', 'threaded-rods', 'socket-head-cap-screws'],
+    nameSuffix: 'Bolts & Studs',
+    shortCode: 'HEX / STUD',
+    shortDesc: 'Heavy hex bolts, continuous threaded stud bolts, and machine screws engineered for high clamping preload.',
+    purpose: 'Engineered as primary pressure boundary fasteners for ASME B16.5 and B16.47 flange bolting, high-pressure valves, and structural machinery frames.',
+    standards: 'ASME B18.2.1, ASTM A193, DIN 931 / 933, ISO 4014',
     features: [
-      'Full length thread engagement allows uniform torquing and tensioning',
-      'Easy removal and replacement even in severe atmospheric or offshore marine exposure',
-      'Available with Zinc-Nickel, Hot Dip Galvanized, PTFE Xylan 1070, and Cadmium coatings',
+      'Precision rolled threads for superior fatigue life and high-torque tensioning',
+      'High tensile proof load tested to ASTM A193 and ISO specifications',
+      'Available with Zinc-Nickel, Hot Dip Galvanized, PTFE Xylan, and plain passivated finishes',
     ],
-    applications: ['Pipeline flange joints', 'Heat exchanger channel covers', 'Subsea valve assemblies', 'Pressure vessel handholes'],
-    relatedTypeSlugs: ['heavy-hex-nuts', 'hex-head-bolts', 'threaded-rods'],
+    applications: ['Pipeline flange joints', 'Pressure vessel handholes', 'Heat exchanger channel covers', 'Structural framing'],
+    relatedTypeSlugs: ['nuts', 'washers', 'anchors', 'retaining-rings'],
   },
   {
-    id: 'heavy-hex-nuts',
-    slug: 'heavy-hex-nuts',
-    name: 'Heavy Hex Nuts',
-    image: resolveCatalogueAsset('Product Section/Manufacturer division/Fasteners/carbon.jpeg'),
-    shortDesc: 'Thicker and wider across flats than standard nuts to distribute high clamping preload.',
+    id: 'nuts',
+    slug: 'nuts',
+    aliases: ['heavy-hex-nuts', 'hex-nuts'],
+    nameSuffix: 'Hex Nuts & Heavy Hex Nuts',
+    shortCode: 'HEX NUTS',
+    shortDesc: 'Precision machined heavy hex nuts with high proof load capacity for severe pressure boundary and structural assemblies.',
     purpose: 'Engineered with increased cross-sectional width across flats and thickness to withstand proof load stresses without thread stripping under high torque tightening.',
-    standards: 'ASME B18.2.2, ASTM A194, ISO 4033',
+    standards: 'ASME B18.2.2, ASTM A194, ISO 4032 / 4033, DIN 934',
     features: [
       'Wider bearing area distributes high bolt clamping loads across flange faces',
       'Full proof load tested according to ASTM A194 specifications',
-      'Available in plain black, zinc plated, yellow passivated, and fluoropolymer coated',
+      'Available across full alloy range with certified hardness verification',
     ],
-    applications: ['High pressure bolting', 'Structural bridge connections', 'Turbine casings', 'Crane rail anchors'],
-    relatedTypeSlugs: ['stud-bolts', 'hex-head-bolts', 'washers'],
-  },
-  {
-    id: 'hex-head-bolts',
-    slug: 'hex-head-bolts',
-    name: 'Hex Head Machine Bolts',
-    image: resolveCatalogueAsset('Product Section/Manufacturer division/Fasteners/alloy steel.avif'),
-    shortDesc: 'Precision engineered hexagon head bolts with partial or full shank threading.',
-    purpose: 'General purpose and structural industrial fastening for machinery bases, pipe rack supports, and mechanical equipment installations.',
-    standards: 'ASME B18.2.1, ISO 4014 / 4017, DIN 931 / 933',
-    features: [
-      'Available in Grade 8.8, 10.9, 12.9 high tensile and A2/A4-70/80 stainless steel',
-      'Precision machined under-head radius to minimize fatigue failure',
-      'High shear and tensile strength for structural steel fabrication',
-    ],
-    applications: ['Pipe hanger framing', 'Pump and motor base mounting', 'Structural steel trusses', 'Storage tank anchors'],
-    relatedTypeSlugs: ['stud-bolts', 'heavy-hex-nuts', 'washers', 'anchor-bolts'],
-  },
-  {
-    id: 'socket-head-cap-screws',
-    slug: 'socket-head-cap-screws',
-    name: 'Socket Head Cap Screws',
-    image: resolveCatalogueAsset('Product Section/Manufacturer division/Fasteners/duplex.jpg'),
-    shortDesc: 'Cylindrical head with internal hex drive for recessed, high-torque counterbored holes.',
-    purpose: 'Engineered for high-clamping strength where exterior wrench clearance is limited, commonly utilized in precision die tooling, pumps, and valve actuators.',
-    standards: 'ASME B18.3, DIN 912, ISO 4762',
-    features: [
-      'Internal hex drive permits high torquing without slippage or cam-out',
-      'Compact cylindrical head fits flush inside counterbored holes',
-      'Heat treated to achieve high tensile strength exceeding 1200 MPa',
-    ],
-    applications: ['Hydraulic valve manifolds', 'High-pressure pump casings', 'Machine tool fixtures', 'Automotive die assemblies'],
-    relatedTypeSlugs: ['hex-head-bolts', 'stud-bolts', 'washers'],
-  },
-  {
-    id: 'threaded-rods',
-    slug: 'threaded-rods',
-    name: 'Continuous Threaded Rods',
-    image: resolveCatalogueAsset('Product Section/Manufacturer division/Fasteners/super duplex.jpeg'),
-    shortDesc: '1 meter, 2 meter, and 3 meter long threaded bar stock cut to custom project lengths.',
-    purpose: 'Versatile hanging and clamping component used for piping suspension, structural tie rods, chemical anchor embedding, and custom length stud fabrication.',
-    standards: 'ASME B18.31.3, DIN 975 / 976',
-    features: [
-      'Continuous rolled threads for superior fatigue endurance and smooth nut travel',
-      'Can be cut and chamfered in field to custom lengths as requirements evolve',
-      'Available across 304, 316, 2205 Duplex, and Grade B7/B16 alloys',
-    ],
-    applications: ['HVAC & piping clevis suspension', 'Post-installed chemical anchors', 'Concrete formwork tie-backs', 'Electrical cable tray mounting'],
-    relatedTypeSlugs: ['stud-bolts', 'heavy-hex-nuts', 'anchor-bolts'],
+    applications: ['High pressure bolting', 'Structural connections', 'Turbine casings', 'Flange bolted joints'],
+    relatedTypeSlugs: ['bolts', 'washers', 'anchors', 'retaining-rings'],
   },
   {
     id: 'washers',
     slug: 'washers',
-    name: 'Plain & Spring Lock Washers',
-    image: resolveCatalogueAsset('Product Section/Manufacturer division/Fasteners/exotic alloys.jpeg'),
-    shortDesc: 'Hardened flat load-spreading washers and helical spring anti-loosening lock rings.',
+    aliases: ['plain-washers', 'spring-washers'],
+    nameSuffix: 'Plain & Spring Washers',
+    shortCode: 'WASHERS',
+    shortDesc: 'Hardened load-spreading flat washers and vibration-resistant helical spring lock washers.',
     purpose: 'Distributes bolting pre-load across contact surfaces to prevent surface galling and provide tension maintenance against operational vibration.',
-    standards: 'ASTM F436, ASME B18.21.1, DIN 125, DIN 127',
+    standards: 'ASTM F436, ASME B18.21.1, DIN 125, DIN 127, ISO 7089',
     features: [
       'Hardened ASTM F436 flat washers prevent embedment into softer flange materials',
       'Helical spring washers prevent back-off in high-vibration rotating machinery installations',
-      'Available in bevelled format for structural I-beam flange bolting',
+      'Smooth burr-free bearing faces for uniform torque-tension correlation',
     ],
-    applications: ['Flange bolting assemblies', 'Vibrating motor foundations', 'Pipeline support clamping', 'Structural bolted joints'],
-    relatedTypeSlugs: ['stud-bolts', 'heavy-hex-nuts', 'hex-head-bolts'],
+    applications: ['Flange bolting assemblies', 'Vibrating pump and motor foundations', 'Pipeline support clamping', 'Structural bolted joints'],
+    relatedTypeSlugs: ['bolts', 'nuts', 'anchors', 'retaining-rings'],
+  },
+  {
+    id: 'anchors',
+    slug: 'anchors',
+    aliases: ['anchor-bolts', 'foundation-anchors'],
+    nameSuffix: 'Anchor Bolts & Foundation Fasteners',
+    shortCode: 'ANCHORS',
+    shortDesc: 'Heavy-duty foundation anchor bolts, L-type, J-type, and expansion anchors for structural embedding and equipment bases.',
+    purpose: 'Engineered for secure cast-in-place and post-installed anchoring of heavy structural columns, piping racks, vessel saddles, and vibrating machinery.',
+    standards: 'ASTM F1554 (Gr. 36/55/105), DIN 529, ISO 898-1',
+    features: [
+      'High pull-out resistance and shear load bearing capacity in reinforced concrete',
+      'Supplied complete with matched heavy hex nuts and hardened anchor plate washers',
+      'Available in L-type, J-type, plate-welded studs, and chemical capsule systems',
+    ],
+    applications: ['Structural steel columns', 'Pipe rack foundation bases', 'Vessel saddles', 'Heavy machinery mounting'],
+    relatedTypeSlugs: ['bolts', 'nuts', 'washers', 'retaining-rings'],
+  },
+  {
+    id: 'retaining-rings',
+    slug: 'retaining-rings',
+    aliases: ['retain-rings', 'circlips'],
+    nameSuffix: 'Retaining Rings & Circlips',
+    shortCode: 'RETAIN RINGS',
+    shortDesc: 'Precision external and internal circlip retaining rings engineered for axial component retention on shafts and housings.',
+    purpose: 'Installed into machined grooves on shafts or housing bores to retain mechanical components, bearings, and valve stems with high thrust load capacity.',
+    standards: 'DIN 471 (External), DIN 472 (Internal), ASME B18.27.1',
+    features: [
+      'High spring yield strength ensuring tight groove seated grip under axial thrust',
+      'Lug holes engineered for standard circlip plier installation and removal',
+      'Superior corrosion and fatigue resistance across stainless and superalloy grades',
+    ],
+    applications: ['Industrial valve stems', 'Pump impeller shafts', 'Gearbox bearing retention', 'Actuator shaft assemblies'],
+    relatedTypeSlugs: ['bolts', 'nuts', 'washers', 'anchors'],
   },
 ];
+
+export const getFastenerTypesForMaterial = (materialSlug) => {
+  const material = getMaterialBySlug(materialSlug) || MATERIALS[0];
+  const matName = material.name;
+
+  return FASTENER_BASE_TYPES.map((type) => {
+    const image = getFastenerImageForMaterial(material.slug, type.slug);
+    return {
+      ...type,
+      name: `${matName} ${type.nameSuffix}`,
+      image,
+    };
+  });
+};
+
+export const FASTENER_TYPES = FASTENER_BASE_TYPES.map((t) => ({
+  ...t,
+  name: `Stainless Steel ${t.nameSuffix}`,
+  image: getFastenerImageForMaterial('stainless-steel', t.slug),
+}));
 
 /**
  * Resolves material-wise authentic forging fitting images directly from src/assets/forge 2
@@ -1356,8 +1465,13 @@ export const getFlangeTypeBySlug = (typeSlug) => {
   return FLANGE_TYPES.find((t) => t.slug === typeSlug);
 };
 
-export const getFastenerTypeBySlug = (typeSlug) => {
-  return FASTENER_TYPES.find((t) => t.slug === typeSlug);
+export const getFastenerTypeBySlug = (typeSlug, materialSlug) => {
+  if (!typeSlug) return null;
+  const s = typeSlug.toLowerCase();
+  const all = getFastenerTypesForMaterial(materialSlug);
+  const found = all.find((t) => t.slug === s || (t.aliases && t.aliases.includes(s)));
+  if (found) return found;
+  return all[0] || null;
 };
 
 export const getForgedFittingTypeBySlug = (typeSlug, materialSlug) => {
@@ -1375,7 +1489,7 @@ export const getForgedFittingTypeBySlug = (typeSlug, materialSlug) => {
 
 export const getTypesForProduct = (productSlug, materialSlug) => {
   if (productSlug === 'flanges') return FLANGE_TYPES;
-  if (productSlug === 'fasteners') return FASTENER_TYPES;
+  if (productSlug === 'fasteners') return getFastenerTypesForMaterial(materialSlug);
   if (productSlug === 'forged-fittings' || productSlug === 'forging') {
     return FORGED_FITTING_TYPES.map((type) => ({
       ...type,
@@ -1431,7 +1545,7 @@ export const getCompositeProduct = (materialSlug, productSlug) => {
   if (taxonomy.slug === 'flanges') {
     heroImage = resolveCatalogueAsset('our product images/flanges.png') || resolveCatalogueAsset('Product Section/Manufacturer division/Flanges/stainless steel.avif');
   } else if (taxonomy.slug === 'fasteners') {
-    heroImage = resolveCatalogueAsset('our product images/fasteners.png') || resolveCatalogueAsset('Product Section/Manufacturer division/Fasteners/stainless-steel.webp');
+    heroImage = getFastenerHeroImage(material.slug);
   } else if (taxonomy.slug === 'forging' || taxonomy.slug === 'forged-fittings') {
     heroImage = getForgingImageForMaterial(material.slug, 'elbow') || resolveCatalogueAsset('our product images/forged fittings.png') || resolveCatalogueAsset('Product Section/Manufacturer division/Forged Fittings/stainles steel.jpg');
   } else if (taxonomy.slug === 'butt-weld-fittings') {

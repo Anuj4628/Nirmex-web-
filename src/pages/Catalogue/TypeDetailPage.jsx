@@ -48,7 +48,7 @@ export const TypeDetailPage = () => {
   } else {
     let typeObj = null;
     if (taxonomy.slug === 'fasteners') {
-      typeObj = getFastenerTypeBySlug(typeSlug);
+      typeObj = getFastenerTypeBySlug(typeSlug, materialSlug);
     } else if (taxonomy.slug === 'forged-fittings' || taxonomy.slug === 'forging') {
       typeObj = getForgedFittingTypeBySlug(typeSlug, materialSlug);
     }

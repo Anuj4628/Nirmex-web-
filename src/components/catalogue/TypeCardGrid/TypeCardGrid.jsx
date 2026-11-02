@@ -12,12 +12,21 @@ import './TypeCardGrid.css';
  */
 export const TypeCardGrid = ({
   types = [],
+  activeMaterialSlug,
+  activeProductSlug,
   materialSlug,
   productSlug,
-  title = 'Types of Product & Configurations',
-  subtitle = 'Explore available design configurations, joint geometries, and ASME/DIN manufacturing forms.',
+  productName,
+  title,
+  subtitle,
 }) => {
+  const actualMaterialSlug = activeMaterialSlug || materialSlug;
+  const actualProductSlug = activeProductSlug || productSlug;
+
   if (!types || types.length === 0) return null;
+
+  const displayTitle = title || (productName ? `Types of ${productName}` : 'Types of Product & Configurations');
+  const displaySubtitle = subtitle || 'Explore available design configurations, joint geometries, and ASME/DIN manufacturing forms.';
 
   return (
     <section className="nirmex-types-sec" aria-labelledby="types-heading">
@@ -25,15 +34,15 @@ export const TypeCardGrid = ({
         <div className="nirmex-types-sec__title-wrap">
           <span className="nirmex-types-sec__dot" aria-hidden="true" />
           <h3 id="types-heading" className="nirmex-types-sec__title">
-            {title} ({types.length})
+            {displayTitle} ({types.length})
           </h3>
         </div>
-        {subtitle && <p className="nirmex-types-sec__sub">{subtitle}</p>}
+        {displaySubtitle && <p className="nirmex-types-sec__sub">{displaySubtitle}</p>}
       </div>
 
       <div className="nirmex-types-grid" role="list">
         {types.map((type) => {
-          const targetUrl = `/products/${materialSlug}/${productSlug}/types/${type.slug}`;
+          const targetUrl = `/products/${actualMaterialSlug}/${actualProductSlug}/types/${type.slug}`;
 
           return (
             <article key={type.slug} className="nirmex-type-card" role="listitem">

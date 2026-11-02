@@ -227,14 +227,18 @@ export const ProductDetailPage = () => {
                 types={flangeData.types}
                 activeMaterialSlug={flangeData.slug}
                 activeProductSlug="flanges"
-                productName="Flanges"
+                productName={flangeData.materialName ? `${flangeData.materialName} Flanges` : 'Flanges'}
+                title={`Types of ${flangeData.materialName || ''} Flanges`}
+                subtitle="Explore available design configurations, joint geometries, and ASME/DIN manufacturing forms."
               />
             ) : taxonomy.showTypes && types.length > 0 ? (
               <TypeCardGrid
                 types={types}
                 activeMaterialSlug={material.slug}
                 activeProductSlug={taxonomy.slug}
-                productName={taxonomy.displayName || taxonomy.name}
+                productName={`${material.name} ${taxonomy.displayName || taxonomy.name}`}
+                title={`Types of ${material.name} ${taxonomy.displayName || taxonomy.name}`}
+                subtitle={`Explore verified ${material.name} ${taxonomy.displayName || taxonomy.name} configurations, dimensional standards, and manufacturing forms.`}
               />
             ) : null}
 
