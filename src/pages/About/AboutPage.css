@@ -35,13 +35,13 @@
 .nirmex-about-hero {
   position: relative;
   width: 100%;
-  min-height: 560px;
+  min-height: 640px;
   display: flex;
   align-items: center;
-  background-color: #121826;
+  background-color: #0F172A;
   overflow: hidden;
-  padding-top: 4.5rem;
-  padding-bottom: 4.5rem;
+  padding-top: 5rem;
+  padding-bottom: 5rem;
 }
 
 .nirmex-about-hero__bg-wrap {
@@ -56,21 +56,13 @@
   width: 100%;
   height: 100%;
   object-fit: cover;
-  object-position: center 40%;
+  object-position: center 35%;
+  /* Pure, clear, authentic background - zero dulling filters */
 }
 
+/* Zero global black overlay - Keep the factory image completely clear and visible */
 .nirmex-about-hero__overlay {
-  position: absolute;
-  inset: 0;
-  width: 100%;
-  height: 100%;
-  /* High-contrast industrial gradient overlay for optimal typography legibility */
-  background: linear-gradient(
-    90deg,
-    rgba(14, 18, 28, 0.94) 0%,
-    rgba(14, 18, 28, 0.88) 50%,
-    rgba(14, 18, 28, 0.75) 100%
-  );
+  display: none;
 }
 
 .nirmex-about-hero__container {
@@ -85,19 +77,28 @@
   box-sizing: border-box;
 }
 
+/* Elegant frosted industrial content card - preserves full background visibility around it */
 .nirmex-about-hero__content {
-  max-width: 780px;
+  max-width: 740px;
+  background: rgba(15, 23, 42, 0.78);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+  border: 1px solid rgba(255, 255, 255, 0.18);
+  border-left: 4px solid var(--color-brand-red, #E10600);
+  border-radius: 8px;
+  padding: 3rem 3.25rem;
+  box-shadow: 0 24px 50px rgba(0, 0, 0, 0.32);
 }
 
 .nirmex-about-hero__eyebrow-wrap {
   display: inline-flex;
   align-items: center;
   gap: 12px;
-  margin-bottom: 1.25rem;
+  margin-bottom: 1.15rem;
 }
 
 .nirmex-about-hero__eyebrow-line {
-  width: 32px;
+  width: 28px;
   height: 3px;
   background-color: var(--color-brand-red, #E10600);
   border-radius: 1px;
@@ -108,18 +109,19 @@
   font-weight: 700;
   letter-spacing: 0.12em;
   text-transform: uppercase;
-  color: #F87171;
+  color: #FCA5A5;
 }
 
 .nirmex-about-hero__title {
   font-family: var(--font-family-headline, 'Bebas Neue', sans-serif);
-  font-size: clamp(2.5rem, 5vw, 4.25rem);
-  line-height: 1.05;
+  font-size: clamp(2.4rem, 4.5vw, 3.85rem);
+  line-height: 1.08;
   font-weight: 800;
   letter-spacing: 0.02em;
   color: #FFFFFF;
-  margin-bottom: 1.5rem;
+  margin-bottom: 1.25rem;
   text-transform: uppercase;
+  text-shadow: 0 2px 8px rgba(0, 0, 0, 0.4);
 }
 
 .nirmex-hero-br {
@@ -127,16 +129,15 @@
 }
 
 .nirmex-about-hero__title-accent {
-  color: #F3F4F6;
-  opacity: 0.96;
+  color: #F8FAFC;
 }
 
 .nirmex-about-hero__desc {
-  font-size: clamp(1rem, 1.2vw, 1.15rem);
+  font-size: clamp(0.975rem, 1.15vw, 1.075rem);
   line-height: 1.7;
-  color: #D1D5DB;
-  margin-bottom: 2.25rem;
-  max-width: 720px;
+  color: #E2E8F0;
+  margin-bottom: 2rem;
+  max-width: 680px;
 }
 
 .nirmex-about-hero__actions {
@@ -144,7 +145,7 @@
   align-items: center;
   gap: 1.25rem;
   flex-wrap: wrap;
-  margin-bottom: 2.5rem;
+  margin-bottom: 2.25rem;
 }
 
 /* Button styles */
@@ -727,6 +728,11 @@
     padding-bottom: 3.5rem;
   }
 
+  .nirmex-about-hero__content {
+    padding: 2rem 1.5rem;
+    border-left-width: 3px;
+  }
+
   .nirmex-hero-br {
     display: inline;
   }
@@ -770,3 +776,4 @@
     gap: 0.75rem;
   }
 }
+

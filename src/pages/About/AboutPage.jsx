@@ -4,7 +4,7 @@ import CTASection from '@/components/home/CTA';
 
 // Import authentic project assets
 import aboutHeroImg from '@/assets/images/about-hero-factory.jpg';
-import introFacilityImg from '@/assets/images/manufacturing-process.jpeg';
+import introFacilityImg from '@/assets/images/about-intro-facility.jpg';
 import forgedFittingsImg from '@/assets/our product images/forged fittings.png';
 import flangesImg from '@/assets/our product images/flanges.png';
 import fastenersImg from '@/assets/our product images/fasteners.png';
@@ -826,3 +826,4 @@ export const AboutPage = () => {
 };
 
 export default AboutPage;
+
