@@ -1,0 +1,205 @@
+/**
+ * NIRMAX METAL INDUSTRIES — TYPE CARD GRID STYLES
+ */
+
+.nirmex-types-sec {
+  margin-bottom: 36px;
+  font-family: 'Plus Jakarta Sans', 'Inter', sans-serif;
+}
+
+.nirmex-types-sec__header {
+  margin-bottom: 20px;
+}
+
+.nirmex-types-sec__title-wrap {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 4px;
+}
+
+.nirmex-types-sec__dot {
+  width: 6.5px;
+  height: 6.5px;
+  border-radius: 50%;
+  background-color: #E10600;
+  box-shadow: 0 0 6px rgba(225, 6, 0, 0.5);
+}
+
+.nirmex-types-sec__title {
+  margin: 0;
+  font-size: 17px;
+  font-weight: 800;
+  color: #142B4A;
+  letter-spacing: -0.015em;
+  text-transform: uppercase;
+}
+
+.nirmex-types-sec__sub {
+  margin: 0;
+  font-size: 13.5px;
+  color: #64748B;
+  line-height: 1.5;
+}
+
+/* 3-Column Responsive Grid */
+.nirmex-types-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 22px;
+}
+
+/* Individual Type Card */
+.nirmex-type-card {
+  background-color: #FFFFFF;
+  border: 1px solid #E2E8F0;
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 4px 14px -3px rgba(15, 23, 42, 0.05);
+  display: flex;
+  flex-direction: column;
+  transition: transform 220ms ease, box-shadow 220ms ease, border-color 220ms ease;
+  height: 100%;
+  box-sizing: border-box;
+}
+
+.nirmex-type-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 14px 28px -6px rgba(15, 23, 42, 0.12);
+  border-color: #CBD5E1;
+}
+
+/* Media Area */
+.nirmex-type-card__media {
+  position: relative;
+  width: 100%;
+  height: 195px;
+  background-color: #F8FAFC;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.nirmex-type-card__img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+  transition: transform 300ms ease;
+}
+
+.nirmex-type-card:hover .nirmex-type-card__img {
+  transform: scale(1.05);
+}
+
+.nirmex-type-card__code-badge {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  background-color: rgba(20, 43, 74, 0.88);
+  backdrop-filter: blur(4px);
+  color: #FFFFFF;
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  padding: 3px 8px;
+  border-radius: 4px;
+}
+
+/* Content Area */
+.nirmex-type-card__content {
+  padding: 16px 18px 18px;
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  box-sizing: border-box;
+}
+
+.nirmex-type-card__name {
+  margin: 0 0 6px 0;
+  font-size: 15px;
+  font-weight: 700;
+  color: #0F172A;
+  line-height: 1.3;
+}
+
+.nirmex-type-card__desc {
+  margin: 0 0 12px 0;
+  font-size: 12.5px;
+  line-height: 1.5;
+  color: #64748B;
+  flex-grow: 1;
+}
+
+.nirmex-type-card__spec {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 11px;
+  color: #475569;
+  background-color: #F8FAFC;
+  padding: 5px 8px;
+  border-radius: 4px;
+  margin-bottom: 14px;
+  border: 1px solid #EDF2F7;
+}
+
+.nirmex-type-card__spec-label {
+  font-weight: 700;
+  color: #E10600;
+}
+
+.nirmex-type-card__spec-val {
+  font-weight: 500;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+/* Action Link */
+.nirmex-type-card__action {
+  margin-top: auto;
+}
+
+.nirmex-type-card__link {
+  display: inline-flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  padding: 8px 12px;
+  background-color: #F1F5F9;
+  color: #142B4A;
+  border-radius: 6px;
+  font-size: 12.5px;
+  font-weight: 600;
+  text-decoration: none;
+  transition: all 160ms ease;
+  box-sizing: border-box;
+}
+
+.nirmex-type-card__link:hover {
+  background-color: #E10600;
+  color: #FFFFFF;
+}
+
+.nirmex-type-card__link svg {
+  transition: transform 160ms ease;
+}
+
+.nirmex-type-card__link:hover svg {
+  transform: translateX(3px);
+}
+
+@media (max-width: 1200px) {
+  .nirmex-types-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 640px) {
+  .nirmex-types-grid {
+    grid-template-columns: 1fr;
+  }
+}
+

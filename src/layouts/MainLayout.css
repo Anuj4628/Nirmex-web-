@@ -1,0 +1,31 @@
+/* Main Application Layout Structure */
+.nirmex-app-layout {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  background-color: var(--color-bg-neutral);
+  overflow-x: clip;
+  box-sizing: border-box;
+}
+
+.nirmex-main-content {
+  flex: 1 1 auto;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  box-sizing: border-box;
+  padding-top: var(--navbar-height-desktop);
+  transition: padding-top var(--transition-normal);
+}
+
+@media (max-width: 992px) {
+  .nirmex-main-content {
+    padding-top: var(--navbar-height-desktop);
+  }
+}
+
+@media (max-width: 480px) {
+  .nirmex-main-content {
+    padding-top: var(--navbar-height-desktop);
+  }
+}

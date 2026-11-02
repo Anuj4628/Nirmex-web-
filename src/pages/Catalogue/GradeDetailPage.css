@@ -1,0 +1,199 @@
+/**
+ * NIRMAX METAL INDUSTRIES — GRADE DETAIL PAGE STYLES
+ */
+
+/* Grade Hero Card */
+.nirmex-grade-hero-card {
+  background-color: #FFFFFF;
+  border: 1px solid #E2E8F0;
+  border-radius: 14px;
+  padding: 30px;
+  margin-bottom: 24px;
+  box-shadow: 0 4px 18px -4px rgba(15, 23, 42, 0.05);
+  box-sizing: border-box;
+}
+
+.nirmex-grade-hero-card__eyebrow-wrap {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-bottom: 12px;
+}
+
+.nirmex-grade-badge {
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  color: #E10600;
+  background-color: rgba(225, 6, 0, 0.08);
+  padding: 3px 9px;
+  border-radius: 4px;
+}
+
+.nirmex-grade-std {
+  font-size: 12px;
+  font-weight: 600;
+  color: #64748B;
+  background-color: #F1F5F9;
+  padding: 3px 9px;
+  border-radius: 4px;
+}
+
+.nirmex-grade-hero-card__title {
+  margin: 0 0 14px 0;
+  font-size: clamp(22px, 2.4vw, 30px);
+  font-weight: 800;
+  color: #142B4A;
+  line-height: 1.25;
+  letter-spacing: -0.02em;
+}
+
+.nirmex-grade-hero-card__desc {
+  margin: 0 0 24px 0;
+  font-size: 15px;
+  line-height: 1.6;
+  color: #475569;
+  max-width: 800px;
+}
+
+.nirmex-grade-hero-card__actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+}
+
+/* Quick Grade Switcher Bar */
+.nirmex-grade-switcher-sec {
+  background-color: #FFFFFF;
+  border: 1px solid #E2E8F0;
+  border-radius: 10px;
+  padding: 14px 20px;
+  margin-bottom: 24px;
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 12px;
+}
+
+.nirmex-switcher-label {
+  font-size: 12.5px;
+  font-weight: 700;
+  color: #64748B;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+}
+
+.nirmex-switcher-chips {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.nirmex-switcher-chip {
+  padding: 5px 12px;
+  border-radius: 6px;
+  border: 1px solid #E2E8F0;
+  background-color: #F8FAFC;
+  font-size: 12px;
+  font-weight: 600;
+  color: #334155;
+  text-decoration: none;
+  transition: all 140ms ease;
+}
+
+.nirmex-switcher-chip:hover {
+  border-color: #E10600;
+  color: #E10600;
+  background-color: #FFFFFF;
+}
+
+.nirmex-switcher-chip--active {
+  background-color: #142B4A !important;
+  color: #FFFFFF !important;
+  border-color: #142B4A !important;
+}
+
+/* Chemical Composition Table */
+.nirmex-tech-table--chem thead th {
+  background-color: #142B4A;
+  color: #FFFFFF;
+  text-align: center;
+  padding: 10px 14px;
+  font-size: 13px;
+  font-weight: 700;
+}
+
+.nirmex-tech-table--chem tbody td {
+  text-align: center;
+  font-weight: 600;
+  color: #1E293B;
+  background-color: #F8FAFC;
+}
+
+/* Environmental Notes Grid */
+.nirmex-env-notes-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 18px;
+}
+
+.nirmex-env-note-card {
+  background-color: #F8FAFC;
+  border: 1px solid #E2E8F0;
+  border-radius: 8px;
+  padding: 18px 20px;
+}
+
+.nirmex-env-note-title {
+  margin: 0 0 6px 0;
+  font-size: 14.5px;
+  font-weight: 700;
+  color: #142B4A;
+}
+
+.nirmex-env-note-text {
+  margin: 0;
+  font-size: 13px;
+  line-height: 1.6;
+  color: #475569;
+}
+
+/* Grade App List */
+.nirmex-grade-app-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 12px;
+}
+
+.nirmex-grade-app-item {
+  display: flex;
+  align-items: flex-start;
+  gap: 8px;
+  background-color: #F8FAFC;
+  border: 1px solid #E2E8F0;
+  border-radius: 8px;
+  padding: 12px 14px;
+  font-size: 13px;
+  color: #334155;
+  font-weight: 500;
+}
+
+.nirmex-app-check {
+  color: #16A34A;
+  font-weight: 800;
+  font-size: 14px;
+}
+
+@media (max-width: 768px) {
+  .nirmex-env-notes-grid,
+  .nirmex-grade-app-list {
+    grid-template-columns: 1fr;
+  }
+}
+

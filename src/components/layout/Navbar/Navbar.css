@@ -1,0 +1,643 @@
+/* ==========================================================================
+   NIRMEX METAL INDUSTRIES - REFINED PREMIUM NAVBAR STYLES
+   ========================================================================== */
+
+.nirmex-header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  background-color: var(--color-bg-white);
+  border-bottom: 1px solid var(--color-border-subtle);
+  box-shadow: var(--shadow-navbar-default);
+  z-index: var(--z-navbar);
+  transition: box-shadow var(--transition-normal), 
+              border-color var(--transition-normal),
+              background-color var(--transition-normal);
+}
+
+/* Scrolled Sticky State with Compact Depth */
+.nirmex-header--scrolled {
+  box-shadow: var(--shadow-navbar-scrolled);
+  border-bottom-color: rgba(18, 59, 115, 0.12);
+}
+
+.nirmex-header__inner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  max-width: var(--container-max-width);
+  margin-left: auto;
+  margin-right: auto;
+  padding-left: var(--container-padding);
+  padding-right: var(--container-padding);
+  height: var(--navbar-height-desktop); /* ~100px */
+  transition: height var(--transition-normal);
+}
+
+.nirmex-header--scrolled .nirmex-header__inner {
+  height: var(--navbar-height-compact); /* ~82px */
+}
+
+/* ==========================================================================
+   1. Brand Logo (Left - 25-32% horizontal space)
+   ========================================================================== */
+.nirmex-header__brand {
+  display: flex;
+  align-items: center;
+  flex: 0 0 auto;
+  max-width: 320px;
+  min-width: 220px;
+}
+
+.nirmex-header__logo-link {
+  display: inline-flex;
+  align-items: center;
+  text-decoration: none;
+  transition: opacity var(--transition-fast), transform var(--transition-fast);
+}
+
+.nirmex-header__logo-link:hover {
+  opacity: 0.96;
+  transform: translateY(-0.5px);
+}
+
+.nirmex-header__logo-img {
+  display: block;
+  height: 68px; /* Significantly larger, highly prominent brand logo */
+  width: auto;
+  max-width: 275px;
+  object-fit: contain;
+  transition: height var(--transition-normal);
+}
+
+.nirmex-header--scrolled .nirmex-header__logo-img {
+  height: 56px;
+}
+
+/* ==========================================================================
+   2. Navigation Container & Links (Center - 48-55% horizontal space)
+   ========================================================================== */
+.nirmex-header__nav {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex: 1 1 auto;
+  height: 100%;
+  position: relative;
+}
+
+.nirmex-nav__list {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  position: relative;
+  height: 100%;
+}
+
+/* Smooth Horizontal Sliding Active Red Top Indicator */
+.nirmex-nav__active-slider {
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 2.8px;
+  background-color: var(--color-brand-red);
+  border-radius: 2px 2px 0 0;
+  pointer-events: none;
+  z-index: 10;
+  box-shadow: 0 2px 8px rgba(222, 1, 0, 0.45);
+  transition: transform var(--transition-smooth), 
+              width var(--transition-smooth), 
+              opacity var(--transition-normal);
+}
+
+.nirmex-nav__item-wrapper {
+  display: flex;
+  align-items: center;
+  height: 100%;
+  position: relative;
+}
+
+/* Individual Navigation Item */
+.nirmex-nav__item {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 10px 18px;
+  font-family: var(--font-family-primary);
+  font-size: 15px;
+  font-weight: 500;
+  letter-spacing: -0.01em;
+  color: var(--color-dark-industrial);
+  text-decoration: none;
+  border-radius: var(--radius-md);
+  background-color: transparent;
+  border: 1px solid transparent;
+  cursor: pointer;
+  user-select: none;
+  outline: none;
+  transition: transform var(--transition-fast), 
+              color var(--transition-fast), 
+              background-color var(--transition-fast), 
+              border-color var(--transition-fast), 
+              box-shadow var(--transition-fast);
+}
+
+/* Animated Top Indicator on Hover */
+.nirmex-nav__hover-bar {
+  position: absolute;
+  top: -1px;
+  left: 0;
+  right: 0;
+  height: 2.8px;
+  background-color: var(--color-brand-red);
+  border-radius: 2px 2px 0 0;
+  opacity: 0;
+  transform: scaleX(0);
+  transform-origin: center;
+  transition: transform var(--transition-normal), opacity var(--transition-normal);
+  pointer-events: none;
+}
+
+/* Soft Blurred Halo Layer (Low-opacity Red & Navy tones) */
+.nirmex-nav__halo {
+  position: absolute;
+  inset: -1px;
+  border-radius: calc(var(--radius-md) + 1px);
+  background: radial-gradient(
+    circle at center, 
+    rgba(222, 1, 0, 0.07) 0%, 
+    rgba(18, 59, 115, 0.04) 60%, 
+    transparent 100%
+  );
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity var(--transition-fast);
+}
+
+/* Hover States (3D Elevation + Blurred Border Halo) */
+.nirmex-nav__item:hover {
+  color: var(--color-brand-red);
+  background-color: rgba(255, 255, 255, 0.96);
+  border-color: rgba(222, 1, 0, 0.18);
+  transform: translateY(-2.5px); /* Subtle 3D elevation */
+  box-shadow: 
+    0 4px 16px -2px rgba(222, 1, 0, 0.12),
+    0 2px 8px rgba(18, 59, 115, 0.07),
+    0 0 0 1px rgba(222, 1, 0, 0.08);
+}
+
+.nirmex-nav__item:hover .nirmex-nav__halo {
+  opacity: 1;
+}
+
+.nirmex-nav__item:hover .nirmex-nav__hover-bar {
+  opacity: 1;
+  transform: scaleX(1);
+}
+
+/* Active State */
+.nirmex-nav__item--active {
+  color: var(--color-brand-navy);
+  font-weight: 600;
+  background-color: rgba(18, 59, 115, 0.04);
+  border-color: rgba(18, 59, 115, 0.12);
+  box-shadow: 0 1px 4px rgba(18, 59, 115, 0.05);
+}
+
+/* Hide individual hover bar when active so active slider takes precedence cleanly */
+.nirmex-nav__item--active .nirmex-nav__hover-bar {
+  display: none;
+}
+
+.nirmex-nav__item--active:hover {
+  color: var(--color-brand-red);
+  border-color: rgba(222, 1, 0, 0.2);
+}
+
+/* Pressed State */
+.nirmex-nav__item:active {
+  transform: translateY(0);
+  box-shadow: 0 1px 2px rgba(18, 59, 115, 0.08);
+}
+
+/* Keyboard Focus */
+.nirmex-nav__item:focus-visible {
+  outline: 2px solid var(--color-brand-blue);
+  outline-offset: 2px;
+}
+
+/* Dropdown Chevron Indicator */
+.nirmex-nav__chevron {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  margin-left: 5px;
+  color: #64748B;
+  transition: transform 220ms ease, color 220ms ease;
+  position: relative;
+  z-index: 2;
+}
+
+.nirmex-nav__chevron--rotated {
+  transform: rotate(180deg);
+  color: var(--color-brand-red, #E10600);
+}
+
+.nirmex-nav__item:hover .nirmex-nav__chevron,
+.nirmex-nav__item--dropdown-active .nirmex-nav__chevron {
+  color: var(--color-brand-red, #E10600);
+}
+
+/* Mega Menu Anchoring Wrapper */
+.nirmex-header__mega-wrapper {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  pointer-events: none;
+  z-index: 1200;
+}
+
+.nirmex-header__mega-wrapper > * {
+  pointer-events: auto;
+}
+
+/* ==========================================================================
+   3. Actions & CTA Button (Right - remaining space)
+   ========================================================================== */
+.nirmex-header__actions {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  flex: 0 0 auto;
+  gap: 18px;
+}
+
+.nirmex-header__cta-btn {
+  /* Distinct CTA presence */
+}
+
+/* Hamburger Menu Toggle (Mobile & Tablet) */
+.nirmex-header__hamburger {
+  display: none;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 5px;
+  width: 44px;
+  height: 44px;
+  padding: 8px;
+  background-color: var(--color-bg-neutral);
+  border: 1px solid var(--color-border-subtle);
+  border-radius: var(--radius-md);
+  cursor: pointer;
+  transition: background-color var(--transition-fast), border-color var(--transition-fast);
+}
+
+.nirmex-header__hamburger:hover {
+  background-color: var(--color-bg-subtle);
+  border-color: var(--color-brand-blue);
+}
+
+.nirmex-header__hamburger-bar {
+  display: block;
+  width: 22px;
+  height: 2.2px;
+  background-color: var(--color-dark-industrial);
+  border-radius: 2px;
+  transition: transform var(--transition-fast), opacity var(--transition-fast), background-color var(--transition-fast);
+}
+
+.nirmex-header__hamburger:hover .nirmex-header__hamburger-bar {
+  background-color: var(--color-brand-red);
+}
+
+/* Hamburger Morph into X */
+.nirmex-header__hamburger--open .nirmex-header__hamburger-bar:nth-child(1) {
+  transform: translateY(7.2px) rotate(45deg);
+  background-color: var(--color-brand-red);
+}
+
+.nirmex-header__hamburger--open .nirmex-header__hamburger-bar:nth-child(2) {
+  opacity: 0;
+}
+
+.nirmex-header__hamburger--open .nirmex-header__hamburger-bar:nth-child(3) {
+  transform: translateY(-7.2px) rotate(-45deg);
+  background-color: var(--color-brand-red);
+}
+
+/* ==========================================================================
+   4. Mobile Navigation Drawer
+   ========================================================================== */
+.nirmex-mobile-drawer {
+  position: fixed;
+  inset: 0;
+  z-index: var(--z-drawer);
+  visibility: hidden;
+  transition: visibility var(--transition-normal);
+}
+
+.nirmex-mobile-drawer--open {
+  visibility: visible;
+}
+
+.nirmex-mobile-drawer__backdrop {
+  position: absolute;
+  inset: 0;
+  background-color: rgba(16, 24, 32, 0.45);
+  backdrop-filter: blur(4px);
+  opacity: 0;
+  transition: opacity var(--transition-normal);
+}
+
+.nirmex-mobile-drawer--open .nirmex-mobile-drawer__backdrop {
+  opacity: 1;
+}
+
+.nirmex-mobile-drawer__panel {
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  width: 100%;
+  max-width: 360px;
+  background-color: var(--color-bg-white);
+  box-shadow: -4px 0 24px rgba(16, 24, 32, 0.15);
+  display: flex;
+  flex-direction: column;
+  transform: translateX(100%);
+  transition: transform var(--transition-smooth);
+  overflow-y: auto;
+}
+
+.nirmex-mobile-drawer--open .nirmex-mobile-drawer__panel {
+  transform: translateX(0);
+}
+
+.nirmex-mobile-drawer__header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 1.25rem 1.5rem;
+  border-bottom: 1px solid var(--color-border-subtle);
+}
+
+.nirmex-mobile-drawer__logo-img {
+  height: 44px;
+  width: auto;
+  max-width: 180px;
+  object-fit: contain;
+}
+
+.nirmex-mobile-drawer__close-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  height: 40px;
+  border-radius: var(--radius-md);
+  color: var(--color-dark-industrial);
+  border: 1px solid var(--color-border-subtle);
+  background: var(--color-bg-neutral);
+  transition: color var(--transition-fast), background-color var(--transition-fast), border-color var(--transition-fast);
+}
+
+.nirmex-mobile-drawer__close-btn:hover {
+  color: var(--color-brand-red);
+  background-color: var(--color-bg-subtle);
+  border-color: var(--color-brand-red);
+}
+
+.nirmex-mobile-drawer__nav {
+  flex: 1;
+  padding: 1.25rem 1rem;
+}
+
+.nirmex-mobile-drawer__list {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.nirmex-mobile-drawer__link {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 12px 16px;
+  font-size: 16px;
+  font-weight: 500;
+  color: var(--color-dark-industrial);
+  border-radius: var(--radius-md);
+  text-decoration: none;
+  position: relative;
+  transition: background-color var(--transition-fast), color var(--transition-fast), transform var(--transition-fast);
+}
+
+.nirmex-mobile-drawer__link-accent {
+  width: 3px;
+  height: 18px;
+  border-radius: 2px;
+  background-color: transparent;
+  transition: background-color var(--transition-fast);
+}
+
+.nirmex-mobile-drawer__link:hover {
+  background-color: var(--color-bg-neutral);
+  color: var(--color-brand-red);
+  transform: translateX(4px);
+}
+
+.nirmex-mobile-drawer__link--active {
+  background-color: rgba(18, 59, 115, 0.05);
+  color: var(--color-brand-navy);
+  font-weight: 600;
+}
+
+.nirmex-mobile-drawer__link--active .nirmex-mobile-drawer__link-accent {
+  background-color: var(--color-brand-red);
+}
+
+.nirmex-mobile-drawer__footer {
+  padding: 1.5rem;
+  border-top: 1px solid var(--color-border-subtle);
+  background-color: var(--color-bg-neutral);
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.nirmex-mobile-drawer__cta {
+  width: 100%;
+}
+
+.nirmex-mobile-drawer__footer-note {
+  font-size: 12px;
+  color: var(--color-text-muted);
+  text-align: center;
+  letter-spacing: 0.02em;
+}
+
+/* Mobile Mega Menu Accordion */
+.nirmex-mobile-drawer__link-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+}
+
+.nirmex-mobile-drawer__expand-btn {
+  background: transparent;
+  border: none;
+  color: var(--color-brand-red, #E10600);
+  padding: 8px 12px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: transform 200ms ease;
+}
+
+.nirmex-mobile-drawer__expand-btn--open {
+  transform: rotate(180deg);
+}
+
+.nirmex-mobile-mega {
+  background-color: #8C0600;
+  border-radius: 10px;
+  padding: 12px;
+  margin: 8px 0 12px 10px;
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  border: 1px solid rgba(255, 255, 255, 0.18);
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.2);
+}
+
+.nirmex-mobile-mega__header {
+  padding-bottom: 6px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.nirmex-mobile-mega__tag {
+  font-size: 11px;
+  font-weight: 800;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: #FFFFFF;
+}
+
+.nirmex-mobile-mega__list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.nirmex-mobile-mega__link {
+  display: flex;
+  flex-direction: column;
+  text-decoration: none;
+  padding: 6px 10px;
+  border-radius: 6px;
+  background-color: rgba(0, 0, 0, 0.16);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  transition: background-color 150ms ease;
+}
+
+.nirmex-mobile-mega__link:active {
+  background-color: rgba(255, 255, 255, 0.22);
+}
+
+.nirmex-mobile-mega__link-name {
+  font-size: 12.5px;
+  font-weight: 700;
+  color: #FFFFFF;
+}
+
+.nirmex-mobile-mega__link-sub {
+  font-size: 10.5px;
+  color: rgba(255, 255, 255, 0.8);
+  margin-top: 1px;
+}
+
+/* ==========================================================================
+   5. Responsive Breakpoints
+   ========================================================================== */
+
+/* Laptop / Compact Desktop (1024px - 1240px) */
+@media (max-width: 1240px) {
+  :root {
+    --container-padding: 1.75rem;
+  }
+
+  .nirmex-nav__list {
+    gap: 6px;
+  }
+
+  .nirmex-nav__item {
+    padding: 9px 14px;
+    font-size: 14.5px;
+  }
+
+  .nirmex-header__logo-img {
+    height: 62px;
+    max-width: 250px;
+  }
+}
+
+/* Tablet & Mobile Breakpoint (Below 992px) */
+@media (max-width: 992px) {
+  :root {
+    --navbar-height-desktop: 84px;
+    --container-padding: 1.5rem;
+  }
+
+  .nirmex-header__nav {
+    display: none;
+  }
+
+  .nirmex-header__cta-btn {
+    display: none;
+  }
+
+  .nirmex-header__hamburger {
+    display: flex;
+  }
+
+  .nirmex-header__logo-img {
+    height: 56px;
+    max-width: 220px;
+  }
+}
+
+/* Mobile Small (Below 480px) */
+@media (max-width: 480px) {
+  :root {
+    --navbar-height-desktop: 76px;
+    --container-padding: 1.25rem;
+  }
+
+  .nirmex-header__logo-img {
+    height: 50px;
+    max-width: 195px;
+  }
+
+  .nirmex-mobile-drawer__panel {
+    max-width: 86%;
+  }
+}

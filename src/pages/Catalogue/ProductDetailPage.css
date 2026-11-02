@@ -1,0 +1,363 @@
+/**
+ * NIRMAX METAL INDUSTRIES — PRODUCT DETAIL PAGE STYLES
+ * Desktop 2-column layout with persistent sidebar and independent scrolling
+ */
+
+/* Breadcrumbs */
+.nirmex-detail-crumbs {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-bottom: 20px;
+  font-size: 13px;
+  color: #64748B;
+}
+
+.nirmex-detail-crumb-link {
+  color: #64748B;
+  text-decoration: none;
+  font-weight: 500;
+  transition: color 150ms ease;
+}
+
+.nirmex-detail-crumb-link:hover {
+  color: #E10600;
+}
+
+.nirmex-detail-crumb-sep {
+  color: #CBD5E1;
+  font-size: 12px;
+}
+
+.nirmex-detail-crumb-text {
+  color: #64748B;
+}
+
+.nirmex-detail-crumb-active {
+  color: #142B4A;
+  font-weight: 700;
+}
+
+/* Hero Header Card */
+.nirmex-prod-hero-card {
+  background-color: #FFFFFF;
+  border: 1px solid #E2E8F0;
+  border-radius: 14px;
+  padding: 30px;
+  margin-bottom: 30px;
+  box-shadow: 0 4px 18px -4px rgba(15, 23, 42, 0.05);
+  box-sizing: border-box;
+}
+
+.nirmex-prod-hero-card__grid {
+  display: grid;
+  grid-template-columns: 1.25fr 0.75fr;
+  gap: 32px;
+  align-items: center;
+}
+
+.nirmex-prod-hero-card__eyebrow-wrap {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 12px;
+}
+
+.nirmex-prod-hero-card__pill {
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  color: #E10600;
+  background-color: rgba(225, 6, 0, 0.08);
+  padding: 3px 9px;
+  border-radius: 4px;
+}
+
+.nirmex-prod-hero-card__pill-sep {
+  color: #CBD5E1;
+  font-size: 12px;
+}
+
+.nirmex-prod-hero-card__category {
+  font-size: 12px;
+  font-weight: 600;
+  color: #64748B;
+  text-transform: uppercase;
+}
+
+.nirmex-prod-hero-card__title {
+  margin: 0 0 14px 0;
+  font-size: clamp(24px, 2.6vw, 32px);
+  font-weight: 800;
+  color: #142B4A;
+  line-height: 1.2;
+  letter-spacing: -0.02em;
+}
+
+.nirmex-prod-hero-card__desc {
+  margin: 0 0 20px 0;
+  font-size: 14.5px;
+  line-height: 1.6;
+  color: #475569;
+}
+
+.nirmex-prod-hero-card__badges {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-bottom: 24px;
+}
+
+.nirmex-prod-hero-card__badge {
+  background-color: #F8FAFC;
+  border: 1px solid #E2E8F0;
+  padding: 5px 10px;
+  border-radius: 6px;
+  font-size: 12px;
+  font-weight: 600;
+  color: #334155;
+}
+
+.nirmex-prod-hero-card__actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+}
+
+/* Button Styles */
+.nirmex-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  padding: 11px 22px;
+  border-radius: 7px;
+  font-size: 13.5px;
+  font-weight: 600;
+  text-decoration: none;
+  cursor: pointer;
+  transition: all 180ms ease;
+  box-sizing: border-box;
+  border: none;
+}
+
+.nirmex-btn--primary {
+  background-color: #E10600;
+  color: #FFFFFF;
+  box-shadow: 0 4px 12px rgba(225, 6, 0, 0.25);
+}
+
+.nirmex-btn--primary:hover {
+  background-color: #C50100;
+  transform: translateY(-2px);
+  box-shadow: 0 6px 18px rgba(225, 6, 0, 0.35);
+}
+
+.nirmex-btn--wa {
+  background-color: #25D366;
+  color: #FFFFFF;
+}
+
+.nirmex-btn--wa:hover {
+  background-color: #20BA5C;
+  transform: translateY(-2px);
+}
+
+/* Media Card */
+.nirmex-prod-hero-card__img-wrap {
+  position: relative;
+  width: 100%;
+  height: 250px;
+  background-color: #F8FAFC;
+  border-radius: 12px;
+  overflow: hidden;
+  border: 1px solid #E2E8F0;
+  box-shadow: 0 8px 20px -4px rgba(15, 23, 42, 0.08);
+}
+
+.nirmex-prod-hero-card__img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+  transition: transform 300ms ease;
+}
+
+.nirmex-prod-hero-card__img-wrap:hover .nirmex-prod-hero-card__img {
+  transform: scale(1.04);
+}
+
+.nirmex-prod-hero-card__tag {
+  position: absolute;
+  bottom: 10px;
+  left: 10px;
+  background-color: rgba(20, 43, 74, 0.88);
+  backdrop-filter: blur(4px);
+  color: #FFFFFF;
+  font-size: 11px;
+  font-weight: 600;
+  padding: 4px 10px;
+  border-radius: 5px;
+}
+
+/* Technical Details Section */
+.nirmex-tech-details-sec,
+.nirmex-apps-sec,
+.nirmex-related-sec {
+  background-color: #FFFFFF;
+  border: 1px solid #E2E8F0;
+  border-radius: 12px;
+  padding: 26px 28px;
+  margin-bottom: 30px;
+  box-shadow: 0 4px 14px -3px rgba(15, 23, 42, 0.04);
+  box-sizing: border-box;
+}
+
+.nirmex-tech-details-sec__header {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 20px;
+}
+
+.nirmex-tech-dot {
+  width: 6.5px;
+  height: 6.5px;
+  border-radius: 50%;
+  background-color: #E10600;
+}
+
+.nirmex-tech-title {
+  margin: 0;
+  font-size: 16px;
+  font-weight: 800;
+  color: #142B4A;
+  text-transform: uppercase;
+  letter-spacing: -0.01em;
+}
+
+/* Technical Specifications Table */
+.nirmex-tech-table-wrap {
+  overflow-x: auto;
+}
+
+.nirmex-tech-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 13.5px;
+}
+
+.nirmex-tech-table th,
+.nirmex-tech-table td {
+  padding: 12px 16px;
+  border-bottom: 1px solid #EDF2F7;
+  text-align: left;
+}
+
+.nirmex-tech-table th {
+  width: 28%;
+  font-weight: 700;
+  color: #142B4A;
+  background-color: #F8FAFC;
+  white-space: nowrap;
+}
+
+.nirmex-tech-table td {
+  color: #475569;
+  line-height: 1.5;
+}
+
+/* Applications Cards */
+.nirmex-apps-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 16px;
+}
+
+.nirmex-app-card {
+  background-color: #F8FAFC;
+  border: 1px solid #E2E8F0;
+  border-radius: 8px;
+  padding: 16px 18px;
+}
+
+.nirmex-app-card__title {
+  margin: 0 0 6px 0;
+  font-size: 14.5px;
+  font-weight: 700;
+  color: #142B4A;
+}
+
+.nirmex-app-card__text {
+  margin: 0;
+  font-size: 12.5px;
+  line-height: 1.55;
+  color: #64748B;
+}
+
+/* Related Products Grid */
+.nirmex-related-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 16px;
+}
+
+.nirmex-related-card {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  background-color: #F8FAFC;
+  border: 1px solid #E2E8F0;
+  border-radius: 8px;
+  padding: 16px 18px;
+  text-decoration: none;
+  transition: all 180ms ease;
+}
+
+.nirmex-related-card:hover {
+  background-color: #FFFFFF;
+  border-color: #E10600;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(225, 6, 0, 0.1);
+}
+
+.nirmex-related-card__name {
+  margin: 0 0 6px 0;
+  font-size: 14px;
+  font-weight: 700;
+  color: #142B4A;
+}
+
+.nirmex-related-card__desc {
+  margin: 0 0 12px 0;
+  font-size: 12.5px;
+  line-height: 1.5;
+  color: #64748B;
+}
+
+.nirmex-related-card__arrow {
+  font-size: 12px;
+  font-weight: 700;
+  color: #E10600;
+  transition: transform 160ms ease;
+}
+
+.nirmex-related-card:hover .nirmex-related-card__arrow {
+  transform: translateX(4px);
+}
+
+@media (max-width: 992px) {
+  .nirmex-catalogue-layout {
+    flex-direction: column;
+  }
+  .nirmex-prod-hero-card__grid {
+    grid-template-columns: 1fr;
+  }
+  .nirmex-apps-grid,
+  .nirmex-related-grid {
+    grid-template-columns: 1fr;
+  }
+}
+

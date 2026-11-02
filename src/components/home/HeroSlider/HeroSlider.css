@@ -1,0 +1,633 @@
+/* ==========================================================================
+   NIRMEX METAL INDUSTRIES — FINAL INDUSTRIAL HERO REFINEMENT
+   Full-Bleed Diagonal Product Photography | Oversized Editorial Typography
+   Clean Solid Surfaces — ZERO Grid Lines — Restrained Industrial Palette
+   ========================================================================== */
+
+.nirmex-hero {
+  position: relative;
+  width: 100%;
+  height: calc(100vh - var(--navbar-height-desktop));
+  min-height: calc(100vh - var(--navbar-height-desktop));
+  max-height: calc(100vh - var(--navbar-height-desktop));
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  overflow: hidden;
+  /* Clean, smooth solid industrial surface — NO grid lines anywhere */
+  background-color: var(--color-industrial-black);
+  padding: 0;
+  margin: 0;
+}
+
+/* ==========================================================================
+   1. Upper Slide Carousel Zone (Full-Width Flex Area)
+   ========================================================================== */
+.nirmex-hero__slides-wrapper {
+  position: relative;
+  flex: 1 1 auto;
+  min-height: 0;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  z-index: 1;
+}
+
+.hero-slide {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: stretch;
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 450ms cubic-bezier(0.22, 1, 0.36, 1),
+    visibility 450ms cubic-bezier(0.22, 1, 0.36, 1);
+  pointer-events: none;
+}
+
+.hero-slide--active {
+  opacity: 1;
+  visibility: visible;
+  pointer-events: auto;
+}
+
+/* ==========================================================================
+   Left Column: Oversized Editorial Typography & CTAs (~45% width)
+   ========================================================================== */
+.hero-slide__col-text {
+  flex: 0 0 45%;
+  max-width: 620px;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  z-index: 10;
+  box-sizing: border-box;
+  padding-left: max(var(--container-padding), calc((100vw - var(--container-max-width)) / 2 + var(--container-padding)));
+  padding-right: 2rem;
+  padding-top: 1rem;
+  padding-bottom: 1rem;
+}
+
+/* Eyebrow Label */
+.hero-slide__eyebrow-wrap {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 0.45rem;
+}
+
+.hero-slide__eyebrow-accent {
+  width: 26px;
+  height: 3px;
+  background-color: var(--color-brand-red);
+  border-radius: 1px;
+}
+
+.hero-slide__eyebrow {
+  font-family: var(--font-family-primary);
+  font-size: clamp(11px, 0.85vw, 12.5px);
+  font-weight: 700;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--color-brand-red);
+}
+
+/* Oversized Condensed Editorial Headline (Bebas Neue / Anton) */
+.hero-slide__headline {
+  font-family: var(--font-family-headline);
+  letter-spacing: 0.015em;
+  line-height: 0.92;
+  margin-bottom: 0.85rem;
+  text-transform: uppercase;
+}
+
+.hero-slide__headline-accent {
+  display: block;
+  font-size: clamp(48px, 5.2vw, 84px);
+  font-weight: 900;
+  color: var(--color-brand-red);
+  letter-spacing: 0.01em;
+}
+
+
+.hero-slide__headline-main {
+  display: block;
+  font-size: clamp(50px, 5.5vw, 88px);
+  font-weight: 900;
+  color: #FFFFFF;
+  letter-spacing: 0.01em;
+  margin-top: 2px;
+}
+
+/* Supporting Description */
+.hero-slide__description {
+  font-family: var(--font-family-primary);
+  font-size: clamp(13.5px, 0.95vw, 15px);
+  line-height: 1.55;
+  color: var(--color-text-light-muted);
+  margin-bottom: 1.35rem;
+  max-width: 480px;
+}
+
+/* CTA Group */
+.hero-slide__cta-group {
+  display: flex;
+  align-items: center;
+  gap: 1.25rem;
+  flex-wrap: wrap;
+}
+
+.hero-slide__btn-primary {
+  padding: 11px 26px;
+  font-size: 14.5px;
+  font-weight: 700;
+  letter-spacing: 0.02em;
+  background: var(--color-brand-red);
+  border: 1px solid var(--color-brand-red);
+  box-shadow: var(--shadow-btn-cta);
+  border-radius: var(--radius-sm);
+  color: #FFFFFF;
+  transition: transform var(--transition-fast), background-color var(--transition-fast), box-shadow var(--transition-fast);
+}
+
+.hero-slide__btn-primary:hover {
+  background: var(--color-brand-red-hover);
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-btn-cta-hover);
+}
+
+/* Secondary Editorial Ghost Button */
+.hero-slide__btn-secondary {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 11px 22px;
+  font-family: var(--font-family-primary);
+  font-size: 14.5px;
+  font-weight: 600;
+  letter-spacing: 0.02em;
+  color: #FFFFFF;
+  background-color: transparent;
+  border: 1px solid rgba(255, 255, 255, 0.22);
+  border-radius: var(--radius-sm);
+  cursor: pointer;
+  text-decoration: none;
+  transition: transform var(--transition-fast),
+    background-color var(--transition-fast),
+    border-color var(--transition-fast),
+    color var(--transition-fast);
+}
+
+.hero-slide__btn-secondary svg {
+  transition: transform var(--transition-fast);
+}
+
+.hero-slide__btn-secondary:hover {
+  background-color: rgba(255, 255, 255, 0.06);
+  border-color: var(--color-brand-red);
+  color: #FFFFFF;
+  transform: translateY(-2px);
+}
+
+.hero-slide__btn-secondary:hover svg {
+  transform: translateX(3px);
+}
+
+/* Staggered Entrance Animations */
+.hero-slide--active .hero-slide__eyebrow-wrap {
+  animation: heroFadeSlideUp 400ms cubic-bezier(0.22, 1, 0.36, 1) forwards;
+}
+
+.hero-slide--active .hero-slide__headline {
+  animation: heroFadeSlideUp 550ms 60ms cubic-bezier(0.22, 1, 0.36, 1) forwards;
+}
+
+.hero-slide--active .hero-slide__description {
+  animation: heroFadeSlideUp 550ms 120ms cubic-bezier(0.22, 1, 0.36, 1) forwards;
+}
+
+.hero-slide--active .hero-slide__cta-group {
+  animation: heroFadeSlideUp 550ms 180ms cubic-bezier(0.22, 1, 0.36, 1) forwards;
+}
+
+@keyframes heroFadeSlideUp {
+  from {
+    opacity: 0;
+    transform: translateY(14px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* ==========================================================================
+   Right Column: FULL-BLEED DIAGONAL PRODUCT IMAGE (~60% width)
+   Spans 100% height from top to bottom, edge-to-edge right to browser margin!
+   Clipped to diagonal with clean 10% slope for maximum product visibility.
+   ========================================================================== */
+.hero-slide__col-visual {
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  width: 60%;
+  height: 100%;
+  z-index: 5;
+  overflow: hidden;
+}
+
+/* The Diagonal Frame (100% width & 100% height, Edge-to-Edge) */
+.hero-slide__diagonal-frame {
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  width: 100%;
+  height: 100%;
+  clip-path: polygon(10% 0%, 100% 0%, 100% 100%, 0% 100%);
+  overflow: hidden;
+  background-color: #E2E6EA;
+}
+
+/* The Full-Bleed Product Image (cover, 100% x 100%, No Edge Clipping) */
+.hero-slide__product-image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  transform: scale(1);
+  transition: transform 650ms cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.hero-slide--active .hero-slide__product-image {
+  animation: heroImageReveal 750ms cubic-bezier(0.22, 1, 0.36, 1) forwards;
+}
+
+@keyframes heroImageReveal {
+  from {
+    opacity: 0;
+    transform: scale(1.03);
+  }
+
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+/* Precision Solid Red Diagonal Boundary Accent Line (Overlay SVG) */
+.hero-slide__diagonal-seam {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: 6;
+}
+
+/* ==========================================================================
+   2. Slider Controls & Numbered Indicators
+   ========================================================================== */
+.nirmex-hero__controls {
+  flex: 0 0 auto;
+  position: relative;
+  width: 100%;
+  max-width: var(--container-max-width);
+  margin-left: auto;
+  margin-right: auto;
+  padding: 0 var(--container-padding) 0.35rem var(--container-padding);
+  box-sizing: border-box;
+  z-index: 20;
+}
+
+.nirmex-hero__controls-inner {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+/* Prev/Next Arrow Buttons in Clean Solid Graphite */
+.nirmex-hero__arrow {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 34px;
+  height: 34px;
+  border-radius: var(--radius-sm);
+  background-color: var(--color-industrial-card);
+  border: 1px solid var(--color-industrial-card-border);
+  color: #FFFFFF;
+  cursor: pointer;
+  transition: background-color var(--transition-fast),
+    border-color var(--transition-fast),
+    color var(--transition-fast),
+    transform var(--transition-fast);
+}
+
+.nirmex-hero__arrow:hover {
+  background-color: var(--color-brand-red);
+  border-color: var(--color-brand-red);
+  color: #FFFFFF;
+  transform: translateY(-1px);
+}
+
+/* Numbered Indicators (01, 02, 03, 04) */
+.nirmex-hero__indicators {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.nirmex-hero__indicator-btn {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 4px;
+  padding: 4px 2px;
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  outline: none;
+}
+
+.nirmex-hero__indicator-number {
+  font-family: var(--font-family-headline);
+  font-size: 14px;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  color: #656C78;
+  transition: color var(--transition-fast);
+}
+
+.nirmex-hero__indicator-bar {
+  width: 40px;
+  height: 3px;
+  background-color: #2E333D;
+  border-radius: 1px;
+  overflow: hidden;
+  position: relative;
+}
+
+.nirmex-hero__indicator-progress {
+  height: 100%;
+  background-color: var(--color-brand-red);
+  border-radius: 1px;
+  transition: width 50ms linear;
+}
+
+.nirmex-hero__indicator-btn--active .nirmex-hero__indicator-number {
+  color: var(--color-brand-red);
+  font-weight: 900;
+}
+
+/* ==========================================================================
+   3. Simplified, Restrained Bottom Category Information Panel
+   Flat solid red block on left, clean solid graphite cards on right.
+   ========================================================================== */
+.hero-bottom-panel {
+  flex: 0 0 auto;
+  position: relative;
+  width: 100%;
+  max-width: var(--container-max-width);
+  margin-left: auto;
+  margin-right: auto;
+  padding: 0 var(--container-padding) 0.65rem var(--container-padding);
+  box-sizing: border-box;
+  z-index: 25;
+}
+
+.hero-bottom-panel__inner {
+  display: flex;
+  align-items: stretch;
+  background-color: var(--color-industrial-card);
+  border-radius: var(--radius-sm);
+  border: 1px solid var(--color-industrial-card-border);
+  box-shadow: var(--shadow-panel);
+  overflow: hidden;
+  min-height: 76px;
+}
+
+/* Left: Flat Solid Industrial Red Category Block */
+.hero-bottom-panel__brand-block {
+  flex: 0 0 32%;
+  background-color: var(--color-brand-red);
+  color: #FFFFFF;
+  padding: 0.75rem 1.4rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  position: relative;
+  clip-path: polygon(0% 0%, 100% 0%, 91% 100%, 0% 100%);
+  z-index: 2;
+}
+
+.hero-bottom-panel__cat-label {
+  display: inline-block;
+  font-family: var(--font-family-primary);
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: rgba(255, 255, 255, 0.85);
+  margin-bottom: 2px;
+}
+
+.hero-bottom-panel__brand-title {
+  font-family: var(--font-family-headline);
+  font-size: 18px;
+  font-weight: 800;
+  letter-spacing: 0.03em;
+  color: #FFFFFF;
+  text-transform: uppercase;
+  margin-bottom: 1px;
+}
+
+.hero-bottom-panel__brand-subtitle {
+  font-family: var(--font-family-primary);
+  font-size: 11px;
+  color: rgba(255, 255, 255, 0.9);
+  line-height: 1.25;
+}
+
+/* Right: 3 Clean, Professional Product Cards */
+.hero-bottom-panel__cards-container {
+  flex: 1 1 68%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: 0.5rem 1rem;
+  background-color: var(--color-industrial-card);
+}
+
+.hero-bottom-panel__cards-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 10px;
+  width: 100%;
+}
+
+/* Compact Solid Product Card */
+.hero-bottom-card {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+  padding: 6px 10px;
+  background-color: #252932;
+  border: 1px solid var(--color-industrial-card-border);
+  border-radius: var(--radius-sm);
+  text-decoration: none;
+  transition: transform var(--transition-fast),
+    border-color var(--transition-fast),
+    background-color var(--transition-fast);
+}
+
+.hero-bottom-card:hover {
+  background-color: #2D323E;
+  border-color: var(--color-brand-red);
+  transform: translateY(-1px);
+}
+
+.hero-bottom-card__content {
+  flex: 1;
+}
+
+.hero-bottom-card__title {
+  font-family: var(--font-family-primary);
+  font-size: 12px;
+  font-weight: 600;
+  color: #FFFFFF;
+  line-height: 1.2;
+  margin-bottom: 1px;
+}
+
+.hero-bottom-card__subtitle {
+  font-family: var(--font-family-primary);
+  font-size: 10.5px;
+  color: var(--color-text-secondary);
+  line-height: 1.2;
+}
+
+.hero-bottom-card__arrow {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--color-brand-red);
+  transition: transform var(--transition-fast);
+}
+
+.hero-bottom-card:hover .hero-bottom-card__arrow {
+  transform: translateX(2px);
+}
+
+/* ==========================================================================
+   Responsive Adaptations
+   ========================================================================== */
+
+/* Laptop Screens (1024px - 1366px) */
+@media (max-width: 1366px) {
+  .hero-slide__headline-accent {
+    font-size: clamp(40px, 4.5vw, 68px);
+  }
+
+  .hero-slide__headline-main {
+    font-size: clamp(42px, 4.8vw, 74px);
+  }
+
+  .hero-slide__description {
+    font-size: 13px;
+    margin-bottom: 1rem;
+  }
+
+  .hero-bottom-panel__brand-block {
+    flex: 0 0 35%;
+  }
+}
+
+/* Tablet Screens (768px - 1024px) */
+@media (max-width: 1024px) {
+  .nirmex-hero {
+    height: auto;
+    min-height: auto;
+    max-height: none;
+    overflow: visible;
+    padding-bottom: 2rem;
+  }
+
+  .hero-slide {
+    position: relative;
+    height: auto;
+    flex-direction: column;
+  }
+
+  .hero-slide__col-text {
+    flex: none;
+    max-width: 100%;
+    padding: 2rem var(--container-padding) 1rem var(--container-padding);
+  }
+
+  .hero-slide__col-visual {
+    position: relative;
+    width: 100%;
+    height: 380px;
+    top: auto;
+    right: auto;
+    bottom: auto;
+  }
+
+  .hero-slide__diagonal-frame {
+    clip-path: polygon(0% 0%, 100% 0%, 100% 100%, 0% 100%);
+  }
+
+  .hero-slide__diagonal-seam {
+    display: none;
+  }
+
+  .hero-bottom-panel__inner {
+    flex-direction: column;
+  }
+
+  .hero-bottom-panel__brand-block {
+    flex: none;
+    width: 100%;
+    clip-path: none;
+  }
+}
+
+/* Mobile Screens (Below 768px) */
+@media (max-width: 768px) {
+  .nirmex-hero {
+    height: auto;
+    min-height: auto;
+    max-height: none;
+    overflow: visible;
+    padding-bottom: 2rem;
+  }
+
+  .hero-slide__col-text {
+    padding: 1.5rem var(--container-padding) 1rem var(--container-padding);
+  }
+
+  .hero-slide__headline-accent {
+    font-size: 40px;
+  }
+
+  .hero-slide__headline-main {
+    font-size: 42px;
+  }
+
+  .hero-slide__col-visual {
+    height: 280px;
+  }
+
+  .hero-bottom-panel__cards-grid {
+    grid-template-columns: 1fr;
+  }
+}

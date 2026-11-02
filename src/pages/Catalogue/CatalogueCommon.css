@@ -1,0 +1,132 @@
+/**
+ * NIRMAX METAL INDUSTRIES — CATALOGUE COMMON LAYOUT STYLES
+ * Consistent Two-Column Layout, Topbar Navigation, Breadcrumbs & Sticky Alignment
+ */
+
+.nirmex-catalogue-page {
+  width: 100%;
+  background-color: #F8FAFC;
+  color: #17191E;
+  font-family: 'Plus Jakarta Sans', 'Inter', sans-serif;
+  padding: 1.25rem 0 3.5rem;
+  box-sizing: border-box;
+}
+
+.nirmex-catalogue-container {
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: 0 1.5rem;
+  box-sizing: border-box;
+}
+
+/* Page Topbar with Breadcrumbs and Back Navigation */
+.nirmex-catalogue-topbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 12px;
+  margin-bottom: 22px;
+  padding-bottom: 14px;
+  border-bottom: 1px solid #E2E8F0;
+}
+
+/* Breadcrumbs */
+.nirmex-detail-crumbs {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin: 0;
+  font-size: 13px;
+  color: #64748B;
+  line-height: 1.4;
+}
+
+.nirmex-detail-crumb-link {
+  color: #64748B;
+  text-decoration: none;
+  font-weight: 500;
+  transition: color 150ms ease;
+}
+
+.nirmex-detail-crumb-link:hover {
+  color: #BA0500;
+}
+
+.nirmex-detail-crumb-sep {
+  color: #CBD5E1;
+  font-size: 12px;
+}
+
+.nirmex-detail-crumb-text {
+  color: #64748B;
+}
+
+.nirmex-detail-crumb-active {
+  color: #142B4A;
+  font-weight: 700;
+}
+
+/* Back Link Bar */
+.nirmex-back-bar {
+  margin: 0;
+}
+
+.nirmex-back-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 12.5px;
+  font-weight: 700;
+  color: #BA0500;
+  text-decoration: none;
+  background-color: #FFFFFF;
+  border: 1px solid #E2E8F0;
+  padding: 6px 14px;
+  border-radius: 6px;
+  transition: all 160ms ease;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.04);
+}
+
+.nirmex-back-link:hover {
+  background-color: #BA0500;
+  color: #FFFFFF;
+  border-color: #BA0500;
+  transform: translateX(-3px);
+  box-shadow: 0 3px 10px rgba(186, 5, 0, 0.2);
+}
+
+/* Master 2-Column Layout */
+.nirmex-catalogue-layout {
+  display: flex;
+  align-items: flex-start;
+  gap: 28px;
+  width: 100%;
+  position: relative;
+}
+
+/* Main Content Column — Scrolls smoothly alongside fixed left sidebar */
+.nirmex-catalogue-content {
+  flex: 1;
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+}
+
+/* Tablet & Mobile Responsiveness */
+@media (max-width: 991px) {
+  .nirmex-catalogue-topbar {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 10px;
+    margin-bottom: 16px;
+    padding-bottom: 10px;
+  }
+
+  .nirmex-catalogue-layout {
+    flex-direction: column;
+    gap: 20px;
+  }
+}
+

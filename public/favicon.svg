@@ -1,0 +1,7 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100">
+  <circle cx="50" cy="50" r="46" fill="#ffffff" stroke="#DE0100" stroke-width="4"/>
+  <path d="M 20,50 A 30,30 0 1,1 80,50" fill="none" stroke="#101820" stroke-width="6" stroke-linecap="round"/>
+  <path d="M 80,50 A 30,30 0 1,1 20,50" fill="none" stroke="#DE0100" stroke-width="6" stroke-linecap="round"/>
+  <text x="50" y="65" font-family="'Plus Jakarta Sans', Arial, sans-serif" font-weight="900" font-size="42" fill="#DE0100" text-anchor="middle">N</text>
+</svg>
+

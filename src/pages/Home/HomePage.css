@@ -1,0 +1,9 @@
+/* Home Page Container */
+.nirmex-home {
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.nirmex-home__content-canvas {
+  display: none;
+}

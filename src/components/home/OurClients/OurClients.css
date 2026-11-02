@@ -1,0 +1,344 @@
+/**
+ * NIRMEX METAL INDUSTRIES — OUR CLIENTS SECTION
+ * Deep Industrial Crimson Red Canvas | Dual-Direction Seamless Logo Marquee
+ * Premium Minimal Industrial Presentation Tiles
+ */
+
+.our-clients {
+  position: relative;
+  width: 100%;
+  background-color: #8C0600; /* Deep sophisticated industrial crimson */
+  color: #FFFFFF;
+  padding: clamp(4.5rem, 6.5vw, 6.5rem) 0 clamp(4rem, 6vw, 6rem);
+  box-sizing: border-box;
+  overflow: hidden;
+}
+
+/* Subtle Technical Engineering Blueprint Grid in Background */
+.our-clients__grid-bg {
+  position: absolute;
+  inset: 0;
+  background-image: 
+    linear-gradient(rgba(255, 255, 255, 0.035) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255, 255, 255, 0.035) 1px, transparent 1px);
+  background-size: 56px 56px;
+  pointer-events: none;
+  z-index: 1;
+}
+
+.our-clients__container {
+  position: relative;
+  width: 100%;
+  max-width: 1360px;
+  margin: 0 auto;
+  padding: 0 clamp(1.25rem, 3.5vw, 3rem);
+  box-sizing: border-box;
+  z-index: 2;
+}
+
+/* ==========================================================================
+   1. SECTION HEADER (Centered & Authoritative)
+   ========================================================================== */
+.our-clients__header {
+  text-align: center;
+  margin-bottom: clamp(2.5rem, 4vw, 3.5rem);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+/* Eyebrow Label: Cream Background with Deep Red Typography */
+.our-clients__eyebrow-wrap {
+  margin-bottom: 1rem;
+}
+
+.our-clients__eyebrow {
+  display: inline-block;
+  background-color: #FFF3F0; /* Soft warm ivory / cream */
+  color: #8C0600; /* Deep red text */
+  font-family: var(--font-family-primary, sans-serif);
+  font-size: 11.5px;
+  font-weight: 800;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  padding: 5px 16px;
+  border-radius: 20px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  border: 1px solid rgba(255, 255, 255, 0.5);
+}
+
+/* Main Steel & Engineering Heading */
+.our-clients__heading {
+  font-family: var(--font-family-primary, sans-serif);
+  font-size: clamp(28px, 3.6vw, 48px);
+  font-weight: 900;
+  line-height: 1.18;
+  letter-spacing: -0.015em;
+  color: #FFFFFF;
+  margin: 0 0 1rem 0;
+  max-width: 860px;
+  text-wrap: balance;
+}
+
+/* Supporting Concise Subtitle */
+.our-clients__subtitle {
+  font-family: var(--font-family-primary, sans-serif);
+  font-size: clamp(14.5px, 1.05vw, 16px);
+  line-height: 1.6;
+  color: rgba(255, 255, 255, 0.88);
+  margin: 0 auto;
+  max-width: 660px;
+}
+
+/* ==========================================================================
+   2. DUAL-DIRECTION CLIENT LOGO MARQUEE DISPLAY
+   ========================================================================== */
+.our-clients__marquee-wrapper {
+  position: relative;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
+  z-index: 2;
+  margin-bottom: clamp(2.5rem, 4vw, 3.5rem);
+  overflow: hidden;
+}
+
+.our-clients__marquee-track {
+  display: flex;
+  width: 100%;
+  overflow: hidden;
+  user-select: none;
+}
+
+.our-clients__marquee-content {
+  display: flex;
+  gap: 1.5rem;
+  width: max-content;
+  will-change: transform;
+}
+
+/* Row 1: Right to Left */
+.our-clients__marquee-track--left .our-clients__marquee-content {
+  animation: marquee-left 36s linear infinite;
+}
+
+/* Row 2: Left to Right */
+.our-clients__marquee-track--right .our-clients__marquee-content {
+  animation: marquee-right 36s linear infinite;
+}
+
+/* Pause marquee when user hovers to view client logos */
+.our-clients__marquee-track:hover .our-clients__marquee-content {
+  animation-play-state: paused;
+}
+
+@keyframes marquee-left {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(calc(-100% / 3));
+  }
+}
+
+@keyframes marquee-right {
+  0% {
+    transform: translateX(calc(-100% / 3));
+  }
+  100% {
+    transform: translateX(0);
+  }
+}
+
+/* ==========================================================================
+   3. CLIENT LOGO CARD (Premium Presentation Tile)
+   ========================================================================== */
+.client-logo-card {
+  width: 220px;
+  height: 98px;
+  flex-shrink: 0;
+  background-color: #FFFFFF;
+  border-radius: 14px;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  box-shadow: 0 8px 20px -2px rgba(0, 0, 0, 0.24),
+              0 2px 6px rgba(0, 0, 0, 0.12);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0.9rem 1.6rem;
+  box-sizing: border-box;
+  transition: transform 260ms cubic-bezier(0.22, 1, 0.36, 1),
+              box-shadow 260ms ease,
+              border-color 260ms ease;
+  cursor: default;
+}
+
+.client-logo-card:hover {
+  transform: translateY(-4px) scale(1.02);
+  box-shadow: 0 16px 32px -4px rgba(0, 0, 0, 0.35),
+              0 4px 10px rgba(0, 0, 0, 0.15);
+  border-color: rgba(255, 255, 255, 0.6);
+}
+
+.client-logo-card__img {
+  max-width: 150px;
+  max-height: 50px;
+  width: auto;
+  height: auto;
+  object-fit: contain;
+  display: block;
+  filter: drop-shadow(0 1px 1px rgba(0, 0, 0, 0.05));
+  pointer-events: none;
+}
+
+/* ==========================================================================
+   4. CLIENTS CTA (Compact & Refined)
+   ========================================================================== */
+.our-clients__cta-wrap {
+  position: relative;
+  display: flex;
+  justify-content: center;
+  z-index: 2;
+}
+
+.our-clients__cta {
+  display: inline-flex;
+  align-items: center;
+  gap: 12px;
+  background-color: rgba(255, 255, 255, 0.08);
+  border: 1px solid rgba(255, 255, 255, 0.28);
+  color: #FFFFFF;
+  text-decoration: none;
+  padding: 9px 18px 9px 24px;
+  border-radius: 30px;
+  transition: background-color 240ms ease,
+              border-color 240ms ease,
+              transform 240ms cubic-bezier(0.22, 1, 0.36, 1),
+              box-shadow 240ms ease;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+}
+
+.our-clients__cta:hover,
+.our-clients__cta:focus-visible {
+  background-color: rgba(255, 255, 255, 0.16);
+  border-color: rgba(255, 255, 255, 0.5);
+  transform: translateY(-2px);
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.25);
+}
+
+.our-clients__cta-text {
+  font-family: var(--font-family-primary, sans-serif);
+  font-size: 13.5px;
+  font-weight: 700;
+  letter-spacing: 0.02em;
+  color: #FFFFFF;
+}
+
+.our-clients__cta-arrow-box {
+  width: 26px;
+  height: 26px;
+  background-color: #FFFFFF;
+  color: #8C0600;
+  border-radius: 7px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: transform 200ms ease;
+}
+
+.our-clients__cta:hover .our-clients__cta-arrow-box {
+  transform: translateX(3px);
+}
+
+.our-clients__cta-arrow {
+  color: #8C0600;
+}
+
+/* ==========================================================================
+   5. RESPONSIVE BREAKPOINTS (Desktop -> Tablet -> Mobile)
+   ========================================================================== */
+
+/* Tablets (<= 960px) */
+@media (max-width: 960px) {
+  .our-clients {
+    padding: 4.5rem 0 4.5rem;
+  }
+
+  .client-logo-card {
+    width: 190px;
+    height: 88px;
+    padding: 0.75rem 1.25rem;
+  }
+
+  .client-logo-card__img {
+    max-width: 130px;
+    max-height: 44px;
+  }
+
+  .our-clients__marquee-content {
+    gap: 1.15rem;
+  }
+
+  .our-clients__marquee-wrapper {
+    gap: 1.15rem;
+  }
+}
+
+/* Mobile Devices (<= 640px) */
+@media (max-width: 640px) {
+  .our-clients {
+    padding: 3.5rem 0 3.75rem;
+  }
+
+  .our-clients__eyebrow {
+    font-size: 11px;
+    padding: 4px 14px;
+  }
+
+  .our-clients__heading {
+    font-size: 24px;
+    line-height: 1.25;
+    margin-bottom: 0.75rem;
+  }
+
+  .our-clients__subtitle {
+    font-size: 13.5px;
+    line-height: 1.55;
+  }
+
+  .client-logo-card {
+    width: 160px;
+    height: 76px;
+    padding: 0.6rem 1rem;
+    border-radius: 12px;
+  }
+
+  .client-logo-card__img {
+    max-width: 110px;
+    max-height: 38px;
+  }
+
+  .our-clients__marquee-content {
+    gap: 0.85rem;
+  }
+
+  .our-clients__marquee-wrapper {
+    gap: 0.85rem;
+    margin-bottom: 2rem;
+  }
+
+  .our-clients__cta {
+    padding: 8px 16px 8px 20px;
+  }
+
+  .our-clients__cta-text {
+    font-size: 12.5px;
+  }
+
+  .our-clients__cta-arrow-box {
+    width: 24px;
+    height: 24px;
+  }
+}
+

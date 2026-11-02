@@ -1,0 +1,539 @@
+/* ==========================================================================
+   NIRMEX METAL INDUSTRIES — OUR PRODUCTS SECTION
+   Home Page Section 2 (Directly below Hero Section)
+   Red Industrial Canvas | Clean White Rounded Cards | Red CTA Buttons
+   Matching Exact Reference Design Mock-up
+   ========================================================================== */
+
+/* --------------------------------------------------------------------------
+   1. Section Canvas (Solid Rich Industrial Red)
+   -------------------------------------------------------------------------- */
+.our-products {
+  position: relative;
+  width: 100%;
+  background-color: #A30800; /* Rich solid industrial red */
+  color: #FFFFFF;
+  box-sizing: border-box;
+  padding: clamp(3.5rem, 6vw, 5.5rem) 0 clamp(4rem, 6.5vw, 6rem);
+  overflow: hidden;
+  border-top: 3px solid rgba(0, 0, 0, 0.4);
+}
+
+/* Subtle industrial red corner accents */
+.our-products::before,
+.our-products::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  width: 120px;
+  height: 120px;
+  pointer-events: none;
+  opacity: 0.35;
+}
+
+.our-products::before {
+  left: 0;
+  background: linear-gradient(135deg, rgba(255, 255, 255, 0.15) 0%, transparent 60%);
+  clip-path: polygon(0 0, 100% 0, 0 100%);
+}
+
+.our-products::after {
+  right: 0;
+  background: linear-gradient(225deg, rgba(255, 255, 255, 0.15) 0%, transparent 60%);
+  clip-path: polygon(100% 0, 100% 100%, 0 0);
+}
+
+.our-products__container {
+  width: 100%;
+  max-width: 1360px;
+  margin: 0 auto;
+  padding: 0 var(--container-padding, 1.5rem);
+  box-sizing: border-box;
+  position: relative;
+  z-index: 2;
+}
+
+/* --------------------------------------------------------------------------
+   2. Centered Section Header
+   -------------------------------------------------------------------------- */
+.our-products__header {
+  text-align: center;
+  max-width: 820px;
+  margin: 0 auto clamp(2.5rem, 4vw, 3.5rem);
+}
+
+.our-products__eyebrow-wrap {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  margin-bottom: 0.65rem;
+}
+
+.our-products__eyebrow-line {
+  width: 28px;
+  height: 2px;
+  background-color: rgba(255, 255, 255, 0.7);
+}
+
+.our-products__eyebrow {
+  font-family: var(--font-family-primary, sans-serif);
+  font-size: 12px;
+  font-weight: 800;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: #FFFFFF;
+}
+
+.our-products__title {
+  font-family: var(--font-family-headline, sans-serif);
+  font-size: clamp(34px, 4.2vw, 54px);
+  font-weight: 900;
+  letter-spacing: 0.025em;
+  line-height: 1.05;
+  text-transform: uppercase;
+  color: #FFFFFF;
+  margin: 0 0 0.85rem 0;
+}
+
+.our-products__subtitle {
+  font-family: var(--font-family-primary, sans-serif);
+  font-size: clamp(14px, 1.05vw, 15.5px);
+  line-height: 1.6;
+  color: rgba(255, 255, 255, 0.92);
+  margin: 0 auto;
+  max-width: 700px;
+}
+
+/* --------------------------------------------------------------------------
+   3. Product Display System: 1 + 2 + 3 Rows
+   -------------------------------------------------------------------------- */
+.our-products__display {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+.our-products__row {
+  width: 100%;
+}
+
+/* Row 1: 1 Featured Card */
+.our-products__row--featured {
+  display: block;
+}
+
+/* Row 2: 2 Balanced Cards */
+.our-products__row--two-col {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 1.5rem;
+}
+
+/* Row 3: 3 Balanced Cards */
+.our-products__row--three-col {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1.5rem;
+}
+
+/* --------------------------------------------------------------------------
+   4. Clean White Rounded Product Cards
+   -------------------------------------------------------------------------- */
+.our-product-card {
+  position: relative;
+  background-color: #FFFFFF; /* Pure White Card against Red Canvas */
+  color: #111827;
+  border: 1px solid rgba(0, 0, 0, 0.06);
+  border-radius: 18px; /* Clean rounded corners matching reference */
+  box-shadow: 0 10px 25px -4px rgba(0, 0, 0, 0.12),
+              0 4px 6px -2px rgba(0, 0, 0, 0.05);
+  box-sizing: border-box;
+  outline: none;
+  transition: transform 280ms cubic-bezier(0.22, 1, 0.36, 1),
+              box-shadow 280ms cubic-bezier(0.22, 1, 0.36, 1),
+              border-color 280ms cubic-bezier(0.22, 1, 0.36, 1);
+  overflow: hidden;
+}
+
+.our-product-card:hover,
+.our-product-card:focus-visible {
+  transform: translateY(-4px);
+  box-shadow: 0 18px 36px -4px rgba(0, 0, 0, 0.22),
+              0 8px 12px -3px rgba(0, 0, 0, 0.08);
+  border-color: rgba(0, 0, 0, 0.12);
+}
+
+/* --------------------------------------------------------------------------
+   5. Card Internal Split Layouts (Matching Reference)
+   -------------------------------------------------------------------------- */
+
+/* Featured Card (Row 1) */
+.our-product-card--featured {
+  padding: 1.75rem 2rem;
+}
+
+.our-product-card__inner--featured {
+  display: grid;
+  grid-template-columns: 46% 54%;
+  gap: 2.25rem;
+  align-items: center;
+}
+
+/* Two-Column Cards (Row 2) */
+.our-product-card--two-col {
+  padding: 1.5rem 1.6rem;
+}
+
+.our-product-card__inner--two-col {
+  display: grid;
+  grid-template-columns: 44% 56%;
+  gap: 1.5rem;
+  align-items: center;
+  height: 100%;
+}
+
+/* Three-Column Cards (Row 3) */
+.our-product-card--three-col {
+  padding: 1.25rem 1.35rem;
+}
+
+.our-product-card__inner--three-col {
+  display: grid;
+  grid-template-columns: 42% 58%;
+  gap: 1.25rem;
+  align-items: center;
+  height: 100%;
+}
+
+/* --------------------------------------------------------------------------
+   6. Clean Image Containers (Rounded Pedestal)
+   -------------------------------------------------------------------------- */
+.our-product-card__image-container {
+  position: relative;
+  background-color: #EDF0F3; /* Soft grey pedestal well matching studio backdrop */
+  border: 1px solid #D5DAE0; /* Thin, subtle border */
+  border-radius: 16px; /* Smooth 16px rounded corners */
+  overflow: hidden; /* Clips image corners to match container radius */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0; /* Zero empty padding - image fills container edge-to-edge */
+  box-sizing: border-box;
+}
+
+.our-product-card__image-container--featured {
+  height: 310px;
+}
+
+.our-product-card__image-container--two-col {
+  height: 205px;
+}
+
+.our-product-card__image-container--three-col {
+  height: 165px;
+}
+
+.our-product-card__image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center center;
+  border-radius: inherit;
+  display: block;
+  transform: scale(1);
+  transition: transform 350ms cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.our-product-card:hover .our-product-card__image {
+  transform: scale(1.04);
+}
+
+/* --------------------------------------------------------------------------
+   7. Card Content & Typography (Dark Text on White Card)
+   -------------------------------------------------------------------------- */
+.our-product-card__body {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+/* Badge (Featured Card) */
+.our-product-card__badge-wrap {
+  margin-bottom: 0.65rem;
+}
+
+.our-product-card__badge {
+  display: inline-block;
+  background-color: var(--color-brand-red, #E10600);
+  color: #FFFFFF;
+  font-family: var(--font-family-primary, sans-serif);
+  font-size: 11px;
+  font-weight: 800;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  padding: 4px 12px;
+  border-radius: 20px;
+}
+
+/* Category Label + Red Accent Line */
+.our-product-card__category-wrap {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 0.35rem;
+}
+
+.our-product-card__category {
+  font-family: var(--font-family-primary, sans-serif);
+  font-size: 11px;
+  font-weight: 800;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: #1F2937;
+}
+
+.our-product-card__category-line {
+  display: inline-block;
+  width: 24px;
+  height: 2px;
+  background-color: var(--color-brand-red, #E10600);
+  border-radius: 1px;
+}
+
+/* Titles */
+.our-product-card__title {
+  font-family: var(--font-family-primary, sans-serif);
+  font-weight: 800;
+  color: #111827;
+  line-height: 1.2;
+  margin: 0 0 0.2rem 0;
+}
+
+.our-product-card__title--featured {
+  font-size: clamp(24px, 2.2vw, 30px);
+}
+
+.our-product-card--two-col .our-product-card__title {
+  font-size: clamp(20px, 1.55vw, 24px);
+}
+
+.our-product-card--three-col .our-product-card__title {
+  font-size: clamp(17px, 1.25vw, 19.5px);
+}
+
+/* Subtitles */
+.our-product-card__subtitle {
+  font-family: var(--font-family-primary, sans-serif);
+  font-size: 12.5px;
+  font-weight: 600;
+  color: #6B7280;
+  margin: 0 0 0.45rem 0;
+  line-height: 1.35;
+}
+
+/* Descriptions */
+.our-product-card__description {
+  font-family: var(--font-family-primary, sans-serif);
+  font-size: 13px;
+  line-height: 1.5;
+  color: #4B5563;
+  margin: 0 0 0.85rem 0;
+}
+
+.our-product-card__description--featured {
+  font-size: 13.5px;
+  margin-bottom: 1rem;
+}
+
+/* Checkmark Highlights (Featured Card) */
+.our-product-card__highlights {
+  display: flex;
+  align-items: center;
+  gap: 1.25rem;
+  flex-wrap: wrap;
+  margin-bottom: 1.25rem;
+}
+
+.our-product-card__highlight-item {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-family: var(--font-family-primary, sans-serif);
+  font-size: 12.5px;
+  font-weight: 600;
+  color: #374151;
+}
+
+.our-product-card__check-icon {
+  flex-shrink: 0;
+}
+
+/* --------------------------------------------------------------------------
+   8. Solid Red Pill CTA Buttons
+   -------------------------------------------------------------------------- */
+.our-product-card__action {
+  margin-top: auto;
+}
+
+.our-product-card__btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  padding: 8px 18px;
+  background-color: var(--color-brand-red, #E10600); /* Solid Red Button */
+  color: #FFFFFF;
+  font-family: var(--font-family-primary, sans-serif);
+  font-size: 13px;
+  font-weight: 700;
+  letter-spacing: 0.02em;
+  text-decoration: none;
+  border-radius: 20px; /* Pill shape matching reference */
+  box-shadow: 0 2px 6px rgba(225, 6, 0, 0.28);
+  transition: background-color 200ms ease,
+              transform 200ms ease,
+              box-shadow 200ms ease;
+  user-select: none;
+}
+
+.our-product-card__btn--featured {
+  padding: 10px 24px;
+  font-size: 13.5px;
+}
+
+.our-product-card__btn-arrow {
+  color: #FFFFFF;
+  transition: transform 200ms ease;
+}
+
+.our-product-card__btn:hover {
+  background-color: #B50800; /* Slightly darker red on hover */
+  transform: translateY(-2px);
+  box-shadow: 0 4px 10px rgba(181, 8, 0, 0.35);
+}
+
+.our-product-card__btn:hover .our-product-card__btn-arrow {
+  transform: translateX(3px);
+}
+
+.our-product-card__btn:active {
+  transform: scale(0.97);
+  box-shadow: 0 1px 4px rgba(181, 8, 0, 0.25);
+}
+
+/* --------------------------------------------------------------------------
+   9. Responsive Breakpoints (Desktop -> Tablet -> Mobile)
+   -------------------------------------------------------------------------- */
+
+/* Large Tablets & Small Desktops */
+@media (max-width: 1200px) {
+  .our-product-card--three-col .our-product-card__inner--three-col {
+    grid-template-columns: 1fr;
+    gap: 1rem;
+  }
+
+  .our-product-card__image-container--three-col {
+    height: 150px;
+  }
+}
+
+/* Tablets (768px - 1023px) */
+@media (max-width: 1023px) {
+  .our-product-card__inner--featured {
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+  }
+
+  .our-product-card__image-container--featured {
+    height: 240px;
+  }
+
+  .our-products__row--two-col {
+    grid-template-columns: 1fr;
+  }
+
+  .our-product-card__inner--two-col {
+    grid-template-columns: 40% 60%;
+  }
+
+  .our-products__row--three-col {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .our-products__row--three-col .our-product-card:last-child {
+    grid-column: span 2;
+  }
+
+  .our-products__row--three-col .our-product-card:last-child .our-product-card__inner--three-col {
+    grid-template-columns: 40% 60%;
+  }
+}
+
+/* Mobile Devices (< 768px) */
+@media (max-width: 767px) {
+  .our-products {
+    padding: 3rem 0 3.5rem;
+  }
+
+  .our-products__header {
+    margin-bottom: 2rem;
+  }
+
+  .our-products__display {
+    gap: 1.25rem;
+  }
+
+  /* 1 card per row on mobile */
+  .our-products__row--two-col,
+  .our-products__row--three-col {
+    grid-template-columns: 1fr;
+    gap: 1.25rem;
+  }
+
+  .our-products__row--three-col .our-product-card:last-child {
+    grid-column: span 1;
+  }
+
+  /* Vertical card stacking on mobile */
+  .our-product-card {
+    border-radius: 16px;
+    padding: 1.25rem;
+  }
+
+  .our-product-card--featured {
+    padding: 1.25rem;
+  }
+
+  .our-product-card__inner--featured,
+  .our-product-card__inner--two-col,
+  .our-product-card__inner--three-col {
+    grid-template-columns: 1fr;
+    gap: 1.15rem;
+  }
+
+  .our-product-card__image-container--featured {
+    height: 220px;
+    padding: 0;
+  }
+
+  .our-product-card__image-container--two-col {
+    height: 200px;
+    padding: 0;
+  }
+
+  .our-product-card__image-container--three-col {
+    height: 180px;
+    padding: 0;
+  }
+
+  .our-product-card__highlights {
+    gap: 0.75rem;
+  }
+
+  .our-product-card__btn {
+    width: 100%;
+    justify-content: center;
+    padding: 10px 18px;
+  }
+}

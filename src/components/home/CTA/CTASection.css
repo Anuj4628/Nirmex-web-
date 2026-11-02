@@ -1,0 +1,243 @@
+/**
+ * NIRMEX METAL INDUSTRIES - CTA SECTION
+ * High-Impact Industrial Call-to-Action
+ */
+
+.nirmex-cta {
+  position: relative;
+  width: 100%;
+  background-color: #0A0F1D; /* Deepest industrial carbon foundation */
+  padding: clamp(4rem, 6vw, 6rem) 0 clamp(2rem, 3vw, 3rem);
+  box-sizing: border-box;
+  overflow: hidden;
+}
+
+/* Subtle Technical Grid Background */
+.nirmex-cta__grid-pattern {
+  position: absolute;
+  inset: 0;
+  background-image: 
+    linear-gradient(rgba(255, 255, 255, 0.03) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255, 255, 255, 0.03) 1px, transparent 1px);
+  background-size: 40px 40px;
+  pointer-events: none;
+}
+
+.nirmex-cta__glow-accent {
+  position: absolute;
+  top: -20%;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 600px;
+  height: 300px;
+  background: radial-gradient(circle, rgba(225, 6, 0, 0.18) 0%, transparent 70%);
+  filter: blur(60px);
+  pointer-events: none;
+}
+
+.nirmex-cta__container {
+  width: 100%;
+  max-width: 1360px;
+  margin: 0 auto;
+  padding: 0 clamp(1.25rem, 3.5vw, 3rem);
+  box-sizing: border-box;
+  position: relative;
+  z-index: 2;
+}
+
+/* ==========================================================================
+   CTA CARD
+   ========================================================================== */
+.nirmex-cta__card {
+  position: relative;
+  background: linear-gradient(145deg, #121A2E 0%, #0D1424 100%);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  border-radius: 24px;
+  box-shadow: 0 24px 60px -12px rgba(0, 0, 0, 0.5),
+              0 0 0 1px rgba(225, 6, 0, 0.15);
+  padding: clamp(3rem, 5vw, 4.5rem) clamp(1.5rem, 4vw, 4rem);
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  box-sizing: border-box;
+}
+
+/* Eyebrow */
+.nirmex-cta__eyebrow-wrap {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background-color: rgba(225, 6, 0, 0.1);
+  border: 1px solid rgba(225, 6, 0, 0.3);
+  border-radius: 9999px;
+  padding: 6px 16px;
+  margin-bottom: 1.5rem;
+}
+
+.nirmex-cta__eyebrow-dot {
+  width: 6px;
+  height: 6px;
+  background-color: var(--color-brand-red, #E10600);
+  border-radius: 50%;
+  box-shadow: 0 0 8px #E10600;
+}
+
+.nirmex-cta__eyebrow {
+  font-family: var(--font-family-primary, sans-serif);
+  font-size: 11.5px;
+  font-weight: 800;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: #FF5A52;
+}
+
+/* Headline */
+.nirmex-cta__heading {
+  font-family: var(--font-family-primary, sans-serif);
+  font-size: clamp(28px, 3.6vw, 48px);
+  font-weight: 900;
+  line-height: 1.15;
+  letter-spacing: -0.02em;
+  color: #FFFFFF;
+  margin: 0 0 1.25rem;
+  max-width: 900px;
+}
+
+/* Supporting description */
+.nirmex-cta__description {
+  font-family: var(--font-family-primary, sans-serif);
+  font-size: clamp(14.5px, 1.1vw, 17px);
+  line-height: 1.65;
+  color: #94A3B8;
+  margin: 0 0 2.5rem;
+  max-width: 760px;
+}
+
+/* Action Buttons */
+.nirmex-cta__actions {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 16px;
+  flex-wrap: wrap;
+  margin-bottom: 3rem;
+}
+
+.nirmex-cta__btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  font-family: var(--font-family-primary, sans-serif);
+  font-size: 15px;
+  font-weight: 700;
+  text-decoration: none;
+  border-radius: 10px;
+  padding: 14px 28px;
+  transition: all 220ms cubic-bezier(0.2, 0.9, 0.3, 1);
+  box-sizing: border-box;
+  cursor: pointer;
+}
+
+/* Primary Button (Brand Red) */
+.nirmex-cta__btn--primary {
+  background-color: var(--color-brand-red, #E10600);
+  color: #FFFFFF;
+  border: 1px solid #FF3B30;
+  box-shadow: 0 6px 20px rgba(225, 6, 0, 0.4),
+              0 2px 6px rgba(0, 0, 0, 0.2);
+}
+
+.nirmex-cta__btn--primary:hover {
+  background-color: #C50100;
+  transform: translateY(-2px);
+  box-shadow: 0 10px 28px rgba(225, 6, 0, 0.55),
+              0 4px 10px rgba(0, 0, 0, 0.3);
+}
+
+.nirmex-cta__btn--primary:active {
+  transform: translateY(0);
+}
+
+.nirmex-cta__btn-icon {
+  display: flex;
+  align-items: center;
+  transition: transform 200ms ease;
+}
+
+.nirmex-cta__btn--primary:hover .nirmex-cta__btn-icon {
+  transform: translateX(4px);
+}
+
+/* Secondary Button (Ghost Border) */
+.nirmex-cta__btn--secondary {
+  background-color: rgba(255, 255, 255, 0.06);
+  color: #F8FAFC;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.nirmex-cta__btn--secondary:hover {
+  background-color: rgba(255, 255, 255, 0.12);
+  border-color: rgba(255, 255, 255, 0.4);
+  transform: translateY(-2px);
+  color: #FFFFFF;
+}
+
+/* Trust Row */
+.nirmex-cta__trust-row {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: clamp(1rem, 3vw, 2.5rem);
+  flex-wrap: wrap;
+  padding-top: 2rem;
+  border-top: 1px solid rgba(255, 255, 255, 0.08);
+  width: 100%;
+}
+
+.nirmex-cta__trust-item {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  color: #CBD5E1;
+  font-family: var(--font-family-primary, sans-serif);
+  font-size: 13.5px;
+  font-weight: 600;
+}
+
+.nirmex-cta__trust-icon {
+  color: var(--color-brand-red, #E10600);
+  display: flex;
+  align-items: center;
+}
+
+/* ==========================================================================
+   RESPONSIVE BREAKPOINTS
+   ========================================================================== */
+@media (max-width: 768px) {
+  .nirmex-cta {
+    padding: 3.5rem 0 1.5rem;
+  }
+
+  .nirmex-cta__card {
+    padding: 2.5rem 1.25rem;
+    border-radius: 18px;
+  }
+
+  .nirmex-cta__actions {
+    flex-direction: column;
+    width: 100%;
+  }
+
+  .nirmex-cta__btn {
+    width: 100%;
+  }
+
+  .nirmex-cta__trust-row {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 12px;
+  }
+}
+

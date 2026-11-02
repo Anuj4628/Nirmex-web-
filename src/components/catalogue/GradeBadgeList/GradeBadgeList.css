@@ -1,0 +1,143 @@
+/**
+ * NIRMAX METAL INDUSTRIES — GRADE BADGE LIST STYLES
+ * Compact, image-free, rectangular interactive grade boxes
+ */
+
+.nirmex-grades-sec {
+  background-color: #FFFFFF;
+  border: 1px solid #E2E8F0;
+  border-radius: 12px;
+  padding: 24px 26px;
+  margin-bottom: 32px;
+  box-shadow: 0 4px 14px -3px rgba(15, 23, 42, 0.04);
+  box-sizing: border-box;
+  font-family: 'Plus Jakarta Sans', 'Inter', sans-serif;
+}
+
+.nirmex-grades-sec__header {
+  margin-bottom: 18px;
+}
+
+.nirmex-grades-sec__title-wrap {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 4px;
+}
+
+.nirmex-grades-sec__dot {
+  width: 6.5px;
+  height: 6.5px;
+  border-radius: 50%;
+  background-color: #E10600;
+  box-shadow: 0 0 6px rgba(225, 6, 0, 0.5);
+}
+
+.nirmex-grades-sec__title {
+  margin: 0;
+  font-size: 15px;
+  font-weight: 700;
+  color: #142B4A;
+  letter-spacing: -0.01em;
+  text-transform: uppercase;
+}
+
+.nirmex-grades-sec__sub {
+  margin: 0;
+  font-size: 13px;
+  color: #64748B;
+  line-height: 1.5;
+}
+
+/* Responsive Grid of Grade Boxes */
+.nirmex-grades-grid {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+}
+
+/* Individual Compact Grade Box */
+.nirmex-grade-box {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background-color: #F8FAFC;
+  border: 1.5px solid #E2E8F0;
+  border-radius: 8px;
+  padding: 10px 18px;
+  text-decoration: none;
+  transition: all 160ms cubic-bezier(0.16, 1, 0.3, 1);
+  box-sizing: border-box;
+  cursor: pointer;
+  user-select: none;
+}
+
+.nirmex-grade-box:hover {
+  background-color: #FFFFFF;
+  border-color: #E10600;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(225, 6, 0, 0.14);
+}
+
+.nirmex-grade-box--active {
+  background-color: #E10600 !important;
+  border-color: #E10600 !important;
+  box-shadow: 0 4px 14px rgba(225, 6, 0, 0.28) !important;
+}
+
+.nirmex-grade-box__code {
+  font-size: 14px;
+  font-weight: 700;
+  color: #1E293B;
+  letter-spacing: 0.02em;
+}
+
+.nirmex-grade-box:hover .nirmex-grade-box__code {
+  color: #E10600;
+}
+
+.nirmex-grade-box--active .nirmex-grade-box__code {
+  color: #FFFFFF !important;
+}
+
+.nirmex-grade-box__family {
+  font-size: 11px;
+  font-weight: 600;
+  color: #64748B;
+  background-color: #E2E8F0;
+  padding: 2px 6px;
+  border-radius: 4px;
+}
+
+.nirmex-grade-box--active .nirmex-grade-box__family {
+  background-color: rgba(255, 255, 255, 0.22);
+  color: #FFFFFF;
+}
+
+.nirmex-grade-box__arrow {
+  font-size: 12px;
+  color: #94A3B8;
+  transition: transform 160ms ease, color 160ms ease;
+}
+
+.nirmex-grade-box:hover .nirmex-grade-box__arrow {
+  color: #E10600;
+  transform: translateX(3px);
+}
+
+.nirmex-grade-box--active .nirmex-grade-box__arrow {
+  color: #FFFFFF;
+}
+
+@media (max-width: 640px) {
+  .nirmex-grades-sec {
+    padding: 18px 16px;
+  }
+  .nirmex-grade-box {
+    padding: 8px 14px;
+  }
+  .nirmex-grade-box__code {
+    font-size: 13px;
+  }
+}
+

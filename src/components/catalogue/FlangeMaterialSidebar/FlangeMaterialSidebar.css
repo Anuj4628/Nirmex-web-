@@ -1,0 +1,287 @@
+/**
+ * NIRMAX METAL INDUSTRIES — DEDICATED PRODUCT MATERIAL SIDEBAR STYLES
+ * Premium Industrial Red Aesthetic (#BA0500 / #940100)
+ */
+
+.nirmex-flange-sidebar-wrap {
+  width: 300px;
+  flex: 0 0 300px;
+  position: sticky;
+  top: 98px;
+  align-self: flex-start;
+  box-sizing: border-box;
+  z-index: 30;
+}
+
+/* Desktop Sidebar Container */
+.nirmex-flange-sidebar {
+  background: linear-gradient(180deg, #BA0500 0%, #940100 100%);
+  border-radius: 14px;
+  padding: 18px 15px;
+  box-shadow: 0 10px 30px -5px rgba(186, 5, 0, 0.25),
+              0 4px 12px rgba(0, 0, 0, 0.08);
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  max-height: calc(100vh - 116px);
+  overflow-y: auto;
+  scrollbar-width: thin;
+  scrollbar-color: rgba(255, 255, 255, 0.3) transparent;
+}
+
+.nirmex-flange-sidebar::-webkit-scrollbar {
+  width: 5px;
+}
+
+.nirmex-flange-sidebar::-webkit-scrollbar-thumb {
+  background-color: rgba(255, 255, 255, 0.3);
+  border-radius: 10px;
+}
+
+/* Sidebar Header */
+.nirmex-flange-sidebar__header {
+  padding-bottom: 12px;
+  margin-bottom: 12px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.18);
+  flex-shrink: 0;
+}
+
+.nirmex-flange-sidebar__badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  background-color: rgba(0, 0, 0, 0.22);
+  padding: 4px 10px;
+  border-radius: 20px;
+  font-size: 10.5px;
+  font-weight: 800;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: #FFFFFF;
+  margin-bottom: 8px;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.nirmex-flange-sidebar__dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background-color: #4ADE80;
+  box-shadow: 0 0 6px rgba(74, 222, 128, 0.8);
+}
+
+.nirmex-flange-sidebar__title {
+  margin: 0 0 4px 0;
+  font-size: 17px;
+  font-weight: 800;
+  color: #FFFFFF;
+  letter-spacing: -0.01em;
+  font-family: 'Plus Jakarta Sans', 'Inter', sans-serif;
+  line-height: 1.25;
+}
+
+.nirmex-flange-sidebar__desc {
+  margin: 0;
+  font-size: 12px;
+  line-height: 1.45;
+  color: rgba(255, 255, 255, 0.88);
+}
+
+/* Navigation List */
+.nirmex-flange-sidebar__nav {
+  margin-bottom: 10px;
+  flex: 1 1 auto;
+}
+
+.nirmex-flange-sidebar__list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+}
+
+.nirmex-flange-sidebar__item {
+  margin: 0;
+  padding: 0;
+}
+
+/* Material Link item */
+.nirmex-flange-sidebar__link {
+  display: flex;
+  align-items: center;
+  gap: 9px;
+  padding: 8px 12px;
+  border-radius: 8px;
+  color: #FFFFFF;
+  text-decoration: none;
+  font-size: 13px;
+  font-weight: 600;
+  line-height: 1.35;
+  letter-spacing: 0.01em;
+  transition: all 180ms ease;
+  position: relative;
+  background-color: transparent;
+  box-sizing: border-box;
+}
+
+.nirmex-flange-sidebar__index {
+  font-size: 11px;
+  font-weight: 700;
+  opacity: 0.75;
+  font-family: monospace;
+  flex-shrink: 0;
+}
+
+.nirmex-flange-sidebar__label {
+  flex: 1;
+  word-break: break-word;
+}
+
+.nirmex-flange-sidebar__arrow {
+  opacity: 0;
+  transform: translateX(-4px);
+  transition: all 180ms ease;
+  flex-shrink: 0;
+}
+
+/* Hover State */
+.nirmex-flange-sidebar__link:hover {
+  background-color: rgba(255, 255, 255, 0.15);
+  color: #FFFFFF;
+  padding-left: 15px;
+}
+
+.nirmex-flange-sidebar__link:hover .nirmex-flange-sidebar__arrow {
+  opacity: 1;
+  transform: translateX(0);
+}
+
+/* ACTIVE MATERIAL STATE (White Card with Dark Red Text & Red Accent) */
+.nirmex-flange-sidebar__link--active,
+.nirmex-flange-sidebar__link--active:hover {
+  background-color: #FFFFFF !important;
+  color: #940100 !important;
+  font-weight: 800 !important;
+  padding-left: 14px !important;
+  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.15);
+  border-left: 4px solid #D60500;
+}
+
+.nirmex-flange-sidebar__link--active .nirmex-flange-sidebar__index {
+  color: #BA0500;
+  opacity: 1;
+  font-weight: 800;
+}
+
+.nirmex-flange-sidebar__link--active .nirmex-flange-sidebar__label {
+  color: #940100;
+}
+
+.nirmex-flange-sidebar__link--active .nirmex-flange-sidebar__arrow {
+  opacity: 1;
+  transform: translateX(0);
+  color: #BA0500;
+}
+
+/* Footer Section */
+.nirmex-flange-sidebar__footer {
+  margin-top: 8px;
+  padding-top: 10px;
+  border-top: 1px solid rgba(255, 255, 255, 0.18);
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  flex-shrink: 0;
+}
+
+.nirmex-flange-sidebar__cert {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 11.5px;
+  font-weight: 700;
+  color: rgba(255, 255, 255, 0.95);
+}
+
+.nirmex-flange-sidebar__cert-check {
+  color: #4ADE80;
+  font-weight: 800;
+}
+
+/* Mobile Selector Bar (Hidden on desktop) */
+.nirmex-flange-mobile-nav {
+  display: none;
+}
+
+/* ==========================================================================
+   MOBILE & TABLET RESPONSIVENESS
+   ========================================================================== */
+@media (max-width: 991px) {
+  .nirmex-flange-sidebar-wrap {
+    width: 100%;
+    position: static;
+    margin-bottom: 20px;
+  }
+
+  .nirmex-flange-sidebar {
+    display: none;
+  }
+
+  .nirmex-flange-mobile-nav {
+    display: block;
+    background: linear-gradient(135deg, #BA0500 0%, #940100 100%);
+    border-radius: 12px;
+    padding: 14px 12px;
+    box-shadow: 0 4px 16px rgba(186, 5, 0, 0.2);
+  }
+
+  .nirmex-flange-mobile-nav__label {
+    font-size: 11px;
+    font-weight: 800;
+    letter-spacing: 0.08em;
+    color: rgba(255, 255, 255, 0.85);
+    margin-bottom: 10px;
+    padding-left: 4px;
+  }
+
+  .nirmex-flange-mobile-nav__track {
+    display: flex;
+    gap: 8px;
+    overflow-x: auto;
+    padding-bottom: 6px;
+    scrollbar-width: none;
+    -webkit-overflow-scrolling: touch;
+  }
+
+  .nirmex-flange-mobile-nav__track::-webkit-scrollbar {
+    display: none;
+  }
+
+  .nirmex-flange-mobile-pill {
+    flex-shrink: 0;
+    background-color: rgba(255, 255, 255, 0.18);
+    color: #FFFFFF;
+    text-decoration: none;
+    font-size: 12.5px;
+    font-weight: 700;
+    padding: 8px 14px;
+    border-radius: 20px;
+    border: 1px solid rgba(255, 255, 255, 0.25);
+    transition: all 150ms ease;
+    white-space: nowrap;
+  }
+
+  .nirmex-flange-mobile-pill:hover {
+    background-color: rgba(255, 255, 255, 0.3);
+  }
+
+  .nirmex-flange-mobile-pill--active {
+    background-color: #FFFFFF !important;
+    color: #940100 !important;
+    border-color: #FFFFFF !important;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+  }
+}
