@@ -371,6 +371,14 @@
   display: block;
 }
 
+/* Ensure the full width of the forging image, worker & logo are 100% visible with zero cropping */
+.nirmex-about-intro__media .nirmex-media-card__img {
+  height: auto;
+  aspect-ratio: 1024 / 613;
+  object-fit: cover;
+  object-position: right center;
+}
+
 .nirmex-media-card__badge {
   position: absolute;
   bottom: 1.25rem;
@@ -707,6 +715,11 @@
     height: 400px;
   }
 
+  .nirmex-about-intro__media .nirmex-media-card__img {
+    height: auto;
+    aspect-ratio: 1024 / 613;
+  }
+
   .nirmex-product-showcase-box {
     height: 380px;
     padding: 1.75rem;
@@ -752,6 +765,11 @@
   .nirmex-media-card__img,
   .nirmex-media-card--excellence .nirmex-media-card__img {
     height: 280px;
+  }
+
+  .nirmex-about-intro__media .nirmex-media-card__img {
+    height: auto;
+    aspect-ratio: 1024 / 613;
   }
 
   .nirmex-product-showcase-box {
