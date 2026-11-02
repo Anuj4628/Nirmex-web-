@@ -3,6 +3,7 @@ import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom';
 import MainLayout from '@/layouts/MainLayout';
 import HomePage from '@/pages/Home/HomePage';
 import AboutPage from '@/pages/About/AboutPage';
+import ContactPage from '@/pages/Contact/ContactPage';
 import ProductMaterialPage from '@/pages/Products/ProductMaterialPage';
 import ProductDetailPage from '@/pages/Catalogue/ProductDetailPage';
 import GradeDetailPage from '@/pages/Catalogue/GradeDetailPage';
@@ -26,6 +27,8 @@ function App() {
           <Route path="/" element={<HomePage />} />
           <Route path="/about" element={<AboutPage />} />
           <Route path="/about-us" element={<AboutPage />} />
+          <Route path="/contact" element={<ContactPage />} />
+          <Route path="/contact-us" element={<ContactPage />} />
           
           {/* Master Industrial Catalogue Routes */}
           <Route path="/products" element={<Navigate to="/products/stainless-steel/flanges" replace />} />

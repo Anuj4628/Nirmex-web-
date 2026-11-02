@@ -42,7 +42,7 @@ export const NAV_ITEMS = [
   {
     id: 'contact',
     label: 'Contact Us',
-    href: '#contact',
+    href: '/contact',
     isHome: false,
   },
 ];

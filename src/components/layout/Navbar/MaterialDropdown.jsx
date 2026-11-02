@@ -62,3 +62,4 @@ export const MaterialDropdown = ({ isOpen, onClose, onItemClick }) => {
 };
 
 export default MaterialDropdown;
+

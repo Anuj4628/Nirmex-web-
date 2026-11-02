@@ -43,6 +43,8 @@ export const Navbar = () => {
       setActiveItemId('product');
     } else if (location.pathname === '/about' || location.pathname === '/about-us') {
       setActiveItemId('about');
+    } else if (location.pathname === '/contact' || location.pathname === '/contact-us') {
+      setActiveItemId('contact');
     } else if (location.pathname === '/' && !location.hash) {
       setActiveItemId('home');
     }
@@ -143,6 +145,9 @@ export const Navbar = () => {
         window.scrollTo({ top: 0, behavior: 'smooth' });
       } else if (id === 'about') {
         navigate('/about');
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+      } else if (id === 'contact') {
+        navigate('/contact');
         window.scrollTo({ top: 0, behavior: 'smooth' });
       } else {
         if (location.pathname !== '/') {

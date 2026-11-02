@@ -19,3 +19,4 @@ export const AVAILABLE_MATERIALS = [
 ];
 
 export default AVAILABLE_MATERIALS;
+
