@@ -386,9 +386,6 @@ export const AboutPage = () => {
                   className="nirmex-product-showcase-box__img"
                   loading="lazy"
                 />
-                <div className="nirmex-product-showcase-box__tag">
-                  <span>Class 2000# to 9000# PSI</span>
-                </div>
               </div>
             </div>
 
@@ -504,9 +501,6 @@ export const AboutPage = () => {
                   className="nirmex-product-showcase-box__img"
                   loading="lazy"
                 />
-                <div className="nirmex-product-showcase-box__tag">
-                  <span>ASME B16.5 &amp; B16.47 Series A &amp; B</span>
-                </div>
               </div>
             </div>
           </div>
@@ -528,9 +522,6 @@ export const AboutPage = () => {
                   className="nirmex-product-showcase-box__img"
                   loading="lazy"
                 />
-                <div className="nirmex-product-showcase-box__tag">
-                  <span>ASTM A193 &amp; A194 High-Tensile Bolting</span>
-                </div>
               </div>
             </div>
 
@@ -646,9 +637,6 @@ export const AboutPage = () => {
                   className="nirmex-product-showcase-box__img"
                   loading="lazy"
                 />
-                <div className="nirmex-product-showcase-box__tag">
-                  <span>ASME B16.9 Seamless &amp; Welded</span>
-                </div>
               </div>
             </div>
           </div>

@@ -422,9 +422,9 @@
   position: relative;
   background: #FFFFFF;
   border: 1px solid #E2E8F0;
-  border-radius: 8px;
-  box-shadow: 0 12px 32px rgba(18, 24, 38, 0.06);
-  padding: 2.5rem;
+  border-radius: 16px;
+  box-shadow: 0 16px 36px rgba(18, 24, 38, 0.08);
+  padding: 0;
   height: 440px;
   display: flex;
   align-items: center;
@@ -438,29 +438,21 @@
 }
 
 .nirmex-product-showcase-box__img {
-  max-width: 90%;
-  max-height: 90%;
-  object-fit: contain;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+  display: block;
+  border-radius: 16px;
   transition: transform var(--transition-normal, 250ms ease);
 }
 
 .nirmex-product-showcase-box:hover .nirmex-product-showcase-box__img {
-  transform: scale(1.03);
+  transform: scale(1.04);
 }
 
 .nirmex-product-showcase-box__tag {
-  position: absolute;
-  top: 1rem;
-  right: 1rem;
-  background-color: #F1F5F9;
-  color: #1E293B;
-  border: 1px solid #CBD5E1;
-  padding: 0.35rem 0.85rem;
-  border-radius: 4px;
-  font-size: 0.75rem;
-  font-weight: 700;
-  letter-spacing: 0.05em;
-  text-transform: uppercase;
+  display: none !important;
 }
 
 .nirmex-feature-list {
@@ -722,7 +714,7 @@
 
   .nirmex-product-showcase-box {
     height: 380px;
-    padding: 1.75rem;
+    padding: 0;
   }
 
   .nirmex-why-grid {
@@ -774,7 +766,7 @@
 
   .nirmex-product-showcase-box {
     height: 280px;
-    padding: 1.25rem;
+    padding: 0;
   }
 
   .nirmex-excellence-grid {
