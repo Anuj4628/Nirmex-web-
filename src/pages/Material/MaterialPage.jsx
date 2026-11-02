@@ -359,3 +359,4 @@ export const MaterialPage = () => {
 };
 
 export default MaterialPage;
+

@@ -114,3 +114,4 @@ export const SEORouteResolver = () => {
 };
 
 export default SEORouteResolver;
+

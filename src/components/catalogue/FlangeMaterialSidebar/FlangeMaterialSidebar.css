@@ -6,9 +6,12 @@
 .nirmex-flange-sidebar-wrap {
   width: 300px;
   flex: 0 0 300px;
+  position: -webkit-sticky;
   position: sticky;
-  top: 98px;
+  top: 96px;
   align-self: flex-start;
+  height: -moz-fit-content;
+  height: fit-content;
   box-sizing: border-box;
   z-index: 30;
 }
@@ -24,7 +27,7 @@
   box-sizing: border-box;
   display: flex;
   flex-direction: column;
-  max-height: calc(100vh - 116px);
+  max-height: calc(100vh - 112px);
   overflow-y: auto;
   scrollbar-width: thin;
   scrollbar-color: rgba(255, 255, 255, 0.3) transparent;
@@ -223,7 +226,10 @@
   .nirmex-flange-sidebar-wrap {
     width: 100%;
     position: static;
+    top: auto;
     margin-bottom: 20px;
+    height: auto;
+    z-index: auto;
   }
 
   .nirmex-flange-sidebar {
