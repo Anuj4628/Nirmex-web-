@@ -4,29 +4,29 @@ import './FlangeMaterialSidebar.css';
 
 /**
  * MASTER CATALOGUE MATERIALS SPECIFICATION
- * 10 authentic alloy families in strict industrial sequence:
+ * 10 authentic alloy families in strict user sequence:
  * 1. Stainless Steel
  * 2. Carbon Steel
- * 3. Alloy Steel
+ * 3. Copper
  * 4. Duplex & Super Duplex
- * 5. Nickel Alloy
- * 6. Monel
- * 7. Inconel
- * 8. Hastelloy
- * 9. Titanium
- * 10. Copper
+ * 5. Alloy Steel
+ * 6. Nickel Alloy
+ * 7. Monel
+ * 8. Inconel
+ * 9. Hastelloy
+ * 10. Titanium
  */
 export const MASTER_MATERIALS = [
   { slug: 'stainless-steel', name: 'Stainless Steel', shortName: 'Stainless Steel' },
   { slug: 'carbon-steel', name: 'Carbon Steel', shortName: 'Carbon Steel' },
-  { slug: 'alloy-steel', name: 'Alloy Steel', shortName: 'Alloy Steel' },
+  { slug: 'copper', aliases: ['copper-alloys'], name: 'Copper', shortName: 'Copper' },
   { slug: 'duplex-super-duplex', name: 'Duplex & Super Duplex', shortName: 'Duplex & Super' },
+  { slug: 'alloy-steel', name: 'Alloy Steel', shortName: 'Alloy Steel' },
   { slug: 'nickel-alloy', aliases: ['nickel-alloys'], name: 'Nickel Alloy', shortName: 'Nickel Alloy' },
   { slug: 'monel', name: 'Monel', shortName: 'Monel' },
   { slug: 'inconel', aliases: ['inconel-alloys'], name: 'Inconel', shortName: 'Inconel' },
   { slug: 'hastelloy', aliases: ['hastelloy-alloys'], name: 'Hastelloy', shortName: 'Hastelloy' },
   { slug: 'titanium', name: 'Titanium', shortName: 'Titanium' },
-  { slug: 'copper', aliases: ['copper-alloys'], name: 'Copper', shortName: 'Copper' },
 ];
 
 /**

@@ -77,16 +77,18 @@ export const MASTER_MATERIALS = [
     ],
   },
   {
-    id: 'alloy-steel',
-    slug: 'alloy-steel',
-    aliases: ['as', 'alloy', 'alloy-steel-products'],
-    name: 'Alloy Steel',
-    shortName: 'Alloy Steel',
-    badge: 'Chrome-Moly Elevated Temp',
+    id: 'copper',
+    slug: 'copper',
+    aliases: ['copper-alloys', 'cupro-nickel', 'brass', 'cu'],
+    name: 'Copper & Copper Alloys',
+    shortName: 'Copper',
+    seoTitle: 'Copper & Cupro-Nickel Products Manufacturer in Mumbai',
+    heroTitle: 'Copper & Cupro-Nickel Products',
+    badge: 'Antifouling Marine & Thermal',
     overview:
-      'Premier chromium-molybdenum alloy steel components engineered for thermal power plants, petrochemical reformers, and high-pressure steam headers. Retaining high creep-rupture strength and thermal fatigue resistance up to 650°C.',
-    popularGrades: ['F11', 'F22', 'F5', 'F9', 'F91', 'P11', 'P22', 'P91', 'B16'],
-    specifications: 'ASTM A182 (F11, F22, F91), ASTM A335 (P11, P22, P91), ASTM A234 (WP11, WP22), ASME B16.5',
+      'Pure electrolytic copper, cupro-nickel (90/10 & 70/30), naval brass, and phosphor bronze components featuring superior electrical and thermal conductivity combined with natural resistance to marine biofouling and macro-algae attachment.',
+    popularGrades: ['Cu-Ni 90/10 (C70600)', 'Cu-Ni 70/30 (C71500)', 'Naval Brass C46400', 'Pure Copper C11000'],
+    specifications: 'ASTM B171, ASTM B151, ASTM B111, ASTM B466, ASME SB171, DIN 86019',
     supportedProductSlugs: [
       'flanges',
       'forging',
@@ -111,6 +113,28 @@ export const MASTER_MATERIALS = [
       'Biphasic austenitic-ferritic microstructure combining twice the yield strength of conventional 316L stainless steel with extraordinary resistance to chloride pitting, crevice corrosion, and stress corrosion cracking in aggressive offshore marine and desalination environments.',
     popularGrades: ['UNS S31803 (F51)', 'UNS S32205 (2205)', 'UNS S32750 (2507 / F53)', 'UNS S32760 (F55)'],
     specifications: 'ASTM A182 F51/F53/F55, ASTM A790, ASTM A815, NACE MR0175 / ISO 15156, NORSOK M-650',
+    supportedProductSlugs: [
+      'flanges',
+      'forging',
+      'butt-weld-fittings',
+      'fasteners',
+      'pipes-tubes',
+      'sheets-plates',
+      'rods-bars',
+      'flat-bars',
+    ],
+  },
+  {
+    id: 'alloy-steel',
+    slug: 'alloy-steel',
+    aliases: ['as', 'alloy', 'alloy-steel-products'],
+    name: 'Alloy Steel',
+    shortName: 'Alloy Steel',
+    badge: 'Chrome-Moly Elevated Temp',
+    overview:
+      'Premier chromium-molybdenum alloy steel components engineered for thermal power plants, petrochemical reformers, and high-pressure steam headers. Retaining high creep-rupture strength and thermal fatigue resistance up to 650°C.',
+    popularGrades: ['F11', 'F22', 'F5', 'F9', 'F91', 'P11', 'P22', 'P91', 'B16'],
+    specifications: 'ASTM A182 (F11, F22, F91), ASTM A335 (P11, P22, P91), ASTM A234 (WP11, WP22), ASME B16.5',
     supportedProductSlugs: [
       'flanges',
       'forging',
@@ -248,30 +272,6 @@ export const MASTER_MATERIALS = [
       'flat-bars',
     ],
   },
-  {
-    id: 'copper',
-    slug: 'copper',
-    aliases: ['copper-alloys', 'cupro-nickel', 'brass', 'cu'],
-    name: 'Copper & Copper Alloys',
-    shortName: 'Copper',
-    seoTitle: 'Copper & Cupro-Nickel Products Manufacturer in Mumbai',
-    heroTitle: 'Copper & Cupro-Nickel Products',
-    badge: 'Antifouling Marine & Thermal',
-    overview:
-      'Pure electrolytic copper, cupro-nickel (90/10 & 70/30), naval brass, and phosphor bronze components featuring superior electrical and thermal conductivity combined with natural resistance to marine biofouling and macro-algae attachment.',
-    popularGrades: ['Cu-Ni 90/10 (C70600)', 'Cu-Ni 70/30 (C71500)', 'Naval Brass C46400', 'Pure Copper C11000'],
-    specifications: 'ASTM B171, ASTM B151, ASTM B111, ASTM B466, ASME SB171, DIN 86019',
-    supportedProductSlugs: [
-      'flanges',
-      'forging',
-      'butt-weld-fittings',
-      'fasteners',
-      'pipes-tubes',
-      'sheets-plates',
-      'rods-bars',
-      'flat-bars',
-    ],
-  },
 ];
 
 // ============================================================================
@@ -290,16 +290,16 @@ export const findMasterMaterial = (slugOrAlias) => {
   if (direct) return direct;
 
   // Fallback heuristic
-  if (s.includes('stainless')) return MASTER_MATERIALS[0];
-  if (s.includes('carbon')) return MASTER_MATERIALS[1];
-  if (s.includes('duplex')) return MASTER_MATERIALS[3];
-  if (s.includes('inconel')) return MASTER_MATERIALS[5];
-  if (s.includes('monel')) return MASTER_MATERIALS[6];
-  if (s.includes('hastelloy')) return MASTER_MATERIALS[7];
-  if (s.includes('titanium')) return MASTER_MATERIALS[8];
-  if (s.includes('copper') || s.includes('brass')) return MASTER_MATERIALS[9];
-  if (s.includes('alloy') && !s.includes('nickel')) return MASTER_MATERIALS[2];
-  if (s.includes('nickel')) return MASTER_MATERIALS[4];
+  if (s.includes('stainless')) return MASTER_MATERIALS.find((m) => m.slug === 'stainless-steel') || MASTER_MATERIALS[0];
+  if (s.includes('carbon')) return MASTER_MATERIALS.find((m) => m.slug === 'carbon-steel') || MASTER_MATERIALS[0];
+  if (s.includes('copper') || s.includes('brass')) return MASTER_MATERIALS.find((m) => m.slug === 'copper') || MASTER_MATERIALS[0];
+  if (s.includes('duplex')) return MASTER_MATERIALS.find((m) => m.slug === 'duplex-super-duplex') || MASTER_MATERIALS[0];
+  if (s.includes('inconel')) return MASTER_MATERIALS.find((m) => m.slug === 'inconel') || MASTER_MATERIALS[0];
+  if (s.includes('monel')) return MASTER_MATERIALS.find((m) => m.slug === 'monel') || MASTER_MATERIALS[0];
+  if (s.includes('hastelloy')) return MASTER_MATERIALS.find((m) => m.slug === 'hastelloy') || MASTER_MATERIALS[0];
+  if (s.includes('titanium')) return MASTER_MATERIALS.find((m) => m.slug === 'titanium') || MASTER_MATERIALS[0];
+  if (s.includes('alloy') && !s.includes('nickel')) return MASTER_MATERIALS.find((m) => m.slug === 'alloy-steel') || MASTER_MATERIALS[0];
+  if (s.includes('nickel')) return MASTER_MATERIALS.find((m) => m.slug === 'nickel-alloy') || MASTER_MATERIALS[0];
 
   return MASTER_MATERIALS[0];
 };
