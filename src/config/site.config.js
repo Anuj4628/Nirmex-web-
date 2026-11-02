@@ -65,7 +65,7 @@ export const SITE_CONFIG = {
   // Quick Navigation Links
   quickLinks: [
     { label: 'Home', href: '/' },
-    { label: 'About Us', href: '#about' },
+    { label: 'About Us', href: '/about' },
     { label: 'Products', href: '#product' },
     { label: 'Value Added Services', href: '#services' },
     { label: 'Our Clients', href: '#clients' },

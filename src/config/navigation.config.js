@@ -18,7 +18,7 @@ export const NAV_ITEMS = [
   {
     id: 'about',
     label: 'About Us',
-    href: '#about',
+    href: '/about',
     isHome: false,
   },
   {

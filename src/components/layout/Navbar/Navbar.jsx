@@ -38,6 +38,8 @@ export const Navbar = () => {
   useEffect(() => {
     if (location.pathname.startsWith('/products/')) {
       setActiveItemId('product');
+    } else if (location.pathname === '/about' || location.pathname === '/about-us') {
+      setActiveItemId('about');
     } else if (location.pathname === '/' && !location.hash) {
       setActiveItemId('home');
     }
@@ -128,6 +130,9 @@ export const Navbar = () => {
       setMegaMenuOpen(false);
       if (id === 'home') {
         navigate('/');
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+      } else if (id === 'about') {
+        navigate('/about');
         window.scrollTo({ top: 0, behavior: 'smooth' });
       } else {
         if (location.pathname !== '/') {

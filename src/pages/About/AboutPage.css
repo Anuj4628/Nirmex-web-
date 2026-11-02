@@ -1,0 +1,772 @@
+/* ==========================================================================
+   NIRMEX METAL INDUSTRIES — PREMIUM ABOUT US PAGE STYLES
+   Restrained Industrial Luxury | Solid Contrast | Precision Alignment
+   ========================================================================== */
+
+.nirmex-about-page {
+  width: 100%;
+  overflow-x: hidden;
+  background-color: #FFFFFF;
+  color: var(--color-dark-industrial, #17191E);
+  font-family: var(--font-family-primary, 'Inter', sans-serif);
+}
+
+.nirmex-about-container {
+  width: 100%;
+  max-width: var(--container-max-width, 1400px);
+  margin-left: auto;
+  margin-right: auto;
+  padding-left: var(--container-padding, 2.25rem);
+  padding-right: var(--container-padding, 2.25rem);
+  box-sizing: border-box;
+}
+
+.nirmex-anchor-target {
+  display: block;
+  position: relative;
+  top: -80px;
+  visibility: hidden;
+}
+
+/* ==========================================================================
+   1. SECTION 1: HERO SECTION
+   ========================================================================== */
+
+.nirmex-about-hero {
+  position: relative;
+  width: 100%;
+  min-height: 560px;
+  display: flex;
+  align-items: center;
+  background-color: #121826;
+  overflow: hidden;
+  padding-top: 4.5rem;
+  padding-bottom: 4.5rem;
+}
+
+.nirmex-about-hero__bg-wrap {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 1;
+}
+
+.nirmex-about-hero__bg-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center 40%;
+}
+
+.nirmex-about-hero__overlay {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  /* High-contrast industrial gradient overlay for optimal typography legibility */
+  background: linear-gradient(
+    90deg,
+    rgba(14, 18, 28, 0.94) 0%,
+    rgba(14, 18, 28, 0.88) 50%,
+    rgba(14, 18, 28, 0.75) 100%
+  );
+}
+
+.nirmex-about-hero__container {
+  position: relative;
+  z-index: 2;
+  width: 100%;
+  max-width: var(--container-max-width, 1400px);
+  margin-left: auto;
+  margin-right: auto;
+  padding-left: var(--container-padding, 2.25rem);
+  padding-right: var(--container-padding, 2.25rem);
+  box-sizing: border-box;
+}
+
+.nirmex-about-hero__content {
+  max-width: 780px;
+}
+
+.nirmex-about-hero__eyebrow-wrap {
+  display: inline-flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 1.25rem;
+}
+
+.nirmex-about-hero__eyebrow-line {
+  width: 32px;
+  height: 3px;
+  background-color: var(--color-brand-red, #E10600);
+  border-radius: 1px;
+}
+
+.nirmex-about-hero__eyebrow {
+  font-size: 0.85rem;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: #F87171;
+}
+
+.nirmex-about-hero__title {
+  font-family: var(--font-family-headline, 'Bebas Neue', sans-serif);
+  font-size: clamp(2.5rem, 5vw, 4.25rem);
+  line-height: 1.05;
+  font-weight: 800;
+  letter-spacing: 0.02em;
+  color: #FFFFFF;
+  margin-bottom: 1.5rem;
+  text-transform: uppercase;
+}
+
+.nirmex-hero-br {
+  display: block;
+}
+
+.nirmex-about-hero__title-accent {
+  color: #F3F4F6;
+  opacity: 0.96;
+}
+
+.nirmex-about-hero__desc {
+  font-size: clamp(1rem, 1.2vw, 1.15rem);
+  line-height: 1.7;
+  color: #D1D5DB;
+  margin-bottom: 2.25rem;
+  max-width: 720px;
+}
+
+.nirmex-about-hero__actions {
+  display: flex;
+  align-items: center;
+  gap: 1.25rem;
+  flex-wrap: wrap;
+  margin-bottom: 2.5rem;
+}
+
+/* Button styles */
+.nirmex-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  padding: 0.85rem 1.85rem;
+  font-size: 0.95rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  border-radius: 4px;
+  text-decoration: none;
+  cursor: pointer;
+  transition: all var(--transition-normal, 250ms ease);
+}
+
+.nirmex-btn--primary {
+  background-color: var(--color-brand-red, #E10600);
+  color: #FFFFFF;
+  border: 1px solid var(--color-brand-red, #E10600);
+  box-shadow: 0 4px 14px rgba(225, 6, 0, 0.35);
+}
+
+.nirmex-btn--primary:hover {
+  background-color: var(--color-brand-red-hover, #C50100);
+  border-color: var(--color-brand-red-hover, #C50100);
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(225, 6, 0, 0.45);
+  color: #FFFFFF;
+}
+
+.nirmex-btn--secondary {
+  background-color: rgba(255, 255, 255, 0.08);
+  color: #FFFFFF;
+  border: 1px solid rgba(255, 255, 255, 0.28);
+  backdrop-filter: blur(4px);
+}
+
+.nirmex-btn--secondary:hover {
+  background-color: #FFFFFF;
+  color: var(--color-dark-industrial, #17191E);
+  border-color: #FFFFFF;
+  transform: translateY(-2px);
+}
+
+/* Hero Trust Strip */
+.nirmex-about-hero__trust-strip {
+  display: flex;
+  align-items: center;
+  gap: 1.75rem;
+  flex-wrap: wrap;
+  padding-top: 1.5rem;
+  border-top: 1px solid rgba(255, 255, 255, 0.12);
+}
+
+.nirmex-about-hero__trust-item {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: #9CA3AF;
+  letter-spacing: 0.03em;
+}
+
+.nirmex-about-hero__trust-dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background-color: var(--color-brand-red, #E10600);
+}
+
+/* ==========================================================================
+   COMMON SECTION STYLES
+   ========================================================================== */
+
+.nirmex-about-section {
+  padding-top: 5.5rem;
+  padding-bottom: 5.5rem;
+  border-bottom: 1px solid #E5E7EB;
+  position: relative;
+}
+
+.nirmex-section-eyebrow {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 0.8rem;
+  font-weight: 800;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--color-brand-red, #E10600);
+  margin-bottom: 0.85rem;
+}
+
+.nirmex-section-eyebrow--center {
+  justify-content: center;
+}
+
+.nirmex-section-eyebrow__bar {
+  width: 20px;
+  height: 2.5px;
+  background-color: var(--color-brand-red, #E10600);
+  border-radius: 1px;
+}
+
+.nirmex-section-heading {
+  font-family: var(--font-family-headline, 'Bebas Neue', sans-serif);
+  font-size: clamp(2rem, 3.5vw, 3rem);
+  line-height: 1.15;
+  font-weight: 800;
+  letter-spacing: 0.02em;
+  color: #123B73; /* Refined Navy Blue from site theme */
+  text-transform: uppercase;
+  margin-bottom: 1.35rem;
+}
+
+.nirmex-section-heading--center {
+  text-align: center;
+}
+
+.nirmex-about-section-header {
+  max-width: 800px;
+  margin: 0 auto 3.5rem auto;
+  text-align: center;
+}
+
+.nirmex-section-subtitle {
+  font-size: 1.05rem;
+  line-height: 1.7;
+  color: #4B5563;
+  margin: 0 auto;
+}
+
+.nirmex-prose p {
+  font-size: 1.025rem;
+  line-height: 1.75;
+  color: #374151;
+  margin-bottom: 1.25rem;
+}
+
+.nirmex-prose p:last-child {
+  margin-bottom: 0;
+}
+
+/* Two-column grid */
+.nirmex-about-grid--2col {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 4rem;
+  align-items: center;
+}
+
+/* ==========================================================================
+   2. SECTION 2: COMPANY INTRODUCTION
+   ========================================================================== */
+
+.nirmex-about-intro {
+  background-color: #FFFFFF;
+}
+
+.nirmex-intro-highlights {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  margin-top: 2rem;
+  padding-top: 1.75rem;
+  border-top: 1px solid #E5E7EB;
+}
+
+.nirmex-intro-highlight {
+  display: flex;
+  align-items: flex-start;
+  gap: 14px;
+}
+
+.nirmex-intro-highlight__icon {
+  flex-shrink: 0;
+  width: 36px;
+  height: 36px;
+  border-radius: 4px;
+  background-color: #FEE2E2;
+  color: var(--color-brand-red, #E10600);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.nirmex-intro-highlight__text {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.nirmex-intro-highlight__text strong {
+  font-size: 0.95rem;
+  color: var(--color-dark-industrial, #17191E);
+}
+
+.nirmex-intro-highlight__text span {
+  font-size: 0.875rem;
+  color: #6B7280;
+  line-height: 1.4;
+}
+
+.nirmex-media-card {
+  position: relative;
+  border-radius: 8px;
+  overflow: hidden;
+  box-shadow: 0 16px 36px rgba(0, 0, 0, 0.1);
+  border: 1px solid #E5E7EB;
+  background-color: #F3F4F6;
+}
+
+.nirmex-media-card__img {
+  width: 100%;
+  height: 480px;
+  object-fit: cover;
+  display: block;
+}
+
+.nirmex-media-card__badge {
+  position: absolute;
+  bottom: 1.25rem;
+  left: 1.25rem;
+  right: 1.25rem;
+  background-color: rgba(18, 24, 38, 0.92);
+  color: #FFFFFF;
+  padding: 0.75rem 1.25rem;
+  border-radius: 4px;
+  font-size: 0.85rem;
+  font-weight: 700;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  backdrop-filter: blur(4px);
+  border: 1px solid rgba(255, 255, 255, 0.15);
+}
+
+.nirmex-media-card__badge-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background-color: var(--color-brand-red, #E10600);
+}
+
+/* ==========================================================================
+   3, 4, 5, 6: FOUR PRODUCT SPECIALITY SECTIONS
+   ========================================================================== */
+
+.nirmex-product-sec {
+  background-color: #FFFFFF;
+}
+
+.nirmex-product-sec--alt {
+  background-color: #F8F9FA;
+}
+
+.nirmex-product-showcase-box {
+  position: relative;
+  background: #FFFFFF;
+  border: 1px solid #E2E8F0;
+  border-radius: 8px;
+  box-shadow: 0 12px 32px rgba(18, 24, 38, 0.06);
+  padding: 2.5rem;
+  height: 440px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-sizing: border-box;
+  overflow: hidden;
+}
+
+.nirmex-product-sec--alt .nirmex-product-showcase-box {
+  background: #FFFFFF;
+}
+
+.nirmex-product-showcase-box__img {
+  max-width: 90%;
+  max-height: 90%;
+  object-fit: contain;
+  transition: transform var(--transition-normal, 250ms ease);
+}
+
+.nirmex-product-showcase-box:hover .nirmex-product-showcase-box__img {
+  transform: scale(1.03);
+}
+
+.nirmex-product-showcase-box__tag {
+  position: absolute;
+  top: 1rem;
+  right: 1rem;
+  background-color: #F1F5F9;
+  color: #1E293B;
+  border: 1px solid #CBD5E1;
+  padding: 0.35rem 0.85rem;
+  border-radius: 4px;
+  font-size: 0.75rem;
+  font-weight: 700;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+}
+
+.nirmex-feature-list {
+  list-style: none;
+  padding: 0;
+  margin: 1.75rem 0 2rem 0;
+  display: flex;
+  flex-direction: column;
+  gap: 0.85rem;
+}
+
+.nirmex-feature-item {
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+  font-size: 0.95rem;
+  line-height: 1.55;
+  color: #374151;
+}
+
+.nirmex-feature-item__check {
+  color: var(--color-brand-red, #E10600);
+  font-weight: 900;
+  font-size: 1.1rem;
+  line-height: 1;
+}
+
+.nirmex-feature-item strong {
+  color: var(--color-dark-industrial, #17191E);
+}
+
+.nirmex-product-sec__action {
+  margin-top: 1.5rem;
+}
+
+/* ==========================================================================
+   7. SECTION 7: OUR EXCELLENCE — QUALITY AND INSPECTION
+   ========================================================================== */
+
+.nirmex-about-excellence {
+  background-color: #F8F9FA;
+}
+
+.nirmex-about-excellence__subheading {
+  font-size: 1.25rem;
+  font-weight: 700;
+  color: var(--color-dark-industrial, #17191E);
+  margin-bottom: 1.25rem;
+  line-height: 1.4;
+}
+
+.nirmex-excellence-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1.25rem;
+  margin-top: 2rem;
+}
+
+.nirmex-excellence-card {
+  background-color: #FFFFFF;
+  border: 1px solid #E2E8F0;
+  border-radius: 6px;
+  padding: 1.25rem 1.35rem;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.03);
+  transition: all var(--transition-fast, 160ms ease);
+}
+
+.nirmex-excellence-card:hover {
+  border-color: #CBD5E1;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.06);
+  transform: translateY(-2px);
+}
+
+.nirmex-excellence-card__num {
+  font-family: var(--font-family-headline, 'Bebas Neue', sans-serif);
+  font-size: 1.5rem;
+  font-weight: 800;
+  color: var(--color-brand-red, #E10600);
+  line-height: 1;
+  margin-bottom: 0.5rem;
+}
+
+.nirmex-excellence-card__title {
+  font-size: 0.95rem;
+  font-weight: 700;
+  color: #123B73;
+  margin-bottom: 0.45rem;
+  line-height: 1.3;
+}
+
+.nirmex-excellence-card__desc {
+  font-size: 0.85rem;
+  line-height: 1.55;
+  color: #64748B;
+  margin: 0;
+}
+
+.nirmex-media-card--excellence .nirmex-media-card__img {
+  height: 520px;
+}
+
+/* ==========================================================================
+   8. SECTION 8: MATERIAL RANGE
+   ========================================================================== */
+
+.nirmex-about-materials {
+  background-color: #FFFFFF;
+}
+
+.nirmex-materials-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: 1.25rem;
+}
+
+.nirmex-mat-item {
+  display: flex;
+  flex-direction: column;
+  background-color: #FFFFFF;
+  border: 1px solid #E2E8F0;
+  border-radius: 6px;
+  padding: 1.35rem;
+  text-decoration: none;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.03);
+  transition: all var(--transition-normal, 250ms ease);
+}
+
+.nirmex-mat-item:hover {
+  border-color: var(--color-brand-red, #E10600);
+  box-shadow: 0 8px 24px rgba(225, 6, 0, 0.12);
+  transform: translateY(-3px);
+}
+
+.nirmex-mat-item__header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 0.5rem;
+}
+
+.nirmex-mat-item__name {
+  font-size: 1.05rem;
+  font-weight: 700;
+  color: #123B73;
+}
+
+.nirmex-mat-item__arrow {
+  font-size: 1.1rem;
+  color: var(--color-brand-red, #E10600);
+  font-weight: 700;
+  transition: transform var(--transition-fast, 160ms ease);
+}
+
+.nirmex-mat-item:hover .nirmex-mat-item__arrow {
+  transform: translateX(4px);
+}
+
+.nirmex-mat-item__code {
+  font-size: 0.8rem;
+  font-weight: 700;
+  color: #DC2626;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  margin-bottom: 0.4rem;
+}
+
+.nirmex-mat-item__spec {
+  font-size: 0.825rem;
+  color: #475569;
+  font-weight: 600;
+  margin-bottom: 0.5rem;
+}
+
+.nirmex-mat-item__grades {
+  font-size: 0.8rem;
+  color: #64748B;
+  line-height: 1.5;
+  margin-top: auto;
+  border-top: 1px dashed #E2E8F0;
+  padding-top: 0.6rem;
+}
+
+/* ==========================================================================
+   9. SECTION 9: WHY CHOOSE NIRMEX METAL INDUSTRIES?
+   ========================================================================== */
+
+.nirmex-about-why {
+  background-color: #F8F9FA;
+}
+
+.nirmex-why-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 1.5rem;
+}
+
+.nirmex-why-card {
+  background-color: #FFFFFF;
+  border: 1px solid #E2E8F0;
+  border-radius: 6px;
+  padding: 2rem 1.5rem;
+  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.04);
+  transition: all var(--transition-normal, 250ms ease);
+  display: flex;
+  flex-direction: column;
+}
+
+.nirmex-why-card:hover {
+  border-color: #CBD5E1;
+  box-shadow: 0 10px 24px rgba(0, 0, 0, 0.08);
+  transform: translateY(-4px);
+}
+
+.nirmex-why-card__icon-box {
+  width: 48px;
+  height: 48px;
+  border-radius: 6px;
+  background-color: #FEE2E2;
+  color: var(--color-brand-red, #E10600);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 1.25rem;
+}
+
+.nirmex-why-card__title {
+  font-size: 1.1rem;
+  font-weight: 700;
+  color: #123B73;
+  margin-bottom: 0.75rem;
+  line-height: 1.35;
+}
+
+.nirmex-why-card__desc {
+  font-size: 0.9rem;
+  line-height: 1.6;
+  color: #4B5563;
+  margin: 0;
+}
+
+/* ==========================================================================
+   RESPONSIVE DESIGN BREAKPOINTS
+   ========================================================================== */
+
+@media (max-width: 1024px) {
+  .nirmex-about-grid--2col {
+    gap: 2.5rem;
+  }
+
+  .nirmex-media-card__img,
+  .nirmex-media-card--excellence .nirmex-media-card__img {
+    height: 400px;
+  }
+
+  .nirmex-product-showcase-box {
+    height: 380px;
+    padding: 1.75rem;
+  }
+
+  .nirmex-why-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 768px) {
+  .nirmex-about-section {
+    padding-top: 3.5rem;
+    padding-bottom: 3.5rem;
+  }
+
+  .nirmex-about-hero {
+    min-height: auto;
+    padding-top: 3rem;
+    padding-bottom: 3.5rem;
+  }
+
+  .nirmex-hero-br {
+    display: inline;
+  }
+
+  .nirmex-about-grid--2col {
+    grid-template-columns: 1fr;
+    gap: 2.25rem;
+  }
+
+  /* Keep image first on mobile for alternating sections if desired or natural flow */
+  .nirmex-about-grid--reverse-mobile {
+    display: flex;
+    flex-direction: column-reverse;
+  }
+
+  .nirmex-media-card__img,
+  .nirmex-media-card--excellence .nirmex-media-card__img {
+    height: 280px;
+  }
+
+  .nirmex-product-showcase-box {
+    height: 280px;
+    padding: 1.25rem;
+  }
+
+  .nirmex-excellence-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .nirmex-materials-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .nirmex-why-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .nirmex-about-hero__trust-strip {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.75rem;
+  }
+}
