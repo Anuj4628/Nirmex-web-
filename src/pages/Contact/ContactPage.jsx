@@ -781,14 +781,32 @@ export const ContactPage = () => {
                     href="https://www.google.com/maps/dir/?api=1&destination=103,+1st+Floor,+Omkar+Tower,+3rd+Khetwadi+Lane+Back+Road,+Mumbai+-+400+004,+Maharashtra,+India"
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="nirmex-btn nirmex-btn--primary"
+                    className="nirmex-card-btn nirmex-card-btn--primary"
                     aria-label="Open directions to Mumbai office in Google Maps"
                   >
-                    <span>Get Directions</span>
-                    <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+                    <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
                       <polygon points="3 11 22 2 13 21 11 13 3 11" />
                     </svg>
+                    <span>Get Directions</span>
                   </a>
+
+                  <button
+                    type="button"
+                    className="nirmex-card-btn"
+                    onClick={() =>
+                      handleCopy(
+                        'Nirmex Metal Industries, 103, 1st Floor, Omkar Tower, 3rd Khetwadi Lane Back Road, Mumbai - 400 004, Maharashtra, India',
+                        'Head Office Address'
+                      )
+                    }
+                    aria-label="Copy head office address to clipboard"
+                  >
+                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+                      <rect width="14" height="14" x="8" y="8" rx="2" ry="2" />
+                      <path d="M4 16c-1.1 0-2-.9-2-2V4c0-1.1.9-2 2-2h10c1.1 0 2 .9 2 2" />
+                    </svg>
+                    <span>Copy Address</span>
+                  </button>
                 </div>
               </div>
             </div>

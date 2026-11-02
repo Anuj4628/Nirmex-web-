@@ -2,15 +2,20 @@
  * NIRMEX METAL INDUSTRIES — PREMIUM CONTACT US PAGE STYLES
  * 
  * Aesthetic & Design Language:
- * - Color Palette: Brand Red (#E10600 / #BA0500), Corporate Navy (#142B4A / #0F172A),
- *   Pure White (#FFFFFF), and Subtle Neutral Greys (#F8FAFC / #F1F5F9 / #E2E8F0)
- * - Modern sans-serif typography ('Plus Jakarta Sans', 'Inter', sans-serif)
- * - Restrained industrial luxury: clean cards, soft shadows, rounded corners, zero gimmickry
+ * - Body Background: Signature Nirmex Industrial Red Gradient
+ *   (linear-gradient(180deg, #BA0500 0%, #920100 50%, #7E0100 100%))
+ * - Details Information Cards: Light Royal Blue / Ice-Blue background
+ *   with crisp Royal Blue top accents (#00358A / #0047AB) and bold Red action buttons (#E10600)
+ * - Enquiry Form & Google Map Cards: Crisp high-contrast executive white cards
+ *   with generous elevation shadows, refined input focus states, and pulsating location pin
+ * - Typography: High-contrast pure white headers, badges, and subtitles on red;
+ *   deep corporate navy typography inside cards for crystal-clear readability
  */
 
 .nirmex-contact-page {
   width: 100%;
-  background-color: #F8FAFC;
+  background-color: #BA0500;
+  background: linear-gradient(180deg, #BA0500 0%, #940100 45%, #7D0100 100%);
   color: #17191E;
   overflow-x: hidden;
   font-family: 'Plus Jakarta Sans', 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
@@ -27,22 +32,22 @@
   box-sizing: border-box;
 }
 
-/* Common Section Heading Styles */
+/* Common Section Heading Styles on Red Background */
 .nirmex-contact-section {
-  padding-top: 5rem;
-  padding-bottom: 5rem;
+  padding-top: 5.5rem;
+  padding-bottom: 5.5rem;
   position: relative;
   box-sizing: border-box;
 }
 
 .nirmex-contact-section--alt {
-  background-color: #FFFFFF;
-  border-top: 1px solid #E2E8F0;
-  border-bottom: 1px solid #E2E8F0;
+  background: rgba(0, 0, 0, 0.08);
+  border-top: 1px solid rgba(255, 255, 255, 0.12);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.12);
 }
 
 .nirmex-contact-section-header {
-  max-width: 760px;
+  max-width: 820px;
   margin: 0 auto 3.5rem auto;
   text-align: center;
 }
@@ -53,17 +58,22 @@
   gap: 10px;
   font-size: 0.8rem;
   font-weight: 800;
-  letter-spacing: 0.14em;
+  letter-spacing: 0.12em;
   text-transform: uppercase;
-  color: var(--color-brand-red, #E10600);
-  margin-bottom: 0.85rem;
+  color: #FFFFFF;
+  background: rgba(0, 0, 0, 0.28);
+  border: 1px solid rgba(255, 255, 255, 0.32);
+  padding: 6px 18px;
+  border-radius: 999px;
+  margin-bottom: 1.15rem;
+  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.18);
 }
 
 .nirmex-contact-eyebrow__bar {
-  width: 20px;
+  width: 14px;
   height: 2.5px;
-  background-color: var(--color-brand-red, #E10600);
-  border-radius: 1px;
+  background-color: #FFFFFF;
+  border-radius: 2px;
 }
 
 .nirmex-contact-heading {
@@ -71,15 +81,17 @@
   line-height: 1.18;
   font-weight: 800;
   letter-spacing: -0.02em;
-  color: #142B4A;
+  color: #FFFFFF !important;
   margin-bottom: 1.15rem;
+  text-shadow: 0 2px 8px rgba(0, 0, 0, 0.22);
 }
 
 .nirmex-contact-subtitle {
   font-size: 1.05rem;
   line-height: 1.65;
-  color: #64748B;
+  color: rgba(255, 255, 255, 0.94) !important;
   margin: 0;
+  text-shadow: 0 1px 3px rgba(0, 0, 0, 0.18);
 }
 
 /* ==========================================================================
@@ -93,8 +105,8 @@
   align-items: center;
   background-color: #0F172A;
   overflow: hidden;
-  padding-top: 5rem;
-  padding-bottom: 5rem;
+  padding-top: 5.5rem;
+  padding-bottom: 5.5rem;
   box-sizing: border-box;
 }
 
@@ -114,15 +126,15 @@
   display: block;
 }
 
-/* Semi-translucent contrast gradient to ensure background is clearly visible */
+/* Contrast gradient to guarantee high text legibility */
 .nirmex-contact-hero__gradient {
   position: absolute;
   inset: 0;
   background: linear-gradient(
     90deg,
-    rgba(15, 23, 42, 0.82) 0%,
-    rgba(15, 23, 42, 0.48) 45%,
-    rgba(15, 23, 42, 0.12) 100%
+    rgba(15, 23, 42, 0.84) 0%,
+    rgba(15, 23, 42, 0.52) 48%,
+    rgba(15, 23, 42, 0.15) 100%
   );
   z-index: 2;
   pointer-events: none;
@@ -135,14 +147,14 @@
 
 .nirmex-contact-hero__card {
   max-width: 680px;
-  background: rgba(12, 20, 36, 0.62);
+  background: rgba(12, 20, 36, 0.68);
   backdrop-filter: blur(16px);
   -webkit-backdrop-filter: blur(16px);
-  border: 1px solid rgba(255, 255, 255, 0.2);
+  border: 1px solid rgba(255, 255, 255, 0.22);
   border-left: 4px solid var(--color-brand-red, #E10600);
-  border-radius: 12px;
+  border-radius: 14px;
   padding: 3rem 3.25rem;
-  box-shadow: 0 24px 50px rgba(0, 0, 0, 0.35), inset 0 1px 0 rgba(255, 255, 255, 0.18);
+  box-shadow: 0 24px 50px rgba(0, 0, 0, 0.4), inset 0 1px 0 rgba(255, 255, 255, 0.18);
   box-sizing: border-box;
 }
 
@@ -154,54 +166,54 @@
 }
 
 .nirmex-contact-hero__eyebrow-line {
-  width: 28px;
+  width: 24px;
   height: 3px;
   background-color: var(--color-brand-red, #E10600);
-  border-radius: 1px;
+  border-radius: 2px;
 }
 
 .nirmex-contact-hero__eyebrow {
-  font-size: 0.825rem;
-  font-weight: 700;
-  letter-spacing: 0.12em;
+  font-size: 0.8rem;
+  font-weight: 800;
+  letter-spacing: 0.14em;
   text-transform: uppercase;
-  color: #FCA5A5;
+  color: #FFFFFF;
 }
 
 .nirmex-contact-hero__title {
-  font-size: clamp(2.2rem, 4vw, 3.4rem);
+  font-size: clamp(2.15rem, 3.6vw, 3.1rem);
   line-height: 1.15;
   font-weight: 800;
-  letter-spacing: -0.02em;
+  letter-spacing: -0.025em;
   color: #FFFFFF;
   margin: 0 0 1.25rem 0;
+  text-transform: none;
 }
 
 .nirmex-contact-hero__desc {
-  font-size: clamp(0.975rem, 1.15vw, 1.05rem);
-  line-height: 1.7;
-  color: #E2E8F0;
-  margin: 0 0 2rem 0;
+  font-size: 1.05rem;
+  line-height: 1.65;
+  color: rgba(255, 255, 255, 0.88);
+  margin: 0 0 2.25rem 0;
 }
 
 .nirmex-contact-hero__actions {
   display: flex;
-  align-items: center;
-  gap: 1.25rem;
+  gap: 1rem;
   flex-wrap: wrap;
 }
 
-/* Button styles */
+/* Button Foundation */
 .nirmex-btn {
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  gap: 8px;
+  gap: 10px;
   font-family: inherit;
   font-size: 0.95rem;
   font-weight: 700;
   padding: 0.85rem 1.75rem;
-  border-radius: 6px;
+  border-radius: 8px;
   text-decoration: none;
   transition: all 180ms ease;
   cursor: pointer;
@@ -212,13 +224,13 @@
 .nirmex-btn--primary {
   background-color: var(--color-brand-red, #E10600);
   color: #FFFFFF;
-  box-shadow: 0 4px 14px rgba(225, 6, 0, 0.32);
+  box-shadow: 0 4px 14px rgba(225, 6, 0, 0.35);
 }
 
 .nirmex-btn--primary:hover {
   background-color: var(--color-brand-red-hover, #BA0500);
   transform: translateY(-2px);
-  box-shadow: 0 6px 20px rgba(225, 6, 0, 0.45);
+  box-shadow: 0 8px 24px rgba(225, 6, 0, 0.48);
   color: #FFFFFF;
 }
 
@@ -237,7 +249,7 @@
 }
 
 /* ==========================================================================
-   2. CONTACT DETAILS — PREMIUM INFORMATION CARDS
+   2. CONTACT DETAILS — LIGHT ROYAL BLUE CARDS WITH RED BUTTONS
    ========================================================================== */
 .nirmex-cards-grid {
   display: grid;
@@ -246,23 +258,25 @@
   margin-bottom: 2rem;
 }
 
+/* Individual Info Card in Light Royal Blue */
 .nirmex-info-card {
-  background-color: #FFFFFF;
-  border: 1px solid #E2E8F0;
-  border-radius: 14px;
-  padding: 1.75rem;
-  box-shadow: 0 8px 24px -4px rgba(15, 23, 42, 0.05);
+  background: linear-gradient(180deg, #F0F6FD 0%, #E6F0FA 100%);
+  border: 1.5px solid #BDD7F7;
+  border-top: 4px solid #00358A;
+  border-radius: 16px;
+  padding: 1.85rem 1.65rem;
+  box-shadow: 0 14px 32px rgba(0, 0, 0, 0.28);
   display: flex;
   flex-direction: column;
-  transition: transform 200ms ease, box-shadow 200ms ease, border-color 200ms ease;
+  transition: transform 220ms cubic-bezier(0.16, 1, 0.3, 1), box-shadow 220ms cubic-bezier(0.16, 1, 0.3, 1), border-color 220ms ease;
   position: relative;
   box-sizing: border-box;
 }
 
 .nirmex-info-card:hover {
-  transform: translateY(-4px);
-  box-shadow: 0 16px 32px -6px rgba(15, 23, 42, 0.1);
-  border-color: #CBD5E1;
+  transform: translateY(-5px);
+  box-shadow: 0 22px 44px rgba(0, 0, 0, 0.36);
+  border-color: #82B6F5;
 }
 
 .nirmex-info-card__header {
@@ -275,20 +289,21 @@
 .nirmex-info-card__icon-wrap {
   width: 44px;
   height: 44px;
-  border-radius: 10px;
-  background-color: rgba(225, 6, 0, 0.08);
-  color: var(--color-brand-red, #E10600);
+  border-radius: 11px;
+  background-color: #00358A;
+  color: #FFFFFF;
   display: flex;
   align-items: center;
   justify-content: center;
   flex-shrink: 0;
+  box-shadow: 0 4px 12px rgba(0, 53, 138, 0.25);
 }
 
 .nirmex-info-card__title {
   margin: 0;
-  font-size: 1.1rem;
+  font-size: 1.15rem;
   font-weight: 800;
-  color: #142B4A;
+  color: #0F2B5C;
   letter-spacing: -0.01em;
 }
 
@@ -296,32 +311,33 @@
   flex-grow: 1;
   font-size: 0.925rem;
   line-height: 1.6;
-  color: #334155;
+  color: #24354D;
   margin-bottom: 1.5rem;
 }
 
 .nirmex-info-card__company {
-  font-weight: 700;
-  color: #0F172A;
-  margin-bottom: 4px;
+  font-weight: 800;
+  color: #0A1E3F;
+  margin-bottom: 6px;
 }
 
 .nirmex-info-card__address {
   margin: 0;
-  color: #475569;
+  color: #33445C;
+  line-height: 1.6;
 }
 
 .nirmex-info-card__person-name {
-  font-size: 1.05rem;
-  font-weight: 700;
-  color: #0F172A;
+  font-size: 1.1rem;
+  font-weight: 800;
+  color: #0A1E3F;
   margin-bottom: 6px;
 }
 
 .nirmex-info-card__phone-num {
-  font-size: 1.15rem;
+  font-size: 1.22rem;
   font-weight: 800;
-  color: #142B4A;
+  color: #00358A;
   letter-spacing: -0.01em;
   margin: 0;
 }
@@ -333,7 +349,7 @@
   margin-top: auto;
 }
 
-/* Card Button Elements */
+/* Card Button Elements (Styled in Nirmex Red) */
 .nirmex-card-btn {
   display: inline-flex;
   align-items: center;
@@ -341,42 +357,49 @@
   gap: 6px;
   font-size: 0.825rem;
   font-weight: 700;
-  padding: 0.55rem 0.95rem;
-  border-radius: 6px;
+  padding: 0.6rem 0.95rem;
+  border-radius: 8px;
   text-decoration: none;
   cursor: pointer;
-  transition: all 160ms ease;
-  border: 1px solid #E2E8F0;
-  background-color: #F8FAFC;
-  color: #1E293B;
+  transition: all 180ms ease;
+  border: 1.5px solid var(--color-brand-red, #E10600);
+  background-color: #FFFFFF;
+  color: var(--color-brand-red, #E10600);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
   box-sizing: border-box;
 }
 
 .nirmex-card-btn:hover {
-  background-color: #F1F5F9;
-  border-color: #CBD5E1;
-  color: #0F172A;
+  background-color: var(--color-brand-red, #E10600);
+  color: #FFFFFF !important;
+  border-color: var(--color-brand-red, #E10600);
+  transform: translateY(-2px);
+  box-shadow: 0 4px 14px rgba(225, 6, 0, 0.35);
 }
 
 .nirmex-card-btn--primary {
   background-color: var(--color-brand-red, #E10600);
   border-color: var(--color-brand-red, #E10600);
-  color: #FFFFFF;
+  color: #FFFFFF !important;
+  box-shadow: 0 4px 14px rgba(225, 6, 0, 0.32);
 }
 
 .nirmex-card-btn--primary:hover {
   background-color: var(--color-brand-red-hover, #BA0500);
   border-color: var(--color-brand-red-hover, #BA0500);
-  color: #FFFFFF;
+  color: #FFFFFF !important;
+  transform: translateY(-2px);
+  box-shadow: 0 6px 18px rgba(186, 5, 0, 0.48);
 }
 
-/* Card 5: Full Width Email Card */
+/* Card 5: Direct Email Channels (Full Width in Light Royal Blue) */
 .nirmex-email-card {
-  background-color: #FFFFFF;
-  border: 1px solid #E2E8F0;
-  border-radius: 14px;
-  padding: 2rem 2.25rem;
-  box-shadow: 0 8px 24px -4px rgba(15, 23, 42, 0.05);
+  background: linear-gradient(180deg, #F0F6FD 0%, #E6F0FA 100%);
+  border: 1.5px solid #BDD7F7;
+  border-top: 4px solid #00358A;
+  border-radius: 16px;
+  padding: 2.25rem 2.5rem;
+  box-shadow: 0 14px 32px rgba(0, 0, 0, 0.28);
   box-sizing: border-box;
 }
 
@@ -386,14 +409,14 @@
   gap: 12px;
   margin-bottom: 1.5rem;
   padding-bottom: 1rem;
-  border-bottom: 1px solid #F1F5F9;
+  border-bottom: 1.5px solid #CBDFF7;
 }
 
 .nirmex-email-card__title {
   margin: 0;
-  font-size: 1.25rem;
+  font-size: 1.3rem;
   font-weight: 800;
-  color: #142B4A;
+  color: #0F2B5C;
 }
 
 .nirmex-email-rows {
@@ -406,34 +429,36 @@
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  background-color: #F8FAFC;
-  border: 1px solid #E2E8F0;
-  border-radius: 10px;
-  padding: 1.25rem 1.35rem;
+  background-color: #FFFFFF;
+  border: 1.5px solid #C8DEF7;
+  border-radius: 12px;
+  padding: 1.4rem 1.5rem;
   box-sizing: border-box;
-  transition: border-color 160ms ease, background-color 160ms ease;
+  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.05);
+  transition: border-color 180ms ease, transform 180ms ease, box-shadow 180ms ease;
 }
 
 .nirmex-email-row:hover {
-  border-color: #CBD5E1;
-  background-color: #FFFFFF;
+  border-color: #00358A;
+  transform: translateY(-3px);
+  box-shadow: 0 8px 22px rgba(0, 53, 138, 0.15);
 }
 
 .nirmex-email-row__channel {
-  font-size: 0.775rem;
+  font-size: 0.8rem;
   font-weight: 800;
   letter-spacing: 0.08em;
   text-transform: uppercase;
-  color: var(--color-brand-red, #E10600);
+  color: #00358A;
   margin-bottom: 6px;
 }
 
 .nirmex-email-row__address {
-  font-size: 0.95rem;
+  font-size: 0.975rem;
   font-weight: 700;
-  color: #0F172A;
+  color: #0A1E3F;
   word-break: break-all;
-  margin-bottom: 1rem;
+  margin-bottom: 1.25rem;
 }
 
 .nirmex-email-row__actions {
@@ -443,41 +468,55 @@
 }
 
 /* ==========================================================================
-   3. ENQUIRY FORM + LOCATION MAP
+   3. ENQUIRY FORM + LOCATION MAP (EXECUTIVE HIGH-END CARDS)
    ========================================================================== */
 .nirmex-enquiry-grid {
   display: grid;
-  grid-template-columns: 1.15fr 0.85fr;
-  gap: 3rem;
-  align-items: start;
+  grid-template-columns: 1.12fr 0.88fr;
+  gap: 2.5rem;
+  align-items: stretch;
 }
 
-/* Form Container */
+/* Form Container Card */
 .nirmex-form-card {
   background-color: #FFFFFF;
-  border: 1px solid #E2E8F0;
-  border-radius: 16px;
-  padding: 2.75rem;
-  box-shadow: 0 12px 36px -6px rgba(15, 23, 42, 0.06);
+  border: 1px solid rgba(255, 255, 255, 0.65);
+  border-radius: 18px;
+  padding: 2.85rem 3rem;
+  box-shadow: 0 20px 48px rgba(0, 0, 0, 0.3);
   box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
 }
 
 .nirmex-form-card__header {
   margin-bottom: 2rem;
 }
 
+.nirmex-form-card .nirmex-contact-eyebrow {
+  background: rgba(225, 6, 0, 0.08);
+  border: 1px solid rgba(225, 6, 0, 0.2);
+  color: #BA0500;
+  padding: 5px 14px;
+  box-shadow: none;
+}
+
+.nirmex-form-card .nirmex-contact-eyebrow__bar {
+  background-color: #E10600;
+}
+
 .nirmex-form-card__title {
-  margin: 0 0 8px 0;
-  font-size: 1.75rem;
+  margin: 0 0 10px 0;
+  font-size: 1.85rem;
   font-weight: 800;
-  color: #142B4A;
+  color: #0F2B5C;
   letter-spacing: -0.02em;
 }
 
 .nirmex-form-card__desc {
   margin: 0;
   font-size: 0.95rem;
-  color: #64748B;
+  color: #475569;
   line-height: 1.6;
 }
 
@@ -524,30 +563,31 @@
 .nirmex-form-select,
 .nirmex-form-textarea {
   width: 100%;
-  padding: 0.75rem 1rem;
-  border: 1px solid #CBD5E1;
-  border-radius: 8px;
+  padding: 0.85rem 1.05rem;
+  border: 1.5px solid #CBD5E1;
+  border-radius: 9px;
   font-family: inherit;
   font-size: 0.95rem;
   color: #0F172A;
-  background-color: #FFFFFF;
+  background-color: #F8FAFC;
   box-sizing: border-box;
-  transition: border-color 160ms ease, box-shadow 160ms ease;
+  transition: border-color 160ms ease, box-shadow 160ms ease, background-color 160ms ease;
   outline: none;
 }
 
 .nirmex-form-input:focus,
 .nirmex-form-select:focus,
 .nirmex-form-textarea:focus {
+  background-color: #FFFFFF;
   border-color: var(--color-brand-red, #E10600);
-  box-shadow: 0 0 0 3px rgba(225, 6, 0, 0.12);
+  box-shadow: 0 0 0 3.5px rgba(225, 6, 0, 0.15);
 }
 
 .nirmex-form-input--error,
 .nirmex-form-select--error,
 .nirmex-form-textarea--error {
   border-color: #DC2626 !important;
-  background-color: #FEF2F2;
+  background-color: #FEF2F2 !important;
 }
 
 .nirmex-form-error {
@@ -559,23 +599,32 @@
 
 .nirmex-form-textarea {
   resize: vertical;
-  min-height: 110px;
+  min-height: 115px;
 }
 
 .nirmex-form-submit-btn {
   width: 100%;
-  padding: 0.95rem 1.5rem;
-  font-size: 1rem;
-  margin-top: 0.5rem;
+  padding: 1.05rem 1.75rem;
+  font-size: 1.05rem;
+  font-weight: 800;
+  border-radius: 9px;
+  margin-top: 0.75rem;
+  background: linear-gradient(135deg, #E10600 0%, #BA0500 100%);
+  box-shadow: 0 8px 24px rgba(225, 6, 0, 0.35);
 }
 
-/* Map Card */
+.nirmex-form-submit-btn:hover {
+  background: linear-gradient(135deg, #BA0500 0%, #920100 100%);
+  box-shadow: 0 12px 30px rgba(186, 5, 0, 0.48);
+}
+
+/* Map Container Card */
 .nirmex-map-card {
   background-color: #FFFFFF;
-  border: 1px solid #E2E8F0;
-  border-radius: 16px;
+  border: 1px solid rgba(255, 255, 255, 0.65);
+  border-radius: 18px;
   overflow: hidden;
-  box-shadow: 0 12px 36px -6px rgba(15, 23, 42, 0.06);
+  box-shadow: 0 20px 48px rgba(0, 0, 0, 0.3);
   display: flex;
   flex-direction: column;
   box-sizing: border-box;
@@ -583,7 +632,7 @@
 
 .nirmex-map-frame-wrap {
   width: 100%;
-  height: 380px;
+  height: 390px;
   position: relative;
   background-color: #F1F5F9;
 }
@@ -596,12 +645,14 @@
 }
 
 .nirmex-map-info {
-  padding: 1.75rem 2rem;
+  padding: 2rem 2.25rem;
   background-color: #FFFFFF;
   display: flex;
   flex-direction: column;
   gap: 1.25rem;
   border-top: 1px solid #F1F5F9;
+  flex-grow: 1;
+  justify-content: space-between;
 }
 
 .nirmex-map-info__header {
@@ -611,34 +662,52 @@
 }
 
 .nirmex-map-info__dot {
-  width: 8px;
-  height: 8px;
+  width: 10px;
+  height: 10px;
   border-radius: 50%;
   background-color: var(--color-brand-red, #E10600);
+  box-shadow: 0 0 0 4px rgba(225, 6, 0, 0.2);
+  animation: nirmex-dot-pulse 2s infinite ease-in-out;
+}
+
+@keyframes nirmex-dot-pulse {
+  0%, 100% {
+    transform: scale(1);
+    opacity: 1;
+  }
+  50% {
+    transform: scale(1.25);
+    opacity: 0.7;
+  }
 }
 
 .nirmex-map-info__title {
   margin: 0;
-  font-size: 1.15rem;
+  font-size: 1.25rem;
   font-weight: 800;
-  color: #142B4A;
+  color: #0F2B5C;
 }
 
 .nirmex-map-info__address {
   margin: 0;
-  font-size: 0.925rem;
-  line-height: 1.6;
-  color: #475569;
+  font-size: 0.95rem;
+  line-height: 1.65;
+  color: #33445C;
+}
+
+.nirmex-map-info__address strong {
+  color: #0A1E3F;
 }
 
 .nirmex-map-info__actions {
   display: flex;
   gap: 10px;
   align-items: center;
+  flex-wrap: wrap;
 }
 
 /* ==========================================================================
-   4. WHY CONTACT NIRMEX METAL INDUSTRIES?
+   4. WHY CONTACT NIRMEX METAL INDUSTRIES? (LIGHT ROYAL BLUE CARDS)
    ========================================================================== */
 .nirmex-why-contact-grid {
   display: grid;
@@ -647,54 +716,56 @@
 }
 
 .nirmex-why-contact-card {
-  background-color: #FFFFFF;
-  border: 1px solid #E2E8F0;
-  border-radius: 12px;
-  padding: 2rem 1.75rem;
-  box-shadow: 0 6px 18px -4px rgba(15, 23, 42, 0.04);
+  background: linear-gradient(180deg, #F0F6FD 0%, #E6F0FA 100%);
+  border: 1.5px solid #BDD7F7;
+  border-top: 4px solid #00358A;
+  border-radius: 16px;
+  padding: 2.25rem 1.75rem;
+  box-shadow: 0 14px 32px rgba(0, 0, 0, 0.25);
   display: flex;
   flex-direction: column;
   gap: 14px;
-  transition: transform 180ms ease, box-shadow 180ms ease, border-color 180ms ease;
+  transition: transform 200ms ease, box-shadow 200ms ease, border-color 200ms ease;
   box-sizing: border-box;
 }
 
 .nirmex-why-contact-card:hover {
-  transform: translateY(-4px);
-  box-shadow: 0 14px 28px -4px rgba(15, 23, 42, 0.08);
-  border-color: #CBD5E1;
+  transform: translateY(-5px);
+  box-shadow: 0 20px 42px rgba(0, 0, 0, 0.35);
+  border-color: #82B6F5;
 }
 
 .nirmex-why-contact-card__icon {
   width: 48px;
   height: 48px;
-  border-radius: 10px;
-  background-color: rgba(225, 6, 0, 0.08);
-  color: var(--color-brand-red, #E10600);
+  border-radius: 12px;
+  background-color: #00358A;
+  color: #FFFFFF;
   display: flex;
   align-items: center;
   justify-content: center;
+  box-shadow: 0 4px 12px rgba(0, 53, 138, 0.25);
 }
 
 .nirmex-why-contact-card__title {
   margin: 0;
-  font-size: 1.1rem;
+  font-size: 1.15rem;
   font-weight: 800;
-  color: #142B4A;
+  color: #0F2B5C;
 }
 
 .nirmex-why-contact-card__desc {
   margin: 0;
   font-size: 0.925rem;
   line-height: 1.6;
-  color: #64748B;
+  color: #24354D;
 }
 
 /* ==========================================================================
    5. FREQUENTLY ASKED QUESTIONS (FAQ ACCORDION)
    ========================================================================== */
 .nirmex-faq-wrap {
-  max-width: 860px;
+  max-width: 880px;
   margin: 0 auto;
   display: flex;
   flex-direction: column;
@@ -703,16 +774,17 @@
 
 .nirmex-faq-item {
   background-color: #FFFFFF;
-  border: 1px solid #E2E8F0;
-  border-radius: 10px;
+  border: 1px solid rgba(255, 255, 255, 0.6);
+  border-radius: 12px;
   overflow: hidden;
-  transition: border-color 160ms ease, box-shadow 160ms ease;
+  box-shadow: 0 10px 24px rgba(0, 0, 0, 0.22);
+  transition: border-color 180ms ease, box-shadow 180ms ease, transform 180ms ease;
   box-sizing: border-box;
 }
 
 .nirmex-faq-item--open {
-  border-color: #CBD5E1;
-  box-shadow: 0 6px 20px -4px rgba(15, 23, 42, 0.06);
+  border-color: #00358A;
+  box-shadow: 0 16px 36px rgba(0, 0, 0, 0.3);
 }
 
 .nirmex-faq-trigger {
@@ -721,7 +793,7 @@
   align-items: center;
   justify-content: space-between;
   gap: 16px;
-  padding: 1.25rem 1.5rem;
+  padding: 1.35rem 1.65rem;
   background: none;
   border: none;
   text-align: left;
@@ -729,7 +801,7 @@
   font-family: inherit;
   font-size: 1.05rem;
   font-weight: 700;
-  color: #142B4A;
+  color: #0F2B5C;
   transition: color 140ms ease;
 }
 
@@ -751,12 +823,12 @@
 }
 
 .nirmex-faq-body {
-  padding: 0 1.5rem 1.35rem 1.5rem;
+  padding: 0 1.65rem 1.4rem 1.65rem;
   font-size: 0.95rem;
   line-height: 1.65;
-  color: #475569;
+  color: #33445C;
   border-top: 1px solid #F1F5F9;
-  padding-top: 1rem;
+  padding-top: 1.15rem;
 }
 
 /* ==========================================================================
@@ -765,7 +837,7 @@
 .nirmex-modal-backdrop {
   position: fixed;
   inset: 0;
-  background-color: rgba(15, 23, 42, 0.72);
+  background-color: rgba(15, 23, 42, 0.75);
   backdrop-filter: blur(8px);
   -webkit-backdrop-filter: blur(8px);
   z-index: 2000;
@@ -778,11 +850,11 @@
 
 .nirmex-choice-modal {
   background-color: #FFFFFF;
-  border-radius: 16px;
+  border-radius: 18px;
   max-width: 520px;
   width: 100%;
   padding: 2.25rem 2.25rem 2rem;
-  box-shadow: 0 24px 60px rgba(0, 0, 0, 0.35);
+  box-shadow: 0 24px 60px rgba(0, 0, 0, 0.4);
   border: 1px solid #E2E8F0;
   box-sizing: border-box;
   animation: nirmex-modal-scale 200ms cubic-bezier(0.16, 1, 0.3, 1) forwards;
@@ -813,7 +885,7 @@
   margin: 0 0 6px 0;
   font-size: 1.35rem;
   font-weight: 800;
-  color: #142B4A;
+  color: #0F2B5C;
 }
 
 .nirmex-choice-modal__desc {
@@ -836,7 +908,7 @@
   gap: 16px;
   padding: 1.15rem 1.25rem;
   border-radius: 10px;
-  border: 1px solid #E2E8F0;
+  border: 1.5px solid #E2E8F0;
   background-color: #F8FAFC;
   text-decoration: none;
   cursor: pointer;
@@ -941,17 +1013,17 @@
   right: 2rem;
   background-color: #0F172A;
   color: #FFFFFF;
-  padding: 0.75rem 1.25rem;
-  border-radius: 8px;
-  font-size: 0.875rem;
+  padding: 0.85rem 1.4rem;
+  border-radius: 10px;
+  font-size: 0.9rem;
   font-weight: 600;
-  box-shadow: 0 10px 25px -4px rgba(0, 0, 0, 0.4);
+  box-shadow: 0 12px 30px rgba(0, 0, 0, 0.45);
   display: flex;
   align-items: center;
-  gap: 8px;
+  gap: 10px;
   z-index: 3000;
   animation: nirmex-toast-in 200ms ease forwards;
-  border-left: 3px solid #22C55E;
+  border-left: 4px solid #22C55E;
 }
 
 @keyframes nirmex-toast-in {
@@ -1009,7 +1081,7 @@
   }
 
   .nirmex-form-card {
-    padding: 1.75rem 1.5rem;
+    padding: 2rem 1.5rem;
   }
 
   .nirmex-form-row {
@@ -1029,4 +1101,3 @@
     justify-content: center;
   }
 }
-
