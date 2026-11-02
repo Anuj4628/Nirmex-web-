@@ -28,11 +28,18 @@ const resolveAsset = (partialPath) => {
       return assetImages[key];
     }
   }
-  // Fallback to first available key containing the filename
-  const fileName = normalized.split('/').pop().toLowerCase();
   for (const key of Object.keys(assetImages)) {
-    if (key.toLowerCase().includes(fileName)) {
+    if (key.toLowerCase().includes(normalized.toLowerCase())) {
       return assetImages[key];
+    }
+  }
+  // Fallback to first available key containing the filename ONLY if no directory path was specified
+  if (!normalized.includes('/')) {
+    const fileName = normalized.toLowerCase();
+    for (const key of Object.keys(assetImages)) {
+      if (key.toLowerCase().includes(fileName)) {
+        return assetImages[key];
+      }
     }
   }
   return '';
@@ -56,7 +63,7 @@ export const PRODUCT_CATEGORIES = {
       {
         id: 'forging-ss',
         name: 'Stainless Steel Forgings',
-        shortDesc: 'Socket weld & threaded fittings in ASTM A182 F304/304L, F316/316L, and F321.',
+        shortDesc: 'Socket weld & threaded 90° elbows in ASTM A182 F304/304L, F316/316L, and F321.',
         image: resolveAsset('forge 2/SS/elbow.jpeg') || resolveAsset('Product Section/Manufacturer division/Forged Fittings/stainles steel.jpg'),
         grades: 'ASTM A182 F304/L, F316/L, F321, F347',
         standards: 'ASME B16.11, MSS SP-79/83/95',
@@ -64,74 +71,74 @@ export const PRODUCT_CATEGORIES = {
       {
         id: 'forging-cs',
         name: 'Carbon Steel Forgings',
-        shortDesc: 'High-tensile forged components in ASTM A105 and low-temperature A350 LF2.',
-        image: resolveAsset('forge 2/Carbon/elbow.jpeg') || resolveAsset('Product Section/Manufacturer division/Forged Fittings/carbon.avif'),
+        shortDesc: 'High-tensile forged branch tees in ASTM A105 and low-temperature A350 LF2.',
+        image: resolveAsset('forge 2/Carbon/tee.jpeg') || resolveAsset('Product Section/Manufacturer division/Forged Fittings/carbon.avif'),
         grades: 'ASTM A105 / A105N, A350 LF2 Class 1/2',
         standards: 'ASME B16.11, BS 3799 (2000–9000#)',
       },
       {
-        id: 'forging-as',
-        name: 'Alloy Steel Forgings',
-        shortDesc: 'Chrome-moly forged fittings designed for elevated temperature and pressure service.',
-        image: resolveAsset('forge 2/alloy steel/elbow.jpeg') || resolveAsset('Product Section/Manufacturer division/Forged Fittings/alloy steel.jpg'),
-        grades: 'ASTM A182 F5, F9, F11, F22, F91',
-        standards: 'ASME B16.11, High Temperature Power Lines',
+        id: 'forging-copper',
+        name: 'Copper & Cupro Nickel Forgings',
+        shortDesc: 'Antifouling marine cupro-nickel 90/10 and 70/30 forged pipe unions and naval brass connectors.',
+        image: resolveAsset('forge 2/copper/union.jpeg'),
+        grades: 'Cu-Ni 90/10 (C70600), Cu-Ni 70/30 (C71500), Naval Brass C46400',
+        standards: 'ASTM B151, ASTM B124, DIN 86037',
       },
       {
         id: 'forging-duplex',
         name: 'Duplex & Super Duplex Forgings',
-        shortDesc: 'Ferritic-austenitic 2205 & 2507 forged elbows, tees, unions, couplings, and caps.',
-        image: resolveAsset('forge 2/Duplex$Super duplex/duplex.jpeg') || resolveAsset('Product Section/Manufacturer division/Forged Fittings/duplex.jpg'),
+        shortDesc: 'Ferritic-austenitic 2205 & 2507 forged 4-way cross manifolds, tees, and high-pressure fittings.',
+        image: resolveAsset('forge 2/Duplex$Super duplex/cross.jpeg') || resolveAsset('Product Section/Manufacturer division/Forged Fittings/duplex.jpg'),
         grades: 'ASTM A182 F51 / F53 / F55, UNS S31803 / S32205 / S32750',
         standards: 'NACE MR0175, ASME B16.11, NORSOK M-650',
       },
       {
+        id: 'forging-as',
+        name: 'Alloy Steel Forgings',
+        shortDesc: 'Chrome-moly forged full couplings designed for elevated temperature and steam header service.',
+        image: resolveAsset('forge 2/alloy steel/coupling.jpeg') || resolveAsset('Product Section/Manufacturer division/Forged Fittings/alloy steel.jpg'),
+        grades: 'ASTM A182 F5, F9, F11, F22, F91',
+        standards: 'ASME B16.11, High Temperature Power Lines',
+      },
+      {
         id: 'forging-nickel',
         name: 'Nickel Alloy Forgings',
-        shortDesc: 'Corrosion-resistant forged fittings in Inconel, Monel, and Hastelloy high performance alloys.',
-        image: resolveAsset('forge 2/nikle/elbow.jpeg') || resolveAsset('Product Section/Manufacturer division/Forged Fittings/nikle.jpeg'),
+        shortDesc: 'Heavy-duty forged hex end caps in Alloy 200, 400, 600, 625, and C276.',
+        image: resolveAsset('forge 2/nikle/cap.jpeg') || resolveAsset('Product Section/Manufacturer division/Forged Fittings/nikle.jpeg'),
         grades: 'Alloy 200, Alloy 400, Alloy 600, Alloy 625, Alloy 825, C276',
         standards: 'ASTM B564, ASME SB564',
       },
       {
         id: 'forging-monel',
         name: 'Monel Forgings',
-        shortDesc: 'High-nickel marine alloy forged fittings resisting rapid seawater velocity and hydrofluoric acid.',
-        image: resolveAsset('forge 2/monel/elbow.jpeg'),
+        shortDesc: 'High-nickel marine alloy forged tees resisting rapid seawater flow and hydrofluoric acid.',
+        image: resolveAsset('forge 2/monel/tee.jpeg'),
         grades: 'Monel 400 (UNS N04400), Monel K-500 (UNS N05500)',
         standards: 'ASTM B564, ASME SB564, MSS SP-83',
       },
       {
         id: 'forging-inconel',
         name: 'Inconel Forgings',
-        shortDesc: 'Extreme temperature and pressure nickel-chromium forged fittings up to 1000°C.',
-        image: resolveAsset('forge 2/iconel/elbow.jpeg'),
+        shortDesc: 'Extreme temperature and pressure nickel-chromium forged unions operating up to 1000°C.',
+        image: resolveAsset('forge 2/iconel/union.jpeg'),
         grades: 'Inconel 600, Inconel 625, Inconel 718, Incoloy 800/825',
         standards: 'ASTM B564, ASME SB564',
       },
       {
         id: 'forging-hastelloy',
         name: 'Hastelloy Forgings',
-        shortDesc: 'Premier nickel-molybdenum-chromium forged fittings withstanding aggressive acids and chlorides.',
-        image: resolveAsset('forge 2/hastelloy/elbow.jpeg'),
+        shortDesc: 'Premier nickel-molybdenum-chromium forged couplings withstanding aggressive acids and chlorides.',
+        image: resolveAsset('forge 2/hastelloy/coupling.jpeg'),
         grades: 'Hastelloy C-276, Hastelloy C-22, Hastelloy B-2',
         standards: 'ASTM B564, ASME SB564',
       },
       {
         id: 'forging-titanium',
         name: 'Titanium Forgings',
-        shortDesc: 'Lightweight, ultra-high strength Grade 2 & Grade 5 titanium forged components.',
-        image: resolveAsset('forge 2/titainium/elbow.jpeg') || resolveAsset('Product Section/Manufacturer division/Forged Fittings/titainium.jpg'),
+        shortDesc: 'Lightweight, ultra-high strength Grade 2 & Grade 5 titanium forged 4-way cross fittings.',
+        image: resolveAsset('forge 2/titainium/cross.jpeg') || resolveAsset('Product Section/Manufacturer division/Forged Fittings/titainium.jpg'),
         grades: 'Titanium Gr. 2, Gr. 5 (Ti-6Al-4V)',
         standards: 'ASTM B381, ASME SB381',
-      },
-      {
-        id: 'forging-copper',
-        name: 'Copper & Cupro Nickel Forgings',
-        shortDesc: 'Antifouling marine cupro-nickel 90/10 and 70/30 forged fittings and naval brass connectors.',
-        image: resolveAsset('forge 2/copper/elbow.jpeg'),
-        grades: 'Cu-Ni 90/10 (C70600), Cu-Ni 70/30 (C71500), Naval Brass C46400',
-        standards: 'ASTM B151, ASTM B124, DIN 86037',
       },
     ],
   },
