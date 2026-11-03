@@ -640,7 +640,7 @@ export const getFastenerHeroImage = (materialSlug) => {
   else if (s.includes('inconel') || s.includes('iconel')) candidate = resolveCatalogueAsset('Product Images/Fasteners/iconel.jpeg');
   else if (s.includes('hastelloy')) candidate = resolveCatalogueAsset('Product Images/Fasteners/Hastelloy.jpeg');
   else if (s.includes('titanium') || s.includes('titainium')) candidate = resolveCatalogueAsset('Product Images/Fasteners/titainium.jpeg');
-  else if (s.includes('copper') || s.includes('cupro') || s.includes('brass')) candidate = resolveCatalogueAsset('our product images/fasteners.png');
+  else if (s.includes('copper') || s.includes('cupro') || s.includes('brass')) candidate = resolveCatalogueAsset('types of product/fasteners/copper/bolts.jpeg');
   return candidate || resolveCatalogueAsset('Product Section/Manufacturer division/Fasteners/stainless-steel.webp') || resolveCatalogueAsset('our product images/fasteners.png');
 };
 
@@ -990,7 +990,7 @@ export const getButtWeldHeroImage = (materialSlug) => {
   else if (s.includes('inconel') || s.includes('iconel')) candidate = resolveCatalogueAsset('Product Images/Butt weld fit/iconel.jpg');
   else if (s.includes('hastelloy')) candidate = resolveCatalogueAsset('Product Images/Butt weld fit/hastelloy.webp');
   else if (s.includes('titanium') || s.includes('titainium')) candidate = resolveCatalogueAsset('Product Images/Butt weld fit/titainium.webp');
-  else if (s.includes('copper') || s.includes('cupro') || s.includes('brass')) candidate = resolveCatalogueAsset('our product images/butt weld fittings.png');
+  else if (s.includes('copper') || s.includes('cupro') || s.includes('brass')) candidate = resolveCatalogueAsset('types of product/buttweld/copper/90-degree-long-radius-elbow.jpeg');
   return candidate || resolveCatalogueAsset('Product Section/Manufacturer division/Butt weld fit/stainless steel.jpg') || resolveCatalogueAsset('our product images/butt weld fittings.png');
 };
 
@@ -1798,11 +1798,17 @@ export const getCompositeProduct = (materialSlug, productSlug) => {
   } else if (taxonomy.slug === 'butt-weld-fittings' || taxonomy.slug === 'buttweld') {
     heroImage = getButtWeldHeroImage(material.slug) || resolveCatalogueAsset('our product images/butt weld fittings.png');
   } else if (taxonomy.slug === 'pipes-tubes') {
-    heroImage = resolveCatalogueAsset('our product images/pipes and tubes.png');
+    heroImage = (material.slug.includes('copper') ? resolveCatalogueAsset('Product Section/Supplier division/Pipes and Tubes/copper.png') : '') ||
+                resolveCatalogueAsset('our product images/pipes and tubes.png');
   } else if (taxonomy.slug === 'sheets-plates') {
-    heroImage = resolveCatalogueAsset('our product images/sheet and plates.png');
+    heroImage = (material.slug.includes('copper') ? resolveCatalogueAsset('Product Section/Supplier division/Sheet and plates/copper.png') : '') ||
+                resolveCatalogueAsset('our product images/sheet and plates.png');
   } else if (taxonomy.slug === 'rods-bars') {
-    heroImage = resolveCatalogueAsset('our product images/rods and bars.png');
+    heroImage = (material.slug.includes('copper') ? resolveCatalogueAsset('Product Section/Supplier division/Rods and BArs/copper.png') : '') ||
+                resolveCatalogueAsset('our product images/rods and bars.png');
+  } else if (taxonomy.slug === 'flat-bars') {
+    heroImage = (material.slug.includes('copper') ? resolveCatalogueAsset('Product Section/Supplier division/flat/copper.jpg') : '') ||
+                resolveCatalogueAsset('Product Section/Supplier division/flat/Stainless-Steel-Flat-Bar.jpg');
   } else {
     heroImage = resolveCatalogueAsset(`Product Section/Manufacturer division/${taxonomy.name}/stainless steel.jpg`) ||
                 resolveCatalogueAsset(`Product Section/Supplier division/${taxonomy.name}/stainless steel.png`);
