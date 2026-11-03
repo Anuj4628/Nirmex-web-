@@ -21,16 +21,16 @@ import './ProductMaterialPage.css';
  */
 const getMaterialCatalogueSlug = (mat) => {
   const n = (mat?.name || '').toLowerCase();
+  if (n.includes('duplex') || n.includes('super duplex')) return 'duplex-super-duplex';
   if (n.includes('monel')) return 'monel';
   if (n.includes('inconel')) return 'inconel';
   if (n.includes('hastelloy')) return 'hastelloy';
-  if (n.includes('stainless')) return 'stainless-steel';
   if (n.includes('carbon')) return 'carbon-steel';
-  if (n.includes('duplex') || n.includes('super duplex')) return 'duplex-super-duplex';
-  if (n.includes('alloy') && !n.includes('nickel') && !n.includes('copper')) return 'alloy-steel';
-  if (n.includes('nickel')) return 'nickel-alloy';
   if (n.includes('titanium')) return 'titanium';
   if (n.includes('copper') || n.includes('cupro') || n.includes('brass') || n.includes('bronze')) return 'copper';
+  if (n.includes('alloy') && !n.includes('nickel') && !n.includes('copper')) return 'alloy-steel';
+  if (n.includes('nickel')) return 'nickel-alloy';
+  if (n.includes('stainless')) return 'stainless-steel';
   return 'stainless-steel';
 };
 

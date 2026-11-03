@@ -44,20 +44,20 @@ function App() {
           <Route path="/products/:slug" element={<ProductMaterialPage />} />
 
           {/* Dedicated Material Landing Pages */}
-          <Route path="/stainless-steel" element={<MaterialPage />} />
-          <Route path="/carbon-steel" element={<MaterialPage />} />
-          <Route path="/alloy-steel" element={<MaterialPage />} />
-          <Route path="/duplex-super-duplex" element={<MaterialPage />} />
-          <Route path="/duplex-stainless-steel" element={<MaterialPage />} />
-          <Route path="/super-duplex-stainless-steel" element={<MaterialPage />} />
-          <Route path="/nickel-alloy" element={<MaterialPage />} />
-          <Route path="/high-alloy" element={<MaterialPage />} />
-          <Route path="/inconel" element={<MaterialPage />} />
-          <Route path="/monel" element={<MaterialPage />} />
-          <Route path="/hastelloy" element={<MaterialPage />} />
-          <Route path="/titanium" element={<MaterialPage />} />
-          <Route path="/copper" element={<MaterialPage />} />
-          <Route path="/aluminium" element={<MaterialPage />} />
+          <Route path="/stainless-steel" element={<MaterialPage materialSlug="stainless-steel" />} />
+          <Route path="/carbon-steel" element={<MaterialPage materialSlug="carbon-steel" />} />
+          <Route path="/alloy-steel" element={<MaterialPage materialSlug="alloy-steel" />} />
+          <Route path="/duplex-super-duplex" element={<MaterialPage materialSlug="duplex-super-duplex" />} />
+          <Route path="/duplex-stainless-steel" element={<MaterialPage materialSlug="duplex-super-duplex" />} />
+          <Route path="/super-duplex-stainless-steel" element={<MaterialPage materialSlug="duplex-super-duplex" />} />
+          <Route path="/nickel-alloy" element={<MaterialPage materialSlug="nickel-alloy" />} />
+          <Route path="/high-alloy" element={<MaterialPage materialSlug="high-alloy" />} />
+          <Route path="/inconel" element={<MaterialPage materialSlug="inconel" />} />
+          <Route path="/monel" element={<MaterialPage materialSlug="monel" />} />
+          <Route path="/hastelloy" element={<MaterialPage materialSlug="hastelloy" />} />
+          <Route path="/titanium" element={<MaterialPage materialSlug="titanium" />} />
+          <Route path="/copper" element={<MaterialPage materialSlug="copper" />} />
+          <Route path="/aluminium" element={<MaterialPage materialSlug="aluminium" />} />
 
           <Route path="/materials/:materialSlug" element={<MaterialPage />} />
           <Route path="/material/:materialSlug" element={<MaterialPage />} />

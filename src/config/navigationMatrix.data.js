@@ -13,7 +13,11 @@ import {
   resolveCatalogueAsset,
   getMaterialBySlug as getCatMaterialBySlug,
   getProductTaxonomyBySlug as getCatProductBySlug,
+  getFastenerHeroImage,
+  getButtWeldHeroImage,
+  getForgingImageForMaterial,
 } from './catalogue.data';
+import { getFlangeMaterialData } from './flangeMaterials.data';
 
 import { PRODUCT_CATEGORIES } from './productMaterials.data';
 
@@ -150,7 +154,7 @@ export const MASTER_MATERIALS = [
   {
     id: 'nickel-alloy',
     slug: 'nickel-alloy',
-    aliases: ['nickel-alloys', 'nickel', 'high-alloy', 'high-alloys', 'exotic-alloy'],
+    aliases: ['nickel-alloys', 'nickel', 'exotic-alloy'],
     name: 'Nickel Alloy',
     shortName: 'Nickel Alloy',
     seoTitle: 'Nickel Alloy Products Manufacturer & Stockist in Mumbai',
@@ -272,6 +276,55 @@ export const MASTER_MATERIALS = [
       'flat-bars',
     ],
   },
+  {
+    id: 'high-alloy',
+    slug: 'high-alloy',
+    aliases: ['high-alloys', 'special-alloys', 'exotic-alloys'],
+    name: 'High Alloy',
+    shortName: 'High Alloy',
+    seoTitle: 'High Alloy & Specialty Steel Products Manufacturer in Mumbai',
+    heroTitle: 'High Alloy & Special Metallurgy Products',
+    badge: 'Corrosion & High Temperature Service',
+    overview:
+      'Engineered specialty high alloy steel and superalloy piping components formulated for severe thermal, corrosive, and mechanical environments across aerospace, nuclear, chemical processing, and offshore energy industries.',
+    popularGrades: ['Alloy 20', 'Alloy 28', 'Sanicro 28', '904L', 'SMO 254', 'AL-6XN'],
+    specifications: 'ASTM B462, ASTM B464, ASTM B473, ASTM A182, ASME SB462',
+    supportedProductSlugs: [
+      'flanges',
+      'forging',
+      'butt-weld-fittings',
+      'fasteners',
+      'pipes-tubes',
+      'sheets-plates',
+      'rods-bars',
+      'circle',
+      'flat-bars',
+    ],
+  },
+  {
+    id: 'aluminium',
+    slug: 'aluminium',
+    aliases: ['aluminum', 'al', 'aluminium-alloys'],
+    name: 'Aluminium',
+    shortName: 'Aluminium',
+    seoTitle: 'Aluminium Products Manufacturer & Stockist in Mumbai',
+    heroTitle: 'Aluminium & Aluminium Alloy Products',
+    badge: 'Lightweight & High Thermal Conductivity',
+    overview:
+      'Precision manufactured aluminium and high-strength aerospace alloy piping components, fittings, flanges, sheets, and bars offering exceptional strength-to-weight ratio, atmospheric corrosion resistance, and thermal efficiency.',
+    popularGrades: ['6061-T6', '6082-T6', '5083-H111', '5086', '7075-T6', '2014'],
+    specifications: 'ASTM B247, ASTM B221, ASTM B209, ASME SB247, DIN EN 573-3',
+    supportedProductSlugs: [
+      'flanges',
+      'forging',
+      'butt-weld-fittings',
+      'fasteners',
+      'pipes-tubes',
+      'sheets-plates',
+      'rods-bars',
+      'flat-bars',
+    ],
+  },
 ];
 
 // ============================================================================
@@ -289,17 +342,43 @@ export const findMasterMaterial = (slugOrAlias) => {
   );
   if (direct) return direct;
 
-  // Fallback heuristic
-  if (s.includes('stainless')) return MASTER_MATERIALS.find((m) => m.slug === 'stainless-steel') || MASTER_MATERIALS[0];
-  if (s.includes('carbon')) return MASTER_MATERIALS.find((m) => m.slug === 'carbon-steel') || MASTER_MATERIALS[0];
-  if (s.includes('copper') || s.includes('brass')) return MASTER_MATERIALS.find((m) => m.slug === 'copper') || MASTER_MATERIALS[0];
-  if (s.includes('duplex')) return MASTER_MATERIALS.find((m) => m.slug === 'duplex-super-duplex') || MASTER_MATERIALS[0];
-  if (s.includes('inconel')) return MASTER_MATERIALS.find((m) => m.slug === 'inconel') || MASTER_MATERIALS[0];
-  if (s.includes('monel')) return MASTER_MATERIALS.find((m) => m.slug === 'monel') || MASTER_MATERIALS[0];
-  if (s.includes('hastelloy')) return MASTER_MATERIALS.find((m) => m.slug === 'hastelloy') || MASTER_MATERIALS[0];
-  if (s.includes('titanium')) return MASTER_MATERIALS.find((m) => m.slug === 'titanium') || MASTER_MATERIALS[0];
-  if (s.includes('alloy') && !s.includes('nickel')) return MASTER_MATERIALS.find((m) => m.slug === 'alloy-steel') || MASTER_MATERIALS[0];
-  if (s.includes('nickel')) return MASTER_MATERIALS.find((m) => m.slug === 'nickel-alloy') || MASTER_MATERIALS[0];
+  // Fallback heuristic — Note: Duplex/Super Duplex MUST be checked before Stainless Steel
+  if (s.includes('duplex') || s.includes('dss') || s.includes('sdss')) {
+    return MASTER_MATERIALS.find((m) => m.slug === 'duplex-super-duplex') || MASTER_MATERIALS[0];
+  }
+  if (s.includes('carbon')) {
+    return MASTER_MATERIALS.find((m) => m.slug === 'carbon-steel') || MASTER_MATERIALS[0];
+  }
+  if (s.includes('copper') || s.includes('brass') || s.includes('cupro')) {
+    return MASTER_MATERIALS.find((m) => m.slug === 'copper') || MASTER_MATERIALS[0];
+  }
+  if (s.includes('titanium')) {
+    return MASTER_MATERIALS.find((m) => m.slug === 'titanium') || MASTER_MATERIALS[0];
+  }
+  if (s.includes('inconel') || s.includes('incoloy')) {
+    return MASTER_MATERIALS.find((m) => m.slug === 'inconel') || MASTER_MATERIALS[0];
+  }
+  if (s.includes('monel')) {
+    return MASTER_MATERIALS.find((m) => m.slug === 'monel') || MASTER_MATERIALS[0];
+  }
+  if (s.includes('hastelloy')) {
+    return MASTER_MATERIALS.find((m) => m.slug === 'hastelloy') || MASTER_MATERIALS[0];
+  }
+  if (s.includes('high-alloy') || s.includes('high alloy')) {
+    return MASTER_MATERIALS.find((m) => m.slug === 'high-alloy') || MASTER_MATERIALS[0];
+  }
+  if (s.includes('aluminium') || s.includes('aluminum')) {
+    return MASTER_MATERIALS.find((m) => m.slug === 'aluminium') || MASTER_MATERIALS[0];
+  }
+  if (s.includes('alloy') && !s.includes('nickel') && !s.includes('copper')) {
+    return MASTER_MATERIALS.find((m) => m.slug === 'alloy-steel') || MASTER_MATERIALS[0];
+  }
+  if (s.includes('nickel')) {
+    return MASTER_MATERIALS.find((m) => m.slug === 'nickel-alloy') || MASTER_MATERIALS[0];
+  }
+  if (s.includes('stainless') || s.includes('ss')) {
+    return MASTER_MATERIALS.find((m) => m.slug === 'stainless-steel') || MASTER_MATERIALS[0];
+  }
 
   return MASTER_MATERIALS[0];
 };
@@ -350,6 +429,51 @@ export const getGradeDetailUrl = (materialSlug, productSlug, gradeSlug) => {
   return `/products/${mat.slug}/${prod}/grades/${g}`;
 };
 
+const matchMaterial = (matDef, matItem) => {
+  if (!matDef || !matItem) return false;
+  const mName = (matItem.name || '').toLowerCase();
+  const mId = (matItem.id || '').toLowerCase();
+  const s = matDef.slug;
+
+  if (s === 'duplex-super-duplex') {
+    return mId.includes('duplex') || mName.includes('duplex');
+  }
+  if (s === 'carbon-steel') {
+    return mId.includes('cs') || mId.includes('carbon') || (mName.includes('carbon') && !mName.includes('stainless'));
+  }
+  if (s === 'stainless-steel') {
+    return (mId.includes('ss') || mName.includes('stainless')) && !mName.includes('duplex') && !mId.includes('duplex');
+  }
+  if (s === 'copper') {
+    return mId.includes('copper') || (mName.includes('copper') && !mName.includes('monel'));
+  }
+  if (s === 'alloy-steel') {
+    return (mId.includes('alloy-steel') || mId.includes('-as') || mName.includes('alloy steel')) && !mName.includes('nickel');
+  }
+  if (s === 'nickel-alloy') {
+    return (mId.includes('nickel') || mName.includes('nickel alloy')) && !mName.includes('cupro');
+  }
+  if (s === 'inconel') {
+    return mId.includes('inconel') || mName.includes('inconel');
+  }
+  if (s === 'monel') {
+    return mId.includes('monel') || mName.includes('monel');
+  }
+  if (s === 'hastelloy') {
+    return mId.includes('hastelloy') || mName.includes('hastelloy');
+  }
+  if (s === 'titanium') {
+    return mId.includes('titanium') || mId.includes('-ti') || mName.includes('titanium');
+  }
+  if (s === 'aluminium') {
+    return mId.includes('aluminium') || mId.includes('aluminum') || mName.includes('aluminium') || mName.includes('aluminum');
+  }
+  if (s === 'high-alloy') {
+    return mId.includes('high-alloy') || mName.includes('high alloy');
+  }
+  return mId.includes(s) || mName.includes(matDef.name.toLowerCase());
+};
+
 /**
  * Returns all products available for a given material
  */
@@ -367,17 +491,31 @@ export const getProductsForMaterial = (materialSlug) => {
 
     // Resolve an authentic photo for this material + product combo
     let cardImage = '';
-    const catData = PRODUCT_CATEGORIES[prodSlug];
-    if (catData && catData.materials) {
-      const match = catData.materials.find((m) =>
-        (m.name || '').toLowerCase().includes(mat.shortName.toLowerCase()) ||
-        (m.name || '').toLowerCase().includes(mat.name.toLowerCase().split(' ')[0])
-      );
-      if (match && match.image) cardImage = match.image;
+    if (prodSlug === 'flanges') {
+      const fData = getFlangeMaterialData(mat.slug);
+      if (fData && fData.heroImage) cardImage = fData.heroImage;
+    } else if (prodSlug === 'butt-weld-fittings') {
+      const bwImg = getButtWeldHeroImage(mat.slug);
+      if (bwImg) cardImage = bwImg;
+    } else if (prodSlug === 'fasteners') {
+      const fstImg = getFastenerHeroImage(mat.slug);
+      if (fstImg) cardImage = fstImg;
+    } else if (prodSlug === 'forging') {
+      const frgImg = getForgingImageForMaterial(mat.slug, 'elbow');
+      if (frgImg) cardImage = frgImg;
     }
-    if (!cardImage && catData && catData.heroImage) {
-      cardImage = catData.heroImage;
+
+    if (!cardImage) {
+      const catData = PRODUCT_CATEGORIES[prodSlug];
+      if (catData && catData.materials) {
+        const match = catData.materials.find((m) => matchMaterial(mat, m));
+        if (match && match.image) cardImage = match.image;
+      }
+      if (!cardImage && catData && catData.heroImage) {
+        cardImage = catData.heroImage;
+      }
     }
+
     if (!cardImage) {
       cardImage = resolveCatalogueAsset(`our product images/${prodSlug}.png`) ||
                   resolveCatalogueAsset(`our product images/${prodSlug}.jpg`);
@@ -407,13 +545,29 @@ export const getMaterialsForProduct = (productSlug) => {
   const norm = normalizeProductSlug(productSlug);
   return MASTER_MATERIALS.filter((mat) => mat.supportedProductSlugs.includes(norm)).map((mat) => {
     let cardImage = '';
-    const catData = PRODUCT_CATEGORIES[norm];
-    if (catData && catData.materials) {
-      const match = catData.materials.find((m) =>
-        (m.name || '').toLowerCase().includes(mat.shortName.toLowerCase()) ||
-        (m.name || '').toLowerCase().includes(mat.name.toLowerCase().split(' ')[0])
-      );
-      if (match && match.image) cardImage = match.image;
+    if (norm === 'flanges') {
+      const fData = getFlangeMaterialData(mat.slug);
+      if (fData && fData.heroImage) cardImage = fData.heroImage;
+    } else if (norm === 'butt-weld-fittings') {
+      const bwImg = getButtWeldHeroImage(mat.slug);
+      if (bwImg) cardImage = bwImg;
+    } else if (norm === 'fasteners') {
+      const fstImg = getFastenerHeroImage(mat.slug);
+      if (fstImg) cardImage = fstImg;
+    } else if (norm === 'forging') {
+      const frgImg = getForgingImageForMaterial(mat.slug, 'elbow');
+      if (frgImg) cardImage = frgImg;
+    }
+
+    if (!cardImage) {
+      const catData = PRODUCT_CATEGORIES[norm];
+      if (catData && catData.materials) {
+        const match = catData.materials.find((m) => matchMaterial(mat, m));
+        if (match && match.image) cardImage = match.image;
+      }
+      if (!cardImage && catData && catData.heroImage) {
+        cardImage = catData.heroImage;
+      }
     }
     if (!cardImage) {
       cardImage = resolveCatalogueAsset(`our product images/${norm}.png`);

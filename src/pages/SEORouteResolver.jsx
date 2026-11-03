@@ -30,7 +30,8 @@ export const SEORouteResolver = () => {
     (m) => m.slug === raw || m.id === raw || (m.aliases && m.aliases.includes(raw))
   );
   if (isDirectMaterial) {
-    return <MaterialPage />;
+    const mat = findMasterMaterial(raw);
+    return <MaterialPage materialSlug={mat.slug} />;
   }
 
   // Strip common SEO suffixes if present

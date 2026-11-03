@@ -88,6 +88,7 @@ export const MATERIALS = [
   {
     id: 'duplex-super-duplex',
     slug: 'duplex-super-duplex',
+    aliases: ['duplex', 'super-duplex', 'duplex-stainless-steel', 'super-duplex-stainless-steel', 'dss', 'sdss'],
     name: 'Duplex & Super Duplex',
     shortName: 'DSS / SDSS',
     badge: 'PREN > 42 Marine Resistant',
@@ -1645,7 +1646,41 @@ export const GRADES_DB = {
 export const getMaterialBySlug = (slug) => {
   if (!slug) return null;
   const s = slug.toLowerCase();
-  return MATERIALS.find((m) => m.slug === s || (m.aliases && m.aliases.includes(s)));
+  const direct = MATERIALS.find((m) => m.slug === s || (m.aliases && m.aliases.includes(s)));
+  if (direct) return direct;
+
+  if (s.includes('duplex') || s.includes('dss') || s.includes('sdss')) {
+    return MATERIALS.find((m) => m.slug === 'duplex-super-duplex');
+  }
+  if (s.includes('carbon')) {
+    return MATERIALS.find((m) => m.slug === 'carbon-steel');
+  }
+  if (s.includes('copper') || s.includes('cupro') || s.includes('brass')) {
+    return MATERIALS.find((m) => m.slug === 'copper-alloys');
+  }
+  if (s.includes('monel')) {
+    return MATERIALS.find((m) => m.slug === 'monel');
+  }
+  if (s.includes('inconel')) {
+    return MATERIALS.find((m) => m.slug === 'inconel');
+  }
+  if (s.includes('hastelloy')) {
+    return MATERIALS.find((m) => m.slug === 'hastelloy');
+  }
+  if (s.includes('titanium')) {
+    return MATERIALS.find((m) => m.slug === 'titanium');
+  }
+  if (s.includes('alloy') && !s.includes('nickel') && !s.includes('copper')) {
+    return MATERIALS.find((m) => m.slug === 'alloy-steel');
+  }
+  if (s.includes('nickel')) {
+    return MATERIALS.find((m) => m.slug === 'nickel-alloys');
+  }
+  if (s.includes('stainless')) {
+    return MATERIALS.find((m) => m.slug === 'stainless-steel');
+  }
+
+  return null;
 };
 
 export const getProductTaxonomyBySlug = (slug) => {

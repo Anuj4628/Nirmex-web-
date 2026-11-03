@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useMemo } from 'react';
-import { useParams, Link, useNavigate } from 'react-router-dom';
+import { useParams, useLocation, Link, useNavigate } from 'react-router-dom';
 import {
   findMasterMaterial,
   getProductsForMaterial,
@@ -23,12 +23,22 @@ import './MaterialPage.css';
  * - Other Materials Quick Navigation Bar
  * - Instant Material Specification & Quote Modal
  */
-export const MaterialPage = () => {
-  const { materialSlug, slug } = useParams();
+export const MaterialPage = ({ materialSlug: propMaterialSlug } = {}) => {
+  const { materialSlug: paramMaterialSlug, slug, seoSlug } = useParams();
+  const location = useLocation();
   const navigate = useNavigate();
 
-  // Resolve material context from params (supports /:materialSlug, /materials/:slug, /products/:slug)
-  const currentSlug = materialSlug || slug || 'stainless-steel';
+  // Multi-source material slug resolution:
+  // 1. propMaterialSlug (explicit route prop)
+  // 2. paramMaterialSlug (from /materials/:materialSlug)
+  // 3. slug (from generic params)
+  // 4. seoSlug (from SEO resolver)
+  // 5. location.pathname (e.g. /duplex-stainless-steel)
+  // 6. fallback 'stainless-steel'
+  const pathSegment = location.pathname.replace(/^\//, '').replace(/\/$/, '').split('/')[0];
+  const isDirectPath = pathSegment && pathSegment !== 'materials' && pathSegment !== 'material';
+  const pathSlug = isDirectPath ? pathSegment : '';
+  const currentSlug = propMaterialSlug || paramMaterialSlug || slug || seoSlug || pathSlug || 'stainless-steel';
   const material = useMemo(() => findMasterMaterial(currentSlug), [currentSlug]);
 
   const [activeFilter, setActiveFilter] = useState('all');
