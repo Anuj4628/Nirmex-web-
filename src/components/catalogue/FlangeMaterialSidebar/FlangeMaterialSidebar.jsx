@@ -1,5 +1,6 @@
 import React from 'react';
 import { NavLink } from 'react-router-dom';
+import { buildProductUrl } from '@/utils/seoRouting';
 import './FlangeMaterialSidebar.css';
 
 /**
@@ -107,7 +108,7 @@ export const ProductMaterialSidebar = ({
             return (
               <NavLink
                 key={mat.slug}
-                to={`/products/${mat.slug}/${activeProductSlug}`}
+                to={buildProductUrl({ product: activeProductSlug, material: mat.slug })}
                 className={`nirmex-flange-mobile-pill ${isActive ? 'nirmex-flange-mobile-pill--active' : ''}`}
               >
                 <span>{mat.shortName}</span>
@@ -141,7 +142,7 @@ export const ProductMaterialSidebar = ({
               return (
                 <li key={mat.slug} className="nirmex-flange-sidebar__item">
                   <NavLink
-                    to={`/products/${mat.slug}/${activeProductSlug}`}
+                    to={buildProductUrl({ product: activeProductSlug, material: mat.slug })}
                     className={`nirmex-flange-sidebar__link ${isActive ? 'nirmex-flange-sidebar__link--active' : ''}`}
                     title={label}
                   >

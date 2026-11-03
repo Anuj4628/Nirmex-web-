@@ -91,8 +91,11 @@ export const MobileMenu = ({
   const handleQuoteClick = (e) => {
     e.preventDefault();
     const contactEl = document.querySelector('#contact');
-    if (contactEl) {
+    if (contactEl && window.location.pathname === '/') {
       contactEl.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    } else {
+      navigate('/contact');
+      window.scrollTo({ top: 0, behavior: 'smooth' });
     }
     onClose();
   };

@@ -66,22 +66,22 @@ export const SITE_CONFIG = {
   quickLinks: [
     { label: 'Home', href: '/' },
     { label: 'About Us', href: '/about' },
-    { label: 'Products', href: '#product' },
-    { label: 'Value Added Services', href: '#services' },
-    { label: 'Our Clients', href: '#clients' },
-    { label: 'Industries We Serve', href: '#industries' },
-    { label: 'Countries We Export To', href: '#export-network' },
-    { label: 'Contact Us', href: '#contact' },
+    { label: 'Products', href: '/products/flanges' },
+    { label: 'Value Added Services', href: '/#services' },
+    { label: 'Our Clients', href: '/#clients' },
+    { label: 'Industries We Serve', href: '/#industries' },
+    { label: 'Countries We Export To', href: '/#export-network' },
+    { label: 'Contact Us', href: '/contact' },
   ],
 
   // Product Categories
   productLinks: [
-    { label: 'Forged Fittings', href: '#product' },
-    { label: 'Flanges (Forged & Plate)', href: '#product' },
-    { label: 'Industrial Fasteners', href: '#product' },
-    { label: 'Pipes & Tubes (Seamless/ERW)', href: '#product' },
-    { label: 'Sheets & Plates', href: '#product' },
-    { label: 'Rods & Round Bars', href: '#product' },
+    { label: 'Forged Fittings', href: '/products/forging' },
+    { label: 'Flanges (Forged & Plate)', href: '/products/flanges' },
+    { label: 'Industrial Fasteners', href: '/products/fasteners' },
+    { label: 'Pipes & Tubes (Seamless/ERW)', href: '/products/pipes-tubes' },
+    { label: 'Sheets & Plates', href: '/products/sheets-plates' },
+    { label: 'Rods & Round Bars', href: '/products/rods-bars' },
   ],
 };
 

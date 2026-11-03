@@ -8,15 +8,15 @@ export const AVAILABLE_MATERIALS = [
   { id: 'stainless-steel', slug: 'stainless-steel', name: 'Stainless Steel' },
   { id: 'carbon-steel', slug: 'carbon-steel', name: 'Carbon Steel' },
   { id: 'copper', slug: 'copper', name: 'Copper' },
-  { id: 'duplex-stainless-steel', slug: 'duplex-super-duplex', name: 'Duplex & Super Duplex' },
-  { id: 'super-duplex-stainless-steel', slug: 'duplex-super-duplex', name: 'Super Duplex Stainless Steel' },
+  { id: 'duplex-super-duplex', slug: 'duplex-super-duplex', name: 'Duplex & Super Duplex' },
   { id: 'alloy-steel', slug: 'alloy-steel', name: 'Alloy Steel' },
+  { id: 'high-alloy', slug: 'high-alloy', name: 'High Alloy' },
   { id: 'nickel-alloy', slug: 'nickel-alloy', name: 'Nickel Alloy' },
   { id: 'inconel', slug: 'inconel', name: 'Inconel' },
   { id: 'monel', slug: 'monel', name: 'Monel' },
   { id: 'hastelloy', slug: 'hastelloy', name: 'Hastelloy' },
   { id: 'titanium', slug: 'titanium', name: 'Titanium' },
+  { id: 'aluminium', slug: 'aluminium', name: 'Aluminium' },
 ];
 
 export default AVAILABLE_MATERIALS;
-

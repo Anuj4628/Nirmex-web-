@@ -1,4 +1,5 @@
 import React from 'react';
+import { useNavigate } from 'react-router-dom';
 import { CLIENTS_ROW_1, CLIENTS_ROW_2 } from './clients.data';
 import './OurClients.css';
 
@@ -7,9 +8,16 @@ import './OurClients.css';
  * Deep Industrial Red Canvas + Seamless Dual-Direction Marquee + Authentic Client Logos
  */
 export const OurClients = () => {
+  const navigate = useNavigate();
   // Triple arrays to ensure seamless infinite looping on all screens (including ultrawide)
   const marqueeRow1 = [...CLIENTS_ROW_1, ...CLIENTS_ROW_1, ...CLIENTS_ROW_1];
   const marqueeRow2 = [...CLIENTS_ROW_2, ...CLIENTS_ROW_2, ...CLIENTS_ROW_2];
+
+  const handleCtaClick = (e) => {
+    e.preventDefault();
+    navigate('/contact');
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  };
 
   return (
     <section
@@ -95,7 +103,7 @@ export const OurClients = () => {
           3. COMPACT REFINED CLIENTS CTA
           ================================================================= */}
       <div className="our-clients__cta-wrap">
-        <a href="#contact" className="our-clients__cta" aria-label="View our complete client network and partnerships">
+        <a href="/contact" onClick={handleCtaClick} className="our-clients__cta" aria-label="View our complete client network and partnerships">
           <span className="our-clients__cta-text">View Our Client Network</span>
           <span className="our-clients__cta-arrow-box" aria-hidden="true">
             <svg

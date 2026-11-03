@@ -1,4 +1,5 @@
 import React from 'react';
+import { useNavigate, Link } from 'react-router-dom';
 
 /**
  * ProductCard Component - White Industrial Catalogue Card
@@ -11,6 +12,7 @@ import React from 'react';
  * @param {string} props.rowType - 'featured' | 'two-col' | 'three-col'
  */
 export const ProductCard = ({ product, isFeatured = false, rowType = 'two-col' }) => {
+  const navigate = useNavigate();
   const {
     badge,
     category,
@@ -25,9 +27,15 @@ export const ProductCard = ({ product, isFeatured = false, rowType = 'two-col' }
 
   const handleCardClick = (e) => {
     e.preventDefault();
-    const target = document.querySelector(href);
-    if (target) {
-      target.scrollIntoView({ behavior: 'smooth' });
+    if (!href) return;
+    if (href.startsWith('/')) {
+      navigate(href);
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    } else {
+      const target = document.querySelector(href);
+      if (target) {
+        target.scrollIntoView({ behavior: 'smooth' });
+      }
     }
   };
 

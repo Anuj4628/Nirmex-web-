@@ -512,6 +512,25 @@
   font-weight: 600;
 }
 
+.nirmex-footer__credit {
+  font-size: 13px;
+  color: #64748B;
+  margin: 0;
+}
+
+.nirmex-footer__credit-link {
+  color: #E10600;
+  font-weight: 700;
+  text-decoration: none;
+  transition: all 180ms ease;
+  letter-spacing: 0.02em;
+}
+
+.nirmex-footer__credit-link:hover {
+  color: #ff3b30;
+  text-decoration: underline;
+}
+
 .nirmex-footer__legal-links {
   display: flex;
   align-items: center;

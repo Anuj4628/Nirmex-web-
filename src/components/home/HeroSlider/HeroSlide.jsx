@@ -1,4 +1,5 @@
 import React from 'react';
+import { useNavigate } from 'react-router-dom';
 import Button from '@/components/common/Button/Button';
 
 /**
@@ -11,6 +12,7 @@ import Button from '@/components/common/Button/Button';
  * @param {Function} props.onCtaClick - Optional callback on button click
  */
 export const HeroSlide = ({ slide, isActive, onCtaClick }) => {
+  const navigate = useNavigate();
   const {
     eyebrow,
     headlineLine1,
@@ -26,9 +28,18 @@ export const HeroSlide = ({ slide, isActive, onCtaClick }) => {
   const handleCta = (e, href) => {
     e.preventDefault();
     if (onCtaClick) onCtaClick(href);
-    const target = document.querySelector(href);
-    if (target) {
-      target.scrollIntoView({ behavior: 'smooth' });
+    if (!href) return;
+    if (href.startsWith('/')) {
+      navigate(href);
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    } else {
+      const target = document.querySelector(href);
+      if (target) {
+        target.scrollIntoView({ behavior: 'smooth' });
+      } else if (href === '#contact' || href === '#enquiry') {
+        navigate('/contact');
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+      }
     }
   };
 

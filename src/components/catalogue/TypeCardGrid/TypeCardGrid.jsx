@@ -1,5 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import { buildProductUrl } from '@/utils/seoRouting';
 import './TypeCardGrid.css';
 
 /**
@@ -42,7 +43,11 @@ export const TypeCardGrid = ({
 
       <div className="nirmex-types-grid" role="list">
         {types.map((type) => {
-          const targetUrl = `/products/${actualMaterialSlug}/${actualProductSlug}/types/${type.slug}`;
+          const targetUrl = buildProductUrl({
+            product: actualProductSlug,
+            material: actualMaterialSlug,
+            type: type.slug,
+          });
 
           return (
             <article key={type.slug} className="nirmex-type-card" role="listitem">
@@ -50,7 +55,7 @@ export const TypeCardGrid = ({
               <div className="nirmex-type-card__media">
                 <img
                   src={type.image}
-                  alt={type.name}
+                  alt={`${type.name} Manufacturer in Mumbai`}
                   className="nirmex-type-card__img"
                   loading="lazy"
                 />

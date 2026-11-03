@@ -1,5 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import { buildProductUrl } from '@/utils/seoRouting';
 import './GradeBadgeList.css';
 
 /**
@@ -36,7 +37,11 @@ export const GradeBadgeList = ({
       <div className="nirmex-grades-grid" role="list">
         {grades.map((grade) => {
           const isActive = activeGradeSlug && activeGradeSlug.toLowerCase() === grade.slug.toLowerCase();
-          const targetUrl = `/products/${materialSlug}/${productSlug}/grades/${grade.slug}`;
+          const targetUrl = buildProductUrl({
+            product: productSlug,
+            material: materialSlug,
+            grade: grade.slug,
+          });
 
           return (
             <Link

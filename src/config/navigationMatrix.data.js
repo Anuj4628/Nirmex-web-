@@ -18,6 +18,7 @@ import {
   getForgingImageForMaterial,
 } from './catalogue.data';
 import { getFlangeMaterialData } from './flangeMaterials.data';
+import { buildProductUrl, getMaterialUrl } from '@/utils/seoRouting';
 
 import { PRODUCT_CATEGORIES } from './productMaterials.data';
 
@@ -398,35 +399,28 @@ export const normalizeProductSlug = (slug) => {
  * Returns clean canonical material URL
  */
 export const getMaterialPageUrl = (materialSlug) => {
-  const mat = findMasterMaterial(materialSlug);
-  return `/${mat.slug}`;
+  return getMaterialUrl(materialSlug);
 };
 
 /**
  * Returns clean canonical product category URL
  */
 export const getProductPageUrl = (productSlug) => {
-  const norm = normalizeProductSlug(productSlug);
-  return `/products/${norm}`;
+  return buildProductUrl({ product: productSlug });
 };
 
 /**
  * Returns material-specific product page URL
  */
 export const getMaterialProductUrl = (materialSlug, productSlug) => {
-  const mat = findMasterMaterial(materialSlug);
-  const prod = normalizeProductSlug(productSlug);
-  return `/products/${mat.slug}/${prod}`;
+  return buildProductUrl({ product: productSlug, material: materialSlug });
 };
 
 /**
  * Returns grade detail page URL
  */
 export const getGradeDetailUrl = (materialSlug, productSlug, gradeSlug) => {
-  const mat = findMasterMaterial(materialSlug);
-  const prod = normalizeProductSlug(productSlug);
-  const g = (gradeSlug || '304').toLowerCase().replace(/[^a-z0-9]/g, '');
-  return `/products/${mat.slug}/${prod}/grades/${g}`;
+  return buildProductUrl({ product: productSlug, material: materialSlug, grade: gradeSlug });
 };
 
 const matchMaterial = (matDef, matItem) => {

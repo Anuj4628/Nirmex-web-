@@ -1,6 +1,6 @@
 /**
  * NIRMEX METAL INDUSTRIES - Our Products Data Configuration
- * Exact 6 Products in user-specified order:
+ * Exact 6 Products in user-specified order with canonical SEO URLs:
  * 1. Forged Fittings (Featured - Row 1)
  * 2. Flanges (Row 2 - Left)
  * 3. Fasteners (Row 2 - Right)
@@ -15,6 +15,7 @@ import fastenersImg from '@/assets/our product images/fasteners.png';
 import pipesImg from '@/assets/our product images/pipes and tubes.png';
 import sheetsImg from '@/assets/our product images/sheet and plates.png';
 import rodsImg from '@/assets/our product images/rods and bars.png';
+import { buildProductUrl } from '@/utils/seoRouting';
 
 export const OUR_PRODUCTS = [
   // 1. FEATURED PRODUCT (Row 1 - Full Width Hero Card)
@@ -30,7 +31,7 @@ export const OUR_PRODUCTS = [
     image: forgedImg,
     imageAlt: 'Nirmex High-Performance Precision Forged Steel Fittings',
     highlights: ['High Pressure Rated', 'Corrosion Resistant', 'Precision Machined'],
-    href: '#forged-fittings',
+    href: buildProductUrl({ product: 'forged-fittings' }),
     featured: true,
   },
 
@@ -45,7 +46,7 @@ export const OUR_PRODUCTS = [
       'High-strength flanges for critical piping and pressure applications.',
     image: flangesImg,
     imageAlt: 'Nirmex Precision Forged Industrial Flanges',
-    href: '#flanges',
+    href: buildProductUrl({ product: 'flanges' }),
     featured: false,
   },
 
@@ -59,8 +60,8 @@ export const OUR_PRODUCTS = [
     description:
       'Durable and high-precision fasteners for secure and long-lasting assemblies.',
     image: fastenersImg,
-    imageAlt: 'Nirmex Reliable High-Tensile Industrial Fasteners',
-    href: '#fasteners',
+    imageAlt: 'Nirmex Durable Industrial Fasteners',
+    href: buildProductUrl({ product: 'fasteners' }),
     featured: false,
   },
 
@@ -72,10 +73,10 @@ export const OUR_PRODUCTS = [
     title: 'Pipes & Tubes',
     subtitle: 'Seamless & Welded Piping Solutions',
     description:
-      'High-precision stainless steel, carbon steel, and alloy pipes for industrial piping.',
+      'High-precision stainless steel, duplex, and nickel alloy pipes and tubes for fluid handling.',
     image: pipesImg,
-    imageAlt: 'Nirmex High-Precision Stainless Steel and Carbon Steel Pipes & Tubes',
-    href: '#pipes-tubes',
+    imageAlt: 'Nirmex High-Precision Industrial Pipes and Tubes',
+    href: buildProductUrl({ product: 'pipes-tubes' }),
     featured: false,
   },
 
@@ -87,10 +88,10 @@ export const OUR_PRODUCTS = [
     title: 'Sheets & Plates',
     subtitle: 'High-Quality Metal Sheets & Plates',
     description:
-      'Durable and precise sheets and plates for industrial fabrication and processing.',
+      'Durable and precise sheets and plates for structural, marine, and industrial fabrication.',
     image: sheetsImg,
-    imageAlt: 'Nirmex High-Quality Metal Sheets and Plates',
-    href: '#sheets-plates',
+    imageAlt: 'Nirmex Metal Sheets and Plates Fabrication Solutions',
+    href: buildProductUrl({ product: 'sheets-plates' }),
     featured: false,
   },
 
@@ -102,10 +103,12 @@ export const OUR_PRODUCTS = [
     title: 'Rods & Bars',
     subtitle: 'Precision Metal Rods & Bars',
     description:
-      'High-strength rods and bars for engineering and manufacturing applications.',
+      'High-strength rods and bars for engineering, automotive, and heavy industrial use.',
     image: rodsImg,
     imageAlt: 'Nirmex Precision Industrial Metal Rods and Bars',
-    href: '#rods-bars',
+    href: buildProductUrl({ product: 'rods-bars' }),
     featured: false,
   },
 ];
+
+export default OUR_PRODUCTS;

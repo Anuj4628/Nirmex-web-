@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import CTASection from '@/components/home/CTA';
+import SEO from '@/components/common/SEO';
 import contactHeroImg from '@/assets/images/contact-hero-industrial.jpg';
 import './ContactPage.css';
 
@@ -223,6 +224,15 @@ export const ContactPage = () => {
 
   return (
     <div className="nirmex-contact-page">
+      <SEO
+        title="Contact Us - Industrial Quotes, Mill Test Reports & Technical Support | Nirmex Metal Industries"
+        description="Contact Nirmex Metal Industries in Mumbai, India for instant quotations, MTC certificates, technical specifications, and worldwide export contracts."
+        canonical="/contact"
+        breadcrumbs={[
+          { name: 'Home', url: '/' },
+          { name: 'Contact Us', url: '/contact' },
+        ]}
+      />
       {/* Toast Feedback */}
       {toastVisible && (
         <div className="nirmex-toast" role="status" aria-live="polite">

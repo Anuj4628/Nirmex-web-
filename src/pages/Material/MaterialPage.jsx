@@ -6,7 +6,10 @@ import {
   MASTER_MATERIALS,
   getMaterialProductUrl,
   getGradeDetailUrl,
+  getMaterialPageUrl,
 } from '@/config/navigationMatrix.data';
+import { getMaterialUrl } from '@/utils/seoRouting';
+import SEO from '@/components/common/SEO';
 import MaterialEnquiryModal from '@/components/products/MaterialEnquiryModal/MaterialEnquiryModal';
 import CTASection from '@/components/home/CTA';
 import './MaterialPage.css';
@@ -81,6 +84,20 @@ export const MaterialPage = ({ materialSlug: propMaterialSlug } = {}) => {
 
   return (
     <div className="nirmex-mat-page">
+      <SEO
+        title={material.seoTitle || `${material.name} Products Manufacturer & Stockist in Mumbai`}
+        description={material.overview}
+        canonical={getMaterialUrl(material.slug)}
+        breadcrumbs={[
+          { name: 'Home', url: '/' },
+          { name: 'Materials', url: getMaterialUrl(material.slug) },
+          { name: material.name, url: getMaterialUrl(material.slug) },
+        ]}
+        productSchema={{
+          name: `${material.name} Industrial Products`,
+          description: material.overview,
+        }}
+      />
       {/* =====================================================================
           1. MATERIAL HERO SECTION
           ===================================================================== */}

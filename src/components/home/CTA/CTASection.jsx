@@ -1,4 +1,5 @@
 import React from 'react';
+import { useNavigate } from 'react-router-dom';
 import './CTASection.css';
 
 /**
@@ -7,12 +8,23 @@ import './CTASection.css';
  * Industrial Authority, High Contrast, Direct Business Enquiry Actions.
  */
 export const CTASection = () => {
-  const handleScrollTo = (e, targetId) => {
+  const navigate = useNavigate();
+
+  const handleRequestQuote = (e) => {
     e.preventDefault();
-    const targetEl = document.querySelector(targetId);
-    if (targetEl) {
-      targetEl.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    const contactEl = document.querySelector('#contact');
+    if (contactEl && window.location.pathname === '/') {
+      contactEl.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    } else {
+      navigate('/contact');
+      window.scrollTo({ top: 0, behavior: 'smooth' });
     }
+  };
+
+  const handleExploreProducts = (e) => {
+    e.preventDefault();
+    navigate('/products/flanges');
+    window.scrollTo({ top: 0, behavior: 'smooth' });
   };
 
   return (
@@ -42,8 +54,8 @@ export const CTASection = () => {
           {/* Action Buttons */}
           <div className="nirmex-cta__actions">
             <a
-              href="#contact"
-              onClick={(e) => handleScrollTo(e, '#contact')}
+              href="/contact"
+              onClick={handleRequestQuote}
               className="nirmex-cta__btn nirmex-cta__btn--primary"
               aria-label="Request a quotation from Nirmex Metal Industries"
             >
@@ -57,8 +69,8 @@ export const CTASection = () => {
             </a>
 
             <a
-              href="#product"
-              onClick={(e) => handleScrollTo(e, '#product')}
+              href="/products/flanges"
+              onClick={handleExploreProducts}
               className="nirmex-cta__btn nirmex-cta__btn--secondary"
               aria-label="Explore Nirmex full product range"
             >

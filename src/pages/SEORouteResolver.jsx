@@ -1,118 +1,82 @@
 import React from 'react';
-import { useParams, Navigate } from 'react-router-dom';
+import { useParams, useLocation, Navigate } from 'react-router-dom';
 import MaterialPage from '@/pages/Material/MaterialPage';
 import ProductMaterialPage from '@/pages/Products/ProductMaterialPage';
 import ProductDetailPage from '@/pages/Catalogue/ProductDetailPage';
 import GradeDetailPage from '@/pages/Catalogue/GradeDetailPage';
-import { MASTER_MATERIALS, findMasterMaterial, normalizeProductSlug } from '@/config/navigationMatrix.data';
-import { PRODUCT_TAXONOMY } from '@/config/catalogue.data';
+import TypeDetailPage from '@/pages/Catalogue/TypeDetailPage';
+import NotFoundPage from '@/pages/NotFound/NotFoundPage';
+import { parseProductUrl } from '@/utils/seoRouting';
 
 /**
  * SEORouteResolver Component
  * 
- * Intelligently resolves SEO-friendly slug patterns:
- * 1. Material Slugs: /stainless-steel, /carbon-steel, /nickel-alloy, etc.
- * 2. Product SEO Slugs: /flanges-manufactured-in-mumbai, /forged-fittings-manufactured-in-mumbai
- * 3. Material-Product SEO Slugs: /flanges-stainless-steel-manufactured-in-mumbai
- * 4. Grade-Specific SEO Slugs: /flanges-stainless-steel-310S-manufactured-in-mumbai
+ * Dynamic Master Route Resolver across the 4-level hierarchy:
+ * 1. Material Level: /stainless-steel, /copper, /duplex-super-duplex
+ * 2. Product Level: /products/flanges-manufactured-in-mumbai
+ * 3. Product + Material Level: /products/flanges-stainless-steel-manufactured-in-mumbai
+ * 4. Grade Level: /products/flanges-stainless-steel-304-manufactured-in-mumbai
+ * 5. Type Level: /products/flanges-stainless-steel-304-weld-neck-flanges-manufactured-in-mumbai
+ * 
+ * Strict Validation:
+ * - Invalid combinations return 404 (NotFoundPage)
+ * - Never silently falls back to Stainless Steel
  */
 export const SEORouteResolver = () => {
-  const { seoSlug } = useParams();
+  const { seoSlug, slug, product, material } = useParams();
+  const location = useLocation();
 
-  if (!seoSlug) {
-    return <Navigate to="/" replace />;
+  const rawSlug = seoSlug || slug || location.pathname;
+  const result = parseProductUrl(rawSlug);
+
+  if (!result.isValid) {
+    return <NotFoundPage reason={result.reason} />;
   }
 
-  const raw = seoSlug.toLowerCase().trim();
-
-  // 1. Direct Material Match (e.g. /stainless-steel, /carbon-steel, /titanium)
-  const isDirectMaterial = MASTER_MATERIALS.some(
-    (m) => m.slug === raw || m.id === raw || (m.aliases && m.aliases.includes(raw))
-  );
-  if (isDirectMaterial) {
-    const mat = findMasterMaterial(raw);
-    return <MaterialPage materialSlug={mat.slug} />;
+  // 1. Material Landing Page
+  if (result.level === 'material') {
+    return <MaterialPage materialSlug={result.material.slug} />;
   }
 
-  // Strip common SEO suffixes if present
-  let clean = raw
-    .replace(/-manufactured-in-mumbai$/, '')
-    .replace(/-manufacturer-in-mumbai$/, '')
-    .replace(/-stockist-in-mumbai$/, '')
-    .replace(/-supplier-in-mumbai$/, '')
-    .replace(/-exporters-in-mumbai$/, '');
-
-  // 2. Direct Product Category Match (e.g. /flanges-manufactured-in-mumbai)
-  const isDirectProduct = PRODUCT_TAXONOMY.some(
-    (p) => p.slug === clean || (p.aliases && p.aliases.includes(clean))
-  );
-  if (isDirectProduct) {
-    return <ProductMaterialPage />;
+  // 2. Product Category Landing Page
+  if (result.level === 'product') {
+    return <ProductMaterialPage productSlug={result.product.slug} />;
   }
 
-  // 3. Composite Material + Product or Product + Material
-  // e.g. flanges-stainless-steel, stainless-steel-flanges, forged-fittings-stainless-steel
-  let matchedProduct = null;
-  let matchedMaterial = null;
-  let matchedGrade = null;
-
-  // Try to find product taxonomy match from the beginning or end of clean string
-  for (const prod of PRODUCT_TAXONOMY) {
-    const prodSlug = prod.slug;
-    const aliases = prod.aliases || [];
-    const allProdKeys = [prodSlug, ...aliases];
-
-    for (const pKey of allProdKeys) {
-      if (clean.startsWith(pKey + '-')) {
-        matchedProduct = prodSlug;
-        const remainder = clean.slice((pKey + '-').length);
-        
-        // Check if remainder contains material and optional grade
-        for (const mat of MASTER_MATERIALS) {
-          const matKeys = [mat.slug, ...(mat.aliases || [])];
-          for (const mKey of matKeys) {
-            if (remainder === mKey) {
-              matchedMaterial = mat.slug;
-              break;
-            } else if (remainder.startsWith(mKey + '-')) {
-              matchedMaterial = mat.slug;
-              matchedGrade = remainder.slice((mKey + '-').length);
-              break;
-            }
-          }
-          if (matchedMaterial) break;
-        }
-        break;
-      } else if (clean.endsWith('-' + pKey)) {
-        matchedProduct = prodSlug;
-        const remainder = clean.slice(0, -(pKey.length + 1));
-        const mat = findMasterMaterial(remainder);
-        if (mat) matchedMaterial = mat.slug;
-        break;
-      }
-    }
-    if (matchedProduct && matchedMaterial) break;
+  // 3. Product + Material Product Description Page
+  if (result.level === 'product-material') {
+    return (
+      <ProductDetailPage
+        materialSlug={result.material.slug}
+        productSlug={result.product.slug}
+      />
+    );
   }
 
-  // If matched grade + material + product
-  if (matchedProduct && matchedMaterial && matchedGrade) {
-    return <GradeDetailPage />;
+  // 4. Grade Detail Page
+  if (result.level === 'grade') {
+    return (
+      <GradeDetailPage
+        materialSlug={result.material.slug}
+        productSlug={result.product.slug}
+        gradeSlug={result.grade.slug}
+      />
+    );
   }
 
-  // If matched material + product
-  if (matchedProduct && matchedMaterial) {
-    return <ProductDetailPage />;
+  // 5. Product Type Detail Page
+  if (result.level === 'type') {
+    return (
+      <TypeDetailPage
+        materialSlug={result.material.slug}
+        productSlug={result.product.slug}
+        gradeSlug={result.grade?.slug}
+        typeSlug={result.type.slug}
+      />
+    );
   }
 
-  // Fallback heuristic: check if any material name is inside the string
-  const fallbackMat = findMasterMaterial(clean);
-  if (fallbackMat && clean.includes(fallbackMat.slug)) {
-    return <MaterialPage />;
-  }
-
-  // Default fallback to Home
-  return <Navigate to="/" replace />;
+  return <NotFoundPage />;
 };
 
 export default SEORouteResolver;
-

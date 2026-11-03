@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 
 /**
  * IndustryCard Component - 3D Interactive Flip Card
@@ -10,6 +11,7 @@ import React, { useState } from 'react';
  * @param {Object} props.industry - Industry data object
  */
 export const IndustryCard = ({ industry }) => {
+  const navigate = useNavigate();
   const [isFlipped, setIsFlipped] = useState(false);
 
   const {
@@ -38,10 +40,18 @@ export const IndustryCard = ({ industry }) => {
 
   const handleActionClick = (e) => {
     e.stopPropagation();
-    const target = document.querySelector(href);
-    if (target) {
-      e.preventDefault();
-      target.scrollIntoView({ behavior: 'smooth' });
+    e.preventDefault();
+    if (href && href.startsWith('/')) {
+      navigate(href);
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    } else {
+      const target = document.querySelector(href);
+      if (target && window.location.pathname === '/') {
+        target.scrollIntoView({ behavior: 'smooth' });
+      } else {
+        navigate('/contact');
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+      }
     }
   };
 

@@ -3,6 +3,8 @@ import { useParams, Link, useNavigate } from 'react-router-dom';
 import { getCategoryBySlug, PRODUCT_CATEGORIES } from '@/config/productMaterials.data';
 import { MASTER_MATERIALS, normalizeProductSlug } from '@/config/navigationMatrix.data';
 import { PRODUCT_TAXONOMY } from '@/config/catalogue.data';
+import { buildProductUrl } from '@/utils/seoRouting';
+import SEO from '@/components/common/SEO';
 import MaterialEnquiryModal from '@/components/products/MaterialEnquiryModal/MaterialEnquiryModal';
 import CTASection from '@/components/home/CTA';
 import './ProductMaterialPage.css';
@@ -34,15 +36,15 @@ const getMaterialCatalogueSlug = (mat) => {
   return 'stainless-steel';
 };
 
-export const ProductMaterialPage = () => {
+export const ProductMaterialPage = ({ productSlug: propProdSlug } = {}) => {
   const { slug, seoSlug } = useParams();
   const navigate = useNavigate();
   const [selectedMaterial, setSelectedMaterial] = useState(null);
   const [isModalOpen, setIsModalOpen] = useState(false);
 
-  // Resolve slug from params (supports /products/:slug and SEO routes like /flanges-manufactured-in-mumbai)
-  let activeSlug = slug || 'flanges';
-  if (seoSlug) {
+  // Resolve slug from props or params
+  let activeSlug = propProdSlug || slug || 'flanges';
+  if (!propProdSlug && seoSlug) {
     const raw = seoSlug.toLowerCase().replace(/-manufactured-in-mumbai$/, '');
     const found = PRODUCT_TAXONOMY.find((p) => p.slug === raw || (p.aliases && p.aliases.includes(raw)));
     if (found) activeSlug = found.slug;
@@ -75,6 +77,23 @@ export const ProductMaterialPage = () => {
 
   return (
     <div className="nirmex-product-page">
+      <SEO
+        title={`${category.displayName || category.name} Manufacturer in Mumbai`}
+        description={`Nirmex Metal Industries is an ISO 9001:2015 certified manufacturer and stockist of ${category.displayName || category.name} in Mumbai, India. Available in stainless steel, carbon steel, alloy steel, and exotic superalloys.`}
+        canonical={buildProductUrl({ product: category.slug })}
+        ogImage={category.heroImage}
+        breadcrumbs={[
+          { name: 'Home', url: '/' },
+          { name: 'Products', url: buildProductUrl({ product: category.slug }) },
+          { name: category.displayName || category.name, url: buildProductUrl({ product: category.slug }) },
+        ]}
+        productSchema={{
+          name: category.displayName || category.name,
+          description: category.heroDescription,
+          image: category.heroImage,
+        }}
+      />
+
       {/* =====================================================================
           1. CATEGORY HERO SECTION (Two-Column Layout)
           ===================================================================== */}
@@ -84,7 +103,7 @@ export const ProductMaterialPage = () => {
           <nav className="nirmex-cat-hero__breadcrumbs" aria-label="Breadcrumb">
             <Link to="/" className="nirmex-cat-hero__crumb-link">Home</Link>
             <span className="nirmex-cat-hero__crumb-sep" aria-hidden="true">/</span>
-            <Link to="/products/flanges" className="nirmex-cat-hero__crumb-link">Products</Link>
+            <Link to={buildProductUrl({ product: category.slug })} className="nirmex-cat-hero__crumb-link">Products</Link>
             <span className="nirmex-cat-hero__crumb-sep" aria-hidden="true">/</span>
             <span className="nirmex-cat-hero__crumb-current">{category.displayName || category.name}</span>
           </nav>
@@ -194,7 +213,7 @@ export const ProductMaterialPage = () => {
                 return (
                   <Link
                     key={mat.id}
-                    to={`/products/${matSlug}/${category.slug}`}
+                    to={buildProductUrl({ product: category.slug, material: matSlug })}
                     className="nirmex-mat-selector-pill"
                     title={`View ${mat.name} ${category.displayName || category.name}`}
                   >
@@ -210,7 +229,7 @@ export const ProductMaterialPage = () => {
           <div className="nirmex-mat-grid" role="list">
             {category.materials.map((mat) => {
               const matSlug = getMaterialCatalogueSlug(mat);
-              const targetUrl = `/products/${matSlug}/${category.slug}`;
+              const targetUrl = buildProductUrl({ product: category.slug, material: matSlug });
               return (
                 <article key={mat.id} className="nirmex-mat-card" role="listitem">
                   {/* Material Card Image */}
@@ -299,7 +318,7 @@ export const ProductMaterialPage = () => {
             {otherProducts.map((p) => (
               <Link
                 key={p.slug}
-                to={`/products/${p.slug}`}
+                to={buildProductUrl({ product: p.slug })}
                 className="nirmex-cat-other-card"
                 title={`Explore ${p.displayName || p.name}`}
               >

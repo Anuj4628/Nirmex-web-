@@ -1,0 +1,10 @@
+# Nirmex Metal Industries — Robots Exclusion Protocol
+User-agent: *
+Allow: /
+
+# Disallow admin or private directories if any
+Disallow: /api/
+
+# Sitemap Location
+Sitemap: https://nirmexmetal.com/sitemap.xml
+

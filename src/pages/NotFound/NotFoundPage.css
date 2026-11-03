@@ -1,0 +1,126 @@
+.nirmex-404-page {
+  min-height: 80vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 60px 20px;
+  background: #f8fafc;
+}
+
+.nirmex-404-container {
+  max-width: 760px;
+  width: 100%;
+}
+
+.nirmex-404-card {
+  background: #ffffff;
+  border-radius: 16px;
+  padding: 48px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.06);
+  border: 1px solid #e2e8f0;
+  text-align: center;
+}
+
+.nirmex-404-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background: #fee2e2;
+  color: #b91c1c;
+  padding: 6px 14px;
+  border-radius: 50px;
+  font-size: 0.75rem;
+  font-weight: 700;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  margin-bottom: 20px;
+}
+
+.nirmex-404-badge-dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: #dc2626;
+}
+
+.nirmex-404-code {
+  font-size: 5rem;
+  font-weight: 900;
+  line-height: 1;
+  color: #dc2626;
+  margin: 0 0 12px 0;
+  letter-spacing: -0.04em;
+}
+
+.nirmex-404-title {
+  font-size: 1.75rem;
+  font-weight: 700;
+  color: #0f172a;
+  margin: 0 0 12px 0;
+}
+
+.nirmex-404-desc {
+  font-size: 1rem;
+  color: #64748b;
+  max-width: 540px;
+  margin: 0 auto 32px auto;
+  line-height: 1.6;
+}
+
+.nirmex-404-actions {
+  display: flex;
+  justify-content: center;
+  gap: 16px;
+  margin-bottom: 40px;
+  flex-wrap: wrap;
+}
+
+.nirmex-404-suggestions {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 24px;
+  text-align: left;
+  border-top: 1px solid #e2e8f0;
+  padding-top: 32px;
+}
+
+.nirmex-404-suggest-heading {
+  font-size: 0.875rem;
+  font-weight: 700;
+  color: #0f172a;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  margin-bottom: 12px;
+}
+
+.nirmex-404-links {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.nirmex-404-link {
+  color: #475569;
+  text-decoration: none;
+  font-size: 0.9rem;
+  font-weight: 500;
+  transition: color 0.2s ease;
+}
+
+.nirmex-404-link:hover {
+  color: #dc2626;
+  text-decoration: underline;
+}
+
+@media (max-width: 640px) {
+  .nirmex-404-card {
+    padding: 32px 20px;
+  }
+  .nirmex-404-code {
+    font-size: 3.5rem;
+  }
+  .nirmex-404-suggestions {
+    grid-template-columns: 1fr;
+  }
+}
+

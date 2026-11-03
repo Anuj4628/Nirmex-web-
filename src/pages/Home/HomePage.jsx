@@ -1,4 +1,5 @@
 import React from 'react';
+import SEO from '@/components/common/SEO';
 import HeroSlider from '@/components/home/HeroSlider';
 import OurProducts from '@/components/home/OurProducts';
 import WhyChooseUs from '@/components/home/WhyChooseUs';
@@ -21,6 +22,14 @@ import './HomePage.css';
 export const HomePage = () => {
   return (
     <div className="nirmex-home">
+      <SEO
+        title="Leading Industrial Piping, Flanges, Fittings & Fasteners Manufacturer in Mumbai"
+        description="Nirmex Metal Industries is an ISO 9001:2015 certified manufacturer, stockist, and global exporter of forged fittings, flanges, buttweld pipe fittings, and fasteners in Mumbai, India."
+        canonical="/"
+        breadcrumbs={[
+          { name: 'Home', url: '/' }
+        ]}
+      />
       {/* 1. Premium Industrial Hero Slider — DO NOT TOUCH */}
       <HeroSlider />
 

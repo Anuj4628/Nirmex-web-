@@ -223,8 +223,11 @@ export const Navbar = () => {
   const handleQuoteClick = (e) => {
     e.preventDefault();
     const contactEl = document.querySelector('#contact');
-    if (contactEl) {
+    if (contactEl && location.pathname === '/') {
       contactEl.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    } else {
+      navigate('/contact');
+      window.scrollTo({ top: 0, behavior: 'smooth' });
     }
   };
 

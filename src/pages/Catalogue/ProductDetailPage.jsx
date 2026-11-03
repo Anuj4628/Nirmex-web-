@@ -16,6 +16,8 @@ import {
   getProductPageUrl,
   getMaterialProductUrl,
 } from '@/config/navigationMatrix.data';
+import { buildProductUrl } from '@/utils/seoRouting';
+import SEO from '@/components/common/SEO';
 import ProductMaterialSidebar from '@/components/catalogue/FlangeMaterialSidebar/FlangeMaterialSidebar';
 import GradeBadgeList from '@/components/catalogue/GradeBadgeList/GradeBadgeList';
 import TypeCardGrid from '@/components/catalogue/TypeCardGrid/TypeCardGrid';
@@ -34,13 +36,13 @@ import './ProductDetailPage.css';
  * - Section 10: Other Materials for this Product
  * - Clickable breadcrumbs & direct back-links to Material and Product Category
  */
-export const ProductDetailPage = () => {
+export const ProductDetailPage = ({ materialSlug: propMatSlug, productSlug: propProdSlug } = {}) => {
   const { material: matParam, product: prodParam, slug, seoSlug } = useParams();
   const navigate = useNavigate();
 
-  // Resolve slugs from route params
-  let materialSlug = matParam || 'stainless-steel';
-  let productSlug = prodParam || slug || 'flanges';
+  // Resolve slugs from props or route params
+  let materialSlug = propMatSlug || matParam || 'stainless-steel';
+  let productSlug = propProdSlug || prodParam || slug || 'flanges';
 
   // Handle SEO slug resolution fallback if routed via SEORouteResolver
   if (seoSlug) {
@@ -96,19 +98,39 @@ export const ProductDetailPage = () => {
   // Section 10: Other materials available for this product
   const otherMaterialsForProduct = getOtherMaterialsForProduct(currentMatSlug, currentProdSlug).slice(0, 6);
 
+  const currentHeroImg = isFlange ? flangeData.heroImage : heroImage;
+
   return (
     <div className="nirmex-catalogue-page">
+      <SEO
+        title={`${currentMaterialName} ${currentProdDisplayName} Manufacturer in Mumbai`}
+        description={`Nirmex Metal Industries is an ISO 9001:2015 certified manufacturer and exporter of ${currentMaterialName} ${currentProdDisplayName} in Mumbai, India. ASME B16.5 & DIN certified with complete 3.1 MTC.`}
+        canonical={buildProductUrl({ product: currentProdSlug, material: currentMatSlug })}
+        ogImage={currentHeroImg}
+        breadcrumbs={[
+          { name: 'Home', url: '/' },
+          { name: 'Products', url: buildProductUrl({ product: currentProdSlug }) },
+          { name: currentProdDisplayName, url: buildProductUrl({ product: currentProdSlug }) },
+          { name: currentMaterialName, url: buildProductUrl({ product: currentProdSlug, material: currentMatSlug }) },
+        ]}
+        productSchema={{
+          name: `${currentMaterialName} ${currentProdDisplayName}`,
+          description: isFlange ? flangeData.description : material.description,
+          image: currentHeroImg,
+        }}
+      />
+
       <div className="nirmex-catalogue-container">
         {/* Topbar with Full Clickable Breadcrumb Trail (Section 11) */}
         <div className="nirmex-catalogue-topbar">
           <nav className="nirmex-detail-crumbs" aria-label="Breadcrumb">
             <Link to="/" className="nirmex-detail-crumb-link">Home</Link>
             <span className="nirmex-detail-crumb-sep" aria-hidden="true">/</span>
-            <Link to={getMaterialPageUrl(currentMatSlug)} className="nirmex-detail-crumb-link">Materials</Link>
+            <Link to={buildProductUrl({ product: currentProdSlug })} className="nirmex-detail-crumb-link">Products</Link>
             <span className="nirmex-detail-crumb-sep" aria-hidden="true">/</span>
-            <Link to={getMaterialPageUrl(currentMatSlug)} className="nirmex-detail-crumb-link">{currentMaterialName}</Link>
+            <Link to={buildProductUrl({ product: currentProdSlug })} className="nirmex-detail-crumb-link">{currentProdDisplayName}</Link>
             <span className="nirmex-detail-crumb-sep" aria-hidden="true">/</span>
-            <span className="nirmex-detail-crumb-active">{currentProdDisplayName}</span>
+            <span className="nirmex-detail-crumb-active">{currentMaterialName}</span>
           </nav>
         </div>
 
@@ -189,8 +211,8 @@ export const ProductDetailPage = () => {
                 <div className="nirmex-prod-hero-card__media">
                   <div className="nirmex-prod-hero-card__img-wrap">
                     <img
-                      src={isFlange ? flangeData.heroImage : heroImage}
-                      alt={isFlange ? flangeData.pageHeading : `${material.name} ${taxonomy.name}`}
+                      src={currentHeroImg}
+                      alt={`${currentMaterialName} ${currentProdDisplayName} Manufacturer in Mumbai`}
                       className="nirmex-prod-hero-card__img"
                       loading="eager"
                     />

@@ -9,6 +9,8 @@ import {
   getTypesForProduct,
 } from '@/config/catalogue.data';
 import { getFlangeMaterialData } from '@/config/flangeMaterials.data';
+import { buildProductUrl } from '@/utils/seoRouting';
+import SEO from '@/components/common/SEO';
 import ProductMaterialSidebar from '@/components/catalogue/FlangeMaterialSidebar/FlangeMaterialSidebar';
 import MaterialEnquiryModal from '@/components/products/MaterialEnquiryModal/MaterialEnquiryModal';
 import CTASection from '@/components/home/CTA';
@@ -26,12 +28,13 @@ import './TypeDetailPage.css';
  * - "Related Types" section at the bottom with image cards
  * - Direct enquiry action
  */
-export const TypeDetailPage = () => {
-  const { material: matParam, product: prodParam, typeSlug } = useParams();
+export const TypeDetailPage = ({ materialSlug: propMatSlug, productSlug: propProdSlug, gradeSlug: propGradeSlug, typeSlug: propTypeSlug } = {}) => {
+  const { material: matParam, product: prodParam, typeSlug: paramTypeSlug } = useParams();
   const navigate = useNavigate();
 
-  const materialSlug = matParam || 'stainless-steel';
-  const productSlug = prodParam || 'flanges';
+  const materialSlug = propMatSlug || matParam || 'stainless-steel';
+  const productSlug = propProdSlug || prodParam || 'flanges';
+  const typeSlug = propTypeSlug || paramTypeSlug;
 
   const isFlange = productSlug === 'flanges';
   const flangeData = isFlange ? getFlangeMaterialData(materialSlug) : null;
@@ -71,21 +74,51 @@ export const TypeDetailPage = () => {
   };
 
   const currentMaterialName = isFlange ? flangeData.materialName : material.name;
+  const currentProdDisplayName = isFlange ? 'Flanges' : (taxonomy.displayName || taxonomy.name);
+  const currentProdSlug = isFlange ? 'flanges' : taxonomy.slug;
+  const currentMatSlug = isFlange ? flangeData.slug : material.slug;
   const currentStandards = currentType.standards || (isFlange ? flangeData.standards : composite.standards);
-  const parentUrl = isFlange ? `/products/${flangeData.slug}/flanges` : `/products/${material.slug}/${taxonomy.slug}`;
+
+  const parentUrl = buildProductUrl({ product: currentProdSlug, material: currentMatSlug });
+  const productLandingUrl = buildProductUrl({ product: currentProdSlug });
+  const canonicalUrl = buildProductUrl({
+    product: currentProdSlug,
+    material: currentMatSlug,
+    grade: propGradeSlug,
+    type: currentType.slug,
+  });
 
   return (
     <div className="nirmex-catalogue-page">
+      <SEO
+        title={`${currentMaterialName} ${currentType.name} Manufacturer in Mumbai`}
+        description={`Nirmex Metal Industries manufactures, supplies, and exports certified ${currentMaterialName} ${currentType.name} in Mumbai, India. Conforming to ${currentStandards}. ASME B16.5 & DIN compliant.`}
+        canonical={canonicalUrl}
+        ogImage={currentType.image}
+        breadcrumbs={[
+          { name: 'Home', url: '/' },
+          { name: 'Products', url: productLandingUrl },
+          { name: currentProdDisplayName, url: productLandingUrl },
+          { name: currentMaterialName, url: parentUrl },
+          { name: currentType.name, url: canonicalUrl },
+        ]}
+        productSchema={{
+          name: `${currentMaterialName} ${currentType.name}`,
+          description: currentType.purpose || currentType.desc,
+          image: currentType.image,
+        }}
+      />
+
       <div className="nirmex-catalogue-container">
         {/* Topbar with Full Breadcrumbs & Back Navigation */}
         <div className="nirmex-catalogue-topbar">
           <nav className="nirmex-detail-crumbs" aria-label="Breadcrumb">
             <Link to="/" className="nirmex-detail-crumb-link">Home</Link>
             <span className="nirmex-detail-crumb-sep" aria-hidden="true">/</span>
-            <Link to={isFlange ? '/products/flanges' : `/products/${taxonomy.slug}`} className="nirmex-detail-crumb-link">Products</Link>
+            <Link to={productLandingUrl} className="nirmex-detail-crumb-link">Products</Link>
             <span className="nirmex-detail-crumb-sep" aria-hidden="true">/</span>
             <Link to={parentUrl} className="nirmex-detail-crumb-link">
-              {currentMaterialName} {isFlange ? 'Flanges' : (taxonomy.displayName || taxonomy.name)}
+              {currentMaterialName} {currentProdDisplayName}
             </Link>
             <span className="nirmex-detail-crumb-sep" aria-hidden="true">/</span>
             <span className="nirmex-detail-crumb-active">{currentType.name}</span>
@@ -93,7 +126,7 @@ export const TypeDetailPage = () => {
 
           <div className="nirmex-back-bar">
             <Link to={parentUrl} className="nirmex-back-link">
-              ← Back to All {currentMaterialName} {isFlange ? 'Flange' : (taxonomy.displayName || taxonomy.name)} Types
+              ← Back to All {currentMaterialName} {currentProdDisplayName} Types
             </Link>
           </div>
         </div>
@@ -268,7 +301,11 @@ export const TypeDetailPage = () => {
                   {relatedTypes.map((relType) => (
                     <Link
                       key={relType.slug}
-                      to={`/products/${isFlange ? flangeData.slug : material.slug}/${isFlange ? 'flanges' : taxonomy.slug}/types/${relType.slug}`}
+                      to={buildProductUrl({
+                        product: currentProdSlug,
+                        material: currentMatSlug,
+                        type: relType.slug,
+                      })}
                       className="nirmex-related-type-card"
                       role="listitem"
                     >

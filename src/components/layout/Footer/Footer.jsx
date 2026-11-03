@@ -1,7 +1,8 @@
 import React, { useState } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import nirmexLogo from '@/assets/logos/nirmex-logo.png';
 import { SITE_CONFIG } from '@/config/site.config';
+import { buildProductUrl } from '@/utils/seoRouting';
 import './Footer.css';
 
 /**
@@ -70,10 +71,32 @@ const CopyButton = ({ textToCopy, ariaLabel }) => {
  * Professional Multi-Column Industrial Corporate Footer
  */
 export const Footer = () => {
+  const navigate = useNavigate();
   const currentYear = new Date().getFullYear();
 
   const handleScrollToTop = () => {
     window.scrollTo({ top: 0, behavior: 'smooth' });
+  };
+
+  const handleLinkClick = (e, href) => {
+    if (href.startsWith('/#')) {
+      e.preventDefault();
+      const hash = href.replace('/#', '#');
+      if (window.location.pathname === '/') {
+        const el = document.querySelector(hash);
+        if (el) el.scrollIntoView({ behavior: 'smooth' });
+      } else {
+        navigate('/');
+        setTimeout(() => {
+          const el = document.querySelector(hash);
+          if (el) el.scrollIntoView({ behavior: 'smooth' });
+        }, 120);
+      }
+    } else if (href.startsWith('/')) {
+      e.preventDefault();
+      navigate(href);
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
   };
 
   return (
@@ -138,12 +161,16 @@ export const Footer = () => {
             <ul className="nirmex-footer__nav-list">
               {SITE_CONFIG.quickLinks.map((link) => (
                 <li key={link.label} className="nirmex-footer__nav-item">
-                  <a href={link.href} className="nirmex-footer__nav-link">
+                  <Link
+                    to={link.href}
+                    className="nirmex-footer__nav-link"
+                    onClick={(e) => handleLinkClick(e, link.href)}
+                  >
                     <svg className="nirmex-footer__link-chevron" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
                       <polyline points="9 18 15 12 9 6" />
                     </svg>
                     <span>{link.label}</span>
-                  </a>
+                  </Link>
                 </li>
               ))}
             </ul>
@@ -325,16 +352,16 @@ export const Footer = () => {
               Industrial Products
             </h4>
             <div className="nirmex-footer__directory-links">
-              <Link to="/products/flanges" className="nirmex-footer__dir-link">Flanges</Link>
-              <Link to="/products/forging" className="nirmex-footer__dir-link">Forged Fittings</Link>
-              <Link to="/products/butt-weld-fittings" className="nirmex-footer__dir-link">Butt Weld Fittings</Link>
-              <Link to="/products/fasteners" className="nirmex-footer__dir-link">Fasteners</Link>
-              <Link to="/products/pipes-tubes" className="nirmex-footer__dir-link">Pipes &amp; Tubes</Link>
-              <Link to="/products/sheets-plates" className="nirmex-footer__dir-link">Sheets &amp; Plates</Link>
-              <Link to="/products/rods-bars" className="nirmex-footer__dir-link">Rods &amp; Bars</Link>
-              <Link to="/products/dairy-pharma-fittings" className="nirmex-footer__dir-link">Dairy &amp; Pharma Fittings</Link>
-              <Link to="/products/flat-bars" className="nirmex-footer__dir-link">Flat Bars</Link>
-              <Link to="/products/circle" className="nirmex-footer__dir-link">Circles</Link>
+              <Link to={buildProductUrl({ product: 'flanges' })} className="nirmex-footer__dir-link">Flanges</Link>
+              <Link to={buildProductUrl({ product: 'forged-fittings' })} className="nirmex-footer__dir-link">Forged Fittings</Link>
+              <Link to={buildProductUrl({ product: 'butt-weld-fittings' })} className="nirmex-footer__dir-link">Butt Weld Fittings</Link>
+              <Link to={buildProductUrl({ product: 'fasteners' })} className="nirmex-footer__dir-link">Fasteners</Link>
+              <Link to={buildProductUrl({ product: 'pipes-tubes' })} className="nirmex-footer__dir-link">Pipes &amp; Tubes</Link>
+              <Link to={buildProductUrl({ product: 'sheets-plates' })} className="nirmex-footer__dir-link">Sheets &amp; Plates</Link>
+              <Link to={buildProductUrl({ product: 'rods-bars' })} className="nirmex-footer__dir-link">Rods &amp; Bars</Link>
+              <Link to={buildProductUrl({ product: 'dairy-pharma-fittings' })} className="nirmex-footer__dir-link">Dairy &amp; Pharma Fittings</Link>
+              <Link to={buildProductUrl({ product: 'flat-bars' })} className="nirmex-footer__dir-link">Flat Bars</Link>
+              <Link to={buildProductUrl({ product: 'circle' })} className="nirmex-footer__dir-link">Circles</Link>
             </div>
           </div>
 
@@ -354,6 +381,7 @@ export const Footer = () => {
               <Link to="/hastelloy" className="nirmex-footer__dir-link">Hastelloy</Link>
               <Link to="/titanium" className="nirmex-footer__dir-link">Titanium</Link>
               <Link to="/copper" className="nirmex-footer__dir-link">Copper</Link>
+              <Link to="/aluminium" className="nirmex-footer__dir-link">Aluminium</Link>
               <Link to="/high-alloy" className="nirmex-footer__dir-link">High Alloy</Link>
             </div>
           </div>
@@ -365,6 +393,18 @@ export const Footer = () => {
         <div className="nirmex-footer__bottom">
           <p className="nirmex-footer__copyright">
             &copy; {currentYear} <span className="nirmex-footer__copyright-brand">Nirmex Metal Industries</span>. All rights reserved.
+          </p>
+
+          <p className="nirmex-footer__credit">
+            Design &amp; SEO by{' '}
+            <a
+              href="https://sunmargindia.com/"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="nirmex-footer__credit-link"
+            >
+              SUNMAR INDIA
+            </a>
           </p>
 
           <div className="nirmex-footer__legal-links">

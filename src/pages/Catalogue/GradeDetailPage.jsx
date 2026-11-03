@@ -7,6 +7,8 @@ import {
   PRODUCT_TAXONOMY,
 } from '@/config/catalogue.data';
 import { getFlangeMaterialData } from '@/config/flangeMaterials.data';
+import { buildProductUrl } from '@/utils/seoRouting';
+import SEO from '@/components/common/SEO';
 import ProductMaterialSidebar from '@/components/catalogue/FlangeMaterialSidebar/FlangeMaterialSidebar';
 import MaterialEnquiryModal from '@/components/products/MaterialEnquiryModal/MaterialEnquiryModal';
 import CTASection from '@/components/home/CTA';
@@ -23,12 +25,13 @@ import './GradeDetailPage.css';
  * - Corrosion resistance & temperature thresholds
  * - Direct enquiry action prefilling grade data
  */
-export const GradeDetailPage = () => {
-  const { material: matParam, product: prodParam, gradeSlug } = useParams();
+export const GradeDetailPage = ({ materialSlug: propMatSlug, productSlug: propProdSlug, gradeSlug: propGradeSlug } = {}) => {
+  const { material: matParam, product: prodParam, gradeSlug: paramGradeSlug } = useParams();
   const navigate = useNavigate();
 
-  const materialSlug = matParam || 'stainless-steel';
-  const productSlug = prodParam || 'flanges';
+  const materialSlug = propMatSlug || matParam || 'stainless-steel';
+  const productSlug = propProdSlug || prodParam || 'flanges';
+  const activeGradeSlug = propGradeSlug || paramGradeSlug || '304';
 
   const isFlange = productSlug === 'flanges';
   const flangeData = isFlange ? getFlangeMaterialData(materialSlug) : null;
@@ -53,7 +56,7 @@ export const GradeDetailPage = () => {
       }
     : composite.grades[0];
 
-  const grade = getGradeBySlug(gradeSlug) || fallbackGrade;
+  const grade = getGradeBySlug(activeGradeSlug) || fallbackGrade;
   
   const allGrades = isFlange
     ? flangeData.availableGrades.map((g) => ({
@@ -67,27 +70,52 @@ export const GradeDetailPage = () => {
 
   useEffect(() => {
     window.scrollTo({ top: 0, behavior: 'instant' });
-  }, [materialSlug, productSlug, gradeSlug]);
+  }, [materialSlug, productSlug, activeGradeSlug]);
 
   const handleOpenQuote = () => {
     setIsModalOpen(true);
   };
 
   const currentMaterialName = isFlange ? flangeData.materialName : material.name;
-  const parentUrl = isFlange ? `/products/${flangeData.slug}/flanges` : `/products/${material.slug}/${taxonomy.slug}`;
+  const currentProdDisplayName = isFlange ? 'Flanges' : (taxonomy.displayName || taxonomy.name);
+  const currentProdSlug = isFlange ? 'flanges' : taxonomy.slug;
+  const currentMatSlug = isFlange ? flangeData.slug : material.slug;
+
+  const parentUrl = buildProductUrl({ product: currentProdSlug, material: currentMatSlug });
+  const productLandingUrl = buildProductUrl({ product: currentProdSlug });
+  const canonicalUrl = buildProductUrl({ product: currentProdSlug, material: currentMatSlug, grade: grade.slug });
 
   return (
     <div className="nirmex-catalogue-page">
+      <SEO
+        title={`${currentMaterialName} ${grade.designation || grade.slug.toUpperCase()} ${currentProdDisplayName} Manufacturer in Mumbai`}
+        description={`Complete technical specification, ASME/ASTM standards, chemical composition, and mechanical properties of ${currentMaterialName} Grade ${grade.designation || grade.slug.toUpperCase()} ${currentProdDisplayName}. Manufactured by Nirmex Metal Industries in Mumbai, India.`}
+        canonical={canonicalUrl}
+        ogImage={heroImage}
+        breadcrumbs={[
+          { name: 'Home', url: '/' },
+          { name: 'Products', url: productLandingUrl },
+          { name: currentProdDisplayName, url: productLandingUrl },
+          { name: currentMaterialName, url: parentUrl },
+          { name: `Grade ${grade.slug.toUpperCase()}`, url: canonicalUrl },
+        ]}
+        productSchema={{
+          name: `${currentMaterialName} Grade ${grade.designation || grade.slug.toUpperCase()} ${currentProdDisplayName}`,
+          description: grade.overview,
+          image: heroImage,
+        }}
+      />
+
       <div className="nirmex-catalogue-container">
         {/* Topbar with Full Breadcrumbs & Back Navigation */}
         <div className="nirmex-catalogue-topbar">
           <nav className="nirmex-detail-crumbs" aria-label="Breadcrumb">
             <Link to="/" className="nirmex-detail-crumb-link">Home</Link>
             <span className="nirmex-detail-crumb-sep" aria-hidden="true">/</span>
-            <Link to={isFlange ? '/products/flanges' : `/products/${taxonomy.slug}`} className="nirmex-detail-crumb-link">Products</Link>
+            <Link to={productLandingUrl} className="nirmex-detail-crumb-link">Products</Link>
             <span className="nirmex-detail-crumb-sep" aria-hidden="true">/</span>
             <Link to={parentUrl} className="nirmex-detail-crumb-link">
-              {currentMaterialName} {isFlange ? 'Flanges' : (taxonomy.displayName || taxonomy.name)}
+              {currentMaterialName} {currentProdDisplayName}
             </Link>
             <span className="nirmex-detail-crumb-sep" aria-hidden="true">/</span>
             <span className="nirmex-detail-crumb-active">{grade.slug.toUpperCase()}</span>
@@ -95,7 +123,7 @@ export const GradeDetailPage = () => {
 
           <div className="nirmex-back-bar">
             <Link to={parentUrl} className="nirmex-back-link">
-              ← Back to {currentMaterialName} {isFlange ? 'Flanges' : (taxonomy.displayName || taxonomy.name)} Overview
+              ← Back to {currentMaterialName} {currentProdDisplayName} Overview
             </Link>
           </div>
         </div>
@@ -157,7 +185,11 @@ export const GradeDetailPage = () => {
                   {allGrades.map((g) => (
                     <Link
                       key={g.slug}
-                      to={`/products/${isFlange ? flangeData.slug : material.slug}/${isFlange ? 'flanges' : taxonomy.slug}/grades/${g.slug}`}
+                      to={buildProductUrl({
+                        product: currentProdSlug,
+                        material: currentMatSlug,
+                        grade: g.slug,
+                      })}
                       className={`nirmex-grade-pill ${g.slug.toLowerCase() === grade.slug.toLowerCase() ? 'nirmex-grade-pill--active' : ''}`}
                     >
                       {g.slug.toUpperCase()}

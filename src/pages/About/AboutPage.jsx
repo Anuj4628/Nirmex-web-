@@ -1,6 +1,8 @@
 import React, { useEffect } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import CTASection from '@/components/home/CTA';
+import { buildProductUrl } from '@/utils/seoRouting';
+import SEO from '@/components/common/SEO';
 
 // Import authentic project assets
 import aboutHeroImg from '@/assets/images/about-hero-factory.jpg';
@@ -14,7 +16,7 @@ import qualityInspectionImg from '@/assets/services/service-03-material-inspecti
 import './AboutPage.css';
 
 /**
- * Material cards data for Section 8
+ * Material cards data for Section 8 with Canonical SEO URLs
  */
 const MATERIAL_OPTIONS = [
   {
@@ -23,7 +25,7 @@ const MATERIAL_OPTIONS = [
     code: 'SS 300 / 400 Series',
     spec: 'ASTM A182 / A312 / A240',
     grades: '304, 304L, 316, 316L, 321, 310, 347, 904L',
-    link: '/products/stainless-steel/flanges',
+    link: buildProductUrl({ product: 'flanges', material: 'stainless-steel' }),
   },
   {
     id: 'mat-cs',
@@ -31,7 +33,7 @@ const MATERIAL_OPTIONS = [
     code: 'High Tensile / LTCS',
     spec: 'ASTM A105 / A350 / A106',
     grades: 'A105, A350 LF2, A106 Gr. B, A234 WPB',
-    link: '/products/carbon-steel/flanges',
+    link: buildProductUrl({ product: 'flanges', material: 'carbon-steel' }),
   },
   {
     id: 'mat-as',
@@ -39,7 +41,7 @@ const MATERIAL_OPTIONS = [
     code: 'Chrome-Moly Alloy',
     spec: 'ASTM A182 / A335 / A234',
     grades: 'F5, F9, F11, F22, F91, P11, P22, P91',
-    link: '/products/alloy-steel/flanges',
+    link: buildProductUrl({ product: 'flanges', material: 'alloy-steel' }),
   },
   {
     id: 'mat-duplex',
@@ -47,7 +49,7 @@ const MATERIAL_OPTIONS = [
     code: 'UNS S31803 / S32205',
     spec: 'ASTM A182 F51 / F60',
     grades: '2205 Microstructure, NACE MR0175',
-    link: '/products/duplex-super-duplex/flanges',
+    link: buildProductUrl({ product: 'flanges', material: 'duplex-super-duplex' }),
   },
   {
     id: 'mat-super-duplex',
@@ -55,7 +57,7 @@ const MATERIAL_OPTIONS = [
     code: 'UNS S32750 / S32760',
     spec: 'ASTM A182 F53 / F55',
     grades: '2507 Super Duplex, PREN ≥ 42',
-    link: '/products/duplex-super-duplex/flanges',
+    link: buildProductUrl({ product: 'flanges', material: 'duplex-super-duplex' }),
   },
   {
     id: 'mat-nickel',
@@ -63,7 +65,7 @@ const MATERIAL_OPTIONS = [
     code: 'High Performance Alloys',
     spec: 'ASTM B564 / ASME SB564',
     grades: 'Alloy 200, 400, 600, 625, 800H, 825',
-    link: '/products/nickel-alloy/flanges',
+    link: buildProductUrl({ product: 'flanges', material: 'nickel-alloy' }),
   },
   {
     id: 'mat-monel',
@@ -71,7 +73,7 @@ const MATERIAL_OPTIONS = [
     code: 'Nickel-Copper Binary',
     spec: 'ASTM B564 / B164 / B127',
     grades: 'Monel 400 (N04400), Monel K-500 (N05500)',
-    link: '/products/monel/flanges',
+    link: buildProductUrl({ product: 'flanges', material: 'monel' }),
   },
   {
     id: 'mat-inconel',
@@ -79,7 +81,7 @@ const MATERIAL_OPTIONS = [
     code: 'High-Temperature Superalloys',
     spec: 'ASTM B564 / B166 / B637',
     grades: 'Inconel 600, Inconel 625, Inconel 718',
-    link: '/products/inconel/flanges',
+    link: buildProductUrl({ product: 'flanges', material: 'inconel' }),
   },
   {
     id: 'mat-hastelloy',
@@ -87,7 +89,7 @@ const MATERIAL_OPTIONS = [
     code: 'Ni-Mo-Cr Corrosion Superalloy',
     spec: 'ASTM B564 / B574 / B575',
     grades: 'Hastelloy C-276, C-22, B-2',
-    link: '/products/hastelloy/flanges',
+    link: buildProductUrl({ product: 'flanges', material: 'hastelloy' }),
   },
   {
     id: 'mat-titanium',
@@ -95,7 +97,7 @@ const MATERIAL_OPTIONS = [
     code: 'CP & Alpha-Beta Alloys',
     spec: 'ASTM B381 / B348 / B265',
     grades: 'Grade 1, Grade 2 (CP), Grade 5 (Ti-6Al-4V)',
-    link: '/products/titanium/flanges',
+    link: buildProductUrl({ product: 'flanges', material: 'titanium' }),
   },
   {
     id: 'mat-copper',
@@ -103,7 +105,7 @@ const MATERIAL_OPTIONS = [
     code: 'Marine Antifouling Alloys',
     spec: 'ASTM B151 / B124 / DIN 86037',
     grades: 'Cu-Ni 90/10 (C70600), Cu-Ni 70/30, Naval Brass',
-    link: '/products/copper/flanges',
+    link: buildProductUrl({ product: 'flanges', material: 'copper' }),
   },
 ];
 
@@ -184,21 +186,29 @@ export const AboutPage = () => {
     const contactEl = document.querySelector('#contact');
     if (contactEl) {
       contactEl.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    } else {
+      navigate('/contact');
+      window.scrollTo({ top: 0, behavior: 'smooth' });
     }
   };
 
   const handleScrollToSpecialities = (e) => {
     e.preventDefault();
-    const targetEl = document.querySelector('#specialities');
-    if (targetEl) {
-      targetEl.scrollIntoView({ behavior: 'smooth', block: 'start' });
-    } else {
-      navigate('/products/forging');
-    }
+    navigate('/products/forging');
+    window.scrollTo({ top: 0, behavior: 'smooth' });
   };
 
   return (
     <div className="nirmex-about-page">
+      <SEO
+        title="About Us - Leading Industrial Metal Manufacturer & Sourcing Partner in Mumbai"
+        description="Nirmex Metal Industries is an ISO 9001:2015 certified manufacturer, stockist, and global exporter of industrial flanges, forged fittings, buttweld fittings, and fasteners in Mumbai, India."
+        canonical="/about"
+        breadcrumbs={[
+          { name: 'Home', url: '/' },
+          { name: 'About Us', url: '/about' },
+        ]}
+      />
       {/* =====================================================================
           SECTION 1: PREMIUM INDUSTRIAL HERO SECTION
           ===================================================================== */}
@@ -426,7 +436,7 @@ export const AboutPage = () => {
               </ul>
 
               <div className="nirmex-product-sec__action">
-                <Link to="/products/forging" className="nirmex-btn nirmex-btn--primary">
+                <Link to={buildProductUrl({ product: 'forged-fittings' })} className="nirmex-btn nirmex-btn--primary">
                   <span>Explore Forged Fittings</span>
                   <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
                     <line x1="5" y1="12" x2="19" y2="12" />
@@ -482,7 +492,7 @@ export const AboutPage = () => {
               </ul>
 
               <div className="nirmex-product-sec__action">
-                <Link to="/products/flanges" className="nirmex-btn nirmex-btn--primary">
+                <Link to={buildProductUrl({ product: 'flanges' })} className="nirmex-btn nirmex-btn--primary">
                   <span>Explore Flanges</span>
                   <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
                     <line x1="5" y1="12" x2="19" y2="12" />
@@ -562,7 +572,7 @@ export const AboutPage = () => {
               </ul>
 
               <div className="nirmex-product-sec__action">
-                <Link to="/products/fasteners" className="nirmex-btn nirmex-btn--primary">
+                <Link to={buildProductUrl({ product: 'fasteners' })} className="nirmex-btn nirmex-btn--primary">
                   <span>Explore Fasteners</span>
                   <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
                     <line x1="5" y1="12" x2="19" y2="12" />
@@ -618,7 +628,7 @@ export const AboutPage = () => {
               </ul>
 
               <div className="nirmex-product-sec__action">
-                <Link to="/products/butt-weld-fittings" className="nirmex-btn nirmex-btn--primary">
+                <Link to={buildProductUrl({ product: 'butt-weld-fittings' })} className="nirmex-btn nirmex-btn--primary">
                   <span>Explore Buttweld Fittings</span>
                   <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
                     <line x1="5" y1="12" x2="19" y2="12" />

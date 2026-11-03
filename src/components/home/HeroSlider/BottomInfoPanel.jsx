@@ -1,4 +1,5 @@
 import React from 'react';
+import { useNavigate } from 'react-router-dom';
 
 /**
  * Bottom Category Information Panel
@@ -10,15 +11,25 @@ import React from 'react';
  * @param {string} props.slideNumber - Active slide number (01, 02, etc.)
  */
 export const BottomInfoPanel = ({ panelData, slideNumber }) => {
+  const navigate = useNavigate();
   if (!panelData) return null;
 
   const { brandBlockTitle, brandBlockSubtitle, cards } = panelData;
 
   const handleCardClick = (e, href) => {
     e.preventDefault();
-    const target = document.querySelector(href);
-    if (target) {
-      target.scrollIntoView({ behavior: 'smooth' });
+    if (!href) return;
+    if (href.startsWith('/')) {
+      navigate(href);
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    } else {
+      const target = document.querySelector(href);
+      if (target) {
+        target.scrollIntoView({ behavior: 'smooth' });
+      } else if (href === '#contact' || href === '#enquiry') {
+        navigate('/contact');
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+      }
     }
   };
 
