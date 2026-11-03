@@ -325,3 +325,31 @@
     font-size: 11.5px;
   }
 }
+
+/* Micro Mobile (<= 480px) */
+@media (max-width: 480px) {
+  .countries-export {
+    padding: 2.75rem 0;
+  }
+
+  .countries-export__container {
+    padding: 0 0.85rem;
+  }
+
+  .countries-export__card {
+    padding: 1.5rem 1rem;
+    border-radius: 14px;
+  }
+
+  .countries-export__title {
+    font-size: clamp(21px, 6vw, 25px);
+  }
+
+  .countries-export__description {
+    font-size: 13.5px;
+  }
+
+  .countries-export__map-canvas {
+    min-height: 290px;
+  }
+}

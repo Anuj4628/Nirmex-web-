@@ -65,15 +65,18 @@
 
 .nirmex-header__logo-img {
   display: block;
-  height: 68px; /* Significantly larger, highly prominent brand logo */
+  height: 60px; /* High-clarity, large prominent brand logo filling the navbar height */
   width: auto;
-  max-width: 275px;
+  max-width: 295px;
   object-fit: contain;
+  image-rendering: -webkit-optimize-contrast;
+  image-rendering: crisp-edges;
   transition: height var(--transition-normal);
 }
 
 .nirmex-header--scrolled .nirmex-header__logo-img {
-  height: 56px;
+  height: 50px;
+  max-width: 250px;
 }
 
 /* ==========================================================================
@@ -393,10 +396,12 @@
 }
 
 .nirmex-mobile-drawer__logo-img {
-  height: 44px;
+  height: 48px;
   width: auto;
-  max-width: 180px;
+  max-width: 235px;
   object-fit: contain;
+  image-rendering: -webkit-optimize-contrast;
+  image-rendering: crisp-edges;
 }
 
 .nirmex-mobile-drawer__close-btn {
@@ -595,49 +600,75 @@
   }
 
   .nirmex-header__logo-img {
-    height: 62px;
-    max-width: 250px;
+    height: 54px;
+    max-width: 265px;
   }
 }
 
-/* Tablet & Mobile Breakpoint (Below 992px) */
-@media (max-width: 992px) {
+/* Tablet & Mobile Breakpoint (1024px and below) - Completely remove Get Quote from header */
+@media (max-width: 1024px) {
   :root {
     --navbar-height-desktop: 84px;
     --container-padding: 1.5rem;
   }
 
   .nirmex-header__nav {
-    display: none;
+    display: none !important;
   }
 
+  /* Strict requirement: Hide Get Quote button on mobile & compact tablet */
   .nirmex-header__cta-btn {
-    display: none;
+    display: none !important;
   }
 
   .nirmex-header__hamburger {
-    display: flex;
+    display: flex !important;
+  }
+
+  .nirmex-header__brand {
+    max-width: none;
+    min-width: 0;
   }
 
   .nirmex-header__logo-img {
-    height: 56px;
-    max-width: 220px;
+    height: 52px;
+    max-width: 255px;
   }
 }
 
 /* Mobile Small (Below 480px) */
 @media (max-width: 480px) {
   :root {
-    --navbar-height-desktop: 76px;
-    --container-padding: 1.25rem;
+    --navbar-height-desktop: 72px;
+    --container-padding: 1rem;
   }
 
   .nirmex-header__logo-img {
-    height: 50px;
-    max-width: 195px;
+    height: 44px;
+    max-width: 215px;
+  }
+
+  .nirmex-header__hamburger {
+    width: 40px;
+    height: 40px;
+    padding: 6px;
   }
 
   .nirmex-mobile-drawer__panel {
-    max-width: 86%;
+    max-width: 90%;
+    width: 320px;
+  }
+}
+
+/* Micro Mobile (320px - 360px) */
+@media (max-width: 360px) {
+  :root {
+    --navbar-height-desktop: 66px;
+    --container-padding: 0.75rem;
+  }
+
+  .nirmex-header__logo-img {
+    height: 38px;
+    max-width: 185px;
   }
 }

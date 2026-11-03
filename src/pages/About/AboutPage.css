@@ -789,3 +789,33 @@
   }
 }
 
+/* Micro Mobile (<= 480px) */
+@media (max-width: 480px) {
+  .nirmex-about-container,
+  .nirmex-about-hero__container {
+    padding-left: 1rem;
+    padding-right: 1rem;
+  }
+
+  .nirmex-about-hero__content {
+    padding: 1.5rem 1.15rem;
+  }
+
+  .nirmex-about-hero__title {
+    font-size: clamp(22px, 6.5vw, 28px);
+  }
+
+  .nirmex-about-section {
+    padding-top: 2.75rem;
+    padding-bottom: 2.75rem;
+  }
+
+  .nirmex-product-showcase-box {
+    height: 220px;
+  }
+
+  .nirmex-media-card__img {
+    height: 220px;
+  }
+}
+

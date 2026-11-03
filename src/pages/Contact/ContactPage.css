@@ -1103,3 +1103,38 @@
     justify-content: center;
   }
 }
+
+/* Micro Mobile (<= 480px) */
+@media (max-width: 480px) {
+  .nirmex-contact-container {
+    padding-left: 1rem;
+    padding-right: 1rem;
+  }
+
+  .nirmex-contact-hero__card {
+    padding: 1.5rem 1.15rem;
+    border-radius: 12px;
+  }
+
+  .nirmex-contact-hero__title {
+    font-size: clamp(21px, 6.2vw, 26px);
+  }
+
+  .nirmex-contact-heading {
+    font-size: clamp(21px, 6.2vw, 26px);
+  }
+
+  .nirmex-form-card {
+    padding: 1.5rem 1rem;
+    border-radius: 12px;
+  }
+
+  .nirmex-info-card {
+    padding: 1.5rem 1.15rem;
+  }
+
+  .nirmex-choice-modal {
+    padding: 1.25rem 1rem;
+    width: 95%;
+  }
+}

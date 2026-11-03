@@ -529,6 +529,37 @@
   }
 }
 
+/* Micro Mobile (<= 480px) */
+@media (max-width: 480px) {
+  .industries-serve {
+    padding: 2.75rem 0 3.25rem;
+  }
+
+  .industries-serve__container {
+    padding: 0 1rem;
+  }
+
+  .industries-serve__heading {
+    font-size: clamp(21px, 6.2vw, 25px);
+  }
+
+  .industry-card {
+    height: 410px;
+    border-radius: 14px;
+  }
+
+  .industry-card__face--front,
+  .industry-card__face--back {
+    padding: 1.1rem;
+    border-radius: 14px;
+  }
+
+  .industry-card__front-title,
+  .industry-card__back-title {
+    font-size: 19px;
+  }
+}
+
 /* Accessibility: Respect Reduced Motion Preferences */
 @media (prefers-reduced-motion: reduce) {
   .industry-card,

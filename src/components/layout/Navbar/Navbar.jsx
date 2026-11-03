@@ -259,8 +259,8 @@ export const Navbar = () => {
               src={nirmexLogo}
               alt="Nirmex Metal Industries"
               className="nirmex-header__logo-img"
-              width="240"
-              height="80"
+              width="290"
+              height="60"
             />
           </a>
         </div>

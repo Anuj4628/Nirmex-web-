@@ -406,12 +406,40 @@
 @media (max-width: 768px) {
   .nirmex-material-modal__body {
     grid-template-columns: 1fr;
+    padding: 20px 16px;
   }
   .nirmex-material-modal__row {
     grid-template-columns: 1fr;
   }
   .nirmex-material-modal__form-actions {
     flex-direction: column;
+  }
+  .nirmex-material-modal__header {
+    padding: 20px 20px 14px;
+  }
+}
+
+@media (max-width: 480px) {
+  .nirmex-material-modal__backdrop {
+    padding: 0.5rem;
+  }
+  .nirmex-material-modal__card {
+    max-height: 94vh;
+    border-radius: 10px;
+  }
+  .nirmex-material-modal__header {
+    padding: 16px 14px 12px;
+  }
+  .nirmex-material-modal__title {
+    font-size: 17px;
+  }
+  .nirmex-material-modal__body {
+    padding: 14px 12px;
+    gap: 16px;
+  }
+  .nirmex-material-modal__btn {
+    width: 100%;
+    justify-content: center;
   }
 }
 

@@ -3,6 +3,6 @@
   min-height: 100vh;
   display: flex;
   flex-direction: column;
-  overflow-x: clip;
+  overflow-x: hidden;
   box-sizing: border-box;
 }

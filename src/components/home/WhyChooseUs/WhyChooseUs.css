@@ -294,3 +294,35 @@
   }
 }
 
+/* Micro Mobile (<= 480px) */
+@media (max-width: 480px) {
+  .why-choose-us {
+    padding: 2.75rem 0 3.25rem;
+  }
+
+  .why-choose-us__container {
+    padding: 0 1rem;
+    gap: 1.75rem;
+  }
+
+  .why-choose-us__image-frame {
+    min-height: 200px;
+    aspect-ratio: 16 / 10;
+    border-radius: 14px;
+  }
+
+  .why-choose-us__heading {
+    font-size: clamp(21px, 6.2vw, 25px);
+  }
+
+  .why-choose-us__description {
+    font-size: 13.5px;
+    margin-bottom: 1.25rem;
+  }
+
+  .why-choose-us__card {
+    padding: 1rem;
+    border-radius: 12px;
+  }
+}
+

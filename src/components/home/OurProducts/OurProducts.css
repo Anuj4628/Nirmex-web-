@@ -537,3 +537,41 @@
     padding: 10px 18px;
   }
 }
+
+/* Micro Mobile (< 480px) */
+@media (max-width: 480px) {
+  .our-products {
+    padding: 2.5rem 0 3rem;
+  }
+
+  .our-products__title {
+    font-size: clamp(26px, 7.5vw, 32px);
+  }
+
+  .our-products__subtitle {
+    font-size: 13.5px;
+  }
+
+  .our-product-card {
+    border-radius: 14px;
+    padding: 1rem;
+  }
+
+  .our-product-card--featured {
+    padding: 1rem;
+  }
+
+  .our-product-card__image-container--featured,
+  .our-product-card__image-container--two-col,
+  .our-product-card__image-container--three-col {
+    height: 165px;
+  }
+
+  .our-product-card__title {
+    font-size: 19px;
+  }
+
+  .our-product-card__description {
+    font-size: 12.5px;
+  }
+}

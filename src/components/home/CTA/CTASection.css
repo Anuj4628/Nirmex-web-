@@ -241,3 +241,33 @@
   }
 }
 
+/* Micro Mobile (<= 480px) */
+@media (max-width: 480px) {
+  .nirmex-cta {
+    padding: 2.75rem 0 1rem;
+  }
+
+  .nirmex-cta__container {
+    padding: 0 1rem;
+  }
+
+  .nirmex-cta__card {
+    padding: 2rem 1rem;
+    border-radius: 14px;
+  }
+
+  .nirmex-cta__heading {
+    font-size: clamp(21px, 6.2vw, 26px);
+  }
+
+  .nirmex-cta__description {
+    font-size: 13.5px;
+    margin-bottom: 1.75rem;
+  }
+
+  .nirmex-cta__btn {
+    padding: 12px 20px;
+    font-size: 14px;
+  }
+}
+

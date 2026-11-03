@@ -338,3 +338,26 @@
   }
 }
 
+@media (max-width: 480px) {
+  .nirmex-type-hero-card {
+    padding: 16px 12px;
+    border-radius: 10px;
+  }
+
+  .nirmex-type-hero-card__title {
+    font-size: 20px;
+  }
+
+  .nirmex-type-hero-card__img-wrap {
+    height: 210px;
+  }
+
+  .nirmex-features-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .nirmex-feature-card {
+    padding: 14px 12px;
+  }
+}
+

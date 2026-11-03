@@ -342,3 +342,25 @@
   }
 }
 
+/* Micro Mobile (<= 480px) */
+@media (max-width: 480px) {
+  .our-clients {
+    padding: 2.75rem 0 3rem;
+  }
+
+  .our-clients__heading {
+    font-size: clamp(20px, 6vw, 24px);
+  }
+
+  .client-logo-card {
+    width: 140px;
+    height: 68px;
+    padding: 0.5rem 0.75rem;
+  }
+
+  .client-logo-card__img {
+    max-width: 95px;
+    max-height: 32px;
+  }
+}
+

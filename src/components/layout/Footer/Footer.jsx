@@ -123,8 +123,8 @@ export const Footer = () => {
                   src={nirmexLogo}
                   alt="Nirmex Metal Industries Logo"
                   className="nirmex-footer__logo"
-                  width="240"
-                  height="80"
+                  width="270"
+                  height="56"
                 />
               </a>
             </div>
@@ -157,7 +157,10 @@ export const Footer = () => {
               COLUMN 2: QUICK LINKS & CORE CAPABILITIES
               ------------------------------------------------------------- */}
           <div className="nirmex-footer__col nirmex-footer__col--links">
-            <h3 className="nirmex-footer__col-title">Quick Navigation</h3>
+            <h3 className="nirmex-footer__col-title">
+              <span className="footer-title-dot" aria-hidden="true" />
+              Quick Navigation
+            </h3>
             <ul className="nirmex-footer__nav-list">
               {SITE_CONFIG.quickLinks.map((link) => (
                 <li key={link.label} className="nirmex-footer__nav-item">

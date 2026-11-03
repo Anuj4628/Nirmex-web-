@@ -195,5 +195,34 @@
   .nirmex-grade-app-list {
     grid-template-columns: 1fr;
   }
+
+  .nirmex-grade-hero-card {
+    padding: 20px 16px;
+  }
+}
+
+@media (max-width: 480px) {
+  .nirmex-grade-hero-card {
+    padding: 16px 12px;
+    border-radius: 10px;
+  }
+
+  .nirmex-grade-hero-card__title {
+    font-size: 20px;
+  }
+
+  .nirmex-grade-hero-card__actions {
+    flex-direction: column;
+    width: 100%;
+  }
+
+  .nirmex-grade-hero-card__actions .nirmex-btn {
+    width: 100%;
+    justify-content: center;
+  }
+
+  .nirmex-grade-switcher-sec {
+    padding: 12px 14px;
+  }
 }
 

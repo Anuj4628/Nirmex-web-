@@ -130,6 +130,8 @@ export const MobileMenu = ({
               src={logoSrc}
               alt="Nirmex Metal Industries Logo"
               className="nirmex-mobile-drawer__logo-img"
+              width="230"
+              height="48"
             />
           </a>
           <button

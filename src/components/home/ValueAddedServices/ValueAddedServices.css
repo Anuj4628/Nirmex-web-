@@ -470,3 +470,33 @@
   }
 }
 
+/* Micro Mobile (<= 480px) */
+@media (max-width: 480px) {
+  .value-added-services {
+    padding: 2.75rem 0 3.25rem;
+  }
+
+  .value-added-services__container {
+    padding: 0 1rem;
+  }
+
+  .value-added-services__heading {
+    font-size: clamp(21px, 6.2vw, 25px);
+  }
+
+  .value-added-services__subtitle {
+    font-size: 13.5px;
+  }
+
+  .value-service-card {
+    padding: 1.1rem;
+    border-radius: 14px;
+  }
+
+  .value-service-card__media--large,
+  .value-service-card__media--compact,
+  .value-service-card__media--standard {
+    height: 155px;
+  }
+}
+

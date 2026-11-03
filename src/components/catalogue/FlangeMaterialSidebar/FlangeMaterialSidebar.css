@@ -220,9 +220,9 @@
 }
 
 /* ==========================================================================
-   MOBILE & TABLET RESPONSIVENESS
+   MOBILE & TABLET RESPONSIVENESS (1024px and below)
    ========================================================================== */
-@media (max-width: 991px) {
+@media (max-width: 1024px) {
   .nirmex-flange-sidebar-wrap {
     width: 100%;
     position: static;

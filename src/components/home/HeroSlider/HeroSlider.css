@@ -54,6 +54,12 @@
   pointer-events: auto;
 }
 
+.hero-slide--hidden {
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+}
+
 /* ==========================================================================
    Left Column: Oversized Editorial Typography & CTAs (~45% width)
    ========================================================================== */
@@ -551,83 +557,370 @@
   }
 }
 
-/* Tablet Screens (768px - 1024px) */
+/* Tablet & Mobile Breakpoint (1024px and below) */
 @media (max-width: 1024px) {
   .nirmex-hero {
     height: auto;
     min-height: auto;
     max-height: none;
     overflow: visible;
-    padding-bottom: 2rem;
+    padding-bottom: 1.5rem;
   }
 
+  .nirmex-hero__slides-wrapper {
+    flex: none;
+    height: auto;
+    width: 100%;
+    overflow: visible;
+  }
+
+  /* CRITICAL: Inactive slides must not occupy layout space in document flow */
   .hero-slide {
+    display: none !important;
     position: relative;
     height: auto;
+    width: 100%;
     flex-direction: column;
+    opacity: 0;
+  }
+
+  .hero-slide.hero-slide--active {
+    display: flex !important;
+    opacity: 1;
+    visibility: visible;
+    pointer-events: auto;
+  }
+
+  .hero-slide.hero-slide--hidden {
+    display: none !important;
   }
 
   .hero-slide__col-text {
     flex: none;
+    width: 100%;
     max-width: 100%;
-    padding: 2rem var(--container-padding) 1rem var(--container-padding);
+    padding: 1.5rem var(--container-padding) 1rem var(--container-padding);
+    box-sizing: border-box;
   }
 
   .hero-slide__col-visual {
     position: relative;
     width: 100%;
-    height: 380px;
+    height: 320px;
     top: auto;
     right: auto;
     bottom: auto;
+    padding: 0 var(--container-padding);
+    box-sizing: border-box;
+    z-index: 5;
   }
 
   .hero-slide__diagonal-frame {
-    clip-path: polygon(0% 0%, 100% 0%, 100% 100%, 0% 100%);
+    clip-path: none;
+    border-radius: 8px;
+    width: 100%;
+    height: 100%;
   }
 
   .hero-slide__diagonal-seam {
     display: none;
   }
 
+  .nirmex-hero__controls {
+    margin-top: 14px;
+    margin-bottom: 14px;
+    padding: 0 var(--container-padding);
+  }
+
+  .hero-bottom-panel {
+    padding: 0 var(--container-padding);
+  }
+
   .hero-bottom-panel__inner {
     flex-direction: column;
+    border-radius: 10px;
   }
 
   .hero-bottom-panel__brand-block {
     flex: none;
     width: 100%;
     clip-path: none;
+    padding: 10px 14px;
+    min-height: 60px;
+    justify-content: center;
+  }
+
+  .hero-bottom-panel__brand-title {
+    font-size: 16px;
+    margin-bottom: 2px;
+  }
+
+  .hero-bottom-panel__brand-subtitle {
+    font-size: 11px;
+  }
+
+  .hero-bottom-panel__cards-container {
+    padding: 8px 10px;
+  }
+
+  .hero-bottom-panel__cards-grid {
+    grid-template-columns: repeat(3, 1fr);
+    gap: 8px;
   }
 }
 
 /* Mobile Screens (Below 768px) */
 @media (max-width: 768px) {
   .nirmex-hero {
-    height: auto;
-    min-height: auto;
-    max-height: none;
-    overflow: visible;
-    padding-bottom: 2rem;
+    padding-bottom: 1.25rem;
   }
 
   .hero-slide__col-text {
-    padding: 1.5rem var(--container-padding) 1rem var(--container-padding);
+    padding: 1.25rem var(--container-padding, 1.25rem) 0.75rem var(--container-padding, 1.25rem);
+  }
+
+  .hero-slide__eyebrow-wrap {
+    margin-bottom: 0.35rem;
+    gap: 8px;
+  }
+
+  .hero-slide__eyebrow {
+    font-size: 11px;
+    letter-spacing: 0.12em;
+  }
+
+  /* Consistent headline height across all 4 slides prevents vertical jump */
+  .hero-slide__headline {
+    margin-bottom: 0.5rem;
+    min-height: 68px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
   }
 
   .hero-slide__headline-accent {
-    font-size: 40px;
+    font-size: clamp(25px, 6.5vw, 34px);
+    line-height: 1.05;
   }
 
   .hero-slide__headline-main {
-    font-size: 42px;
+    font-size: clamp(27px, 7vw, 36px);
+    line-height: 1.05;
+    margin-top: 1px;
+  }
+
+  /* Consistent description height across all 4 slides prevents vertical jump */
+  .hero-slide__description {
+    font-size: 13.5px;
+    line-height: 1.45;
+    min-height: 56px;
+    margin-bottom: 0.85rem;
+    max-width: 100%;
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+  }
+
+  .hero-slide__cta-group {
+    gap: 8px;
+    width: 100%;
   }
 
   .hero-slide__col-visual {
-    height: 280px;
+    height: 230px;
+  }
+
+  .nirmex-hero__controls {
+    margin-top: 12px;
+    margin-bottom: 12px;
+  }
+
+  .nirmex-hero__controls-inner {
+    justify-content: center;
+    gap: 10px;
   }
 
   .hero-bottom-panel__cards-grid {
     grid-template-columns: 1fr;
+    gap: 6px;
+  }
+
+  .hero-bottom-card {
+    padding: 7px 10px;
+    min-height: 42px;
+  }
+
+  .hero-bottom-card__title {
+    font-size: 12px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+
+  .hero-bottom-card__subtitle {
+    font-size: 10.5px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+}
+
+/* Micro Mobile Screens (320px - 480px) */
+@media (max-width: 480px) {
+  .nirmex-hero {
+    padding-bottom: 1rem;
+  }
+
+  .hero-slide__col-text {
+    padding: 1rem 1rem 0.65rem 1rem;
+  }
+
+  .hero-slide__eyebrow {
+    font-size: 10.5px;
+  }
+
+  /* Strictly uniform headline box across all 4 slides */
+  .hero-slide__headline {
+    min-height: 64px;
+    margin-bottom: 0.45rem;
+  }
+
+  .hero-slide__headline-accent {
+    font-size: clamp(22px, 6.5vw, 28px);
+    line-height: 1.05;
+  }
+
+  .hero-slide__headline-main {
+    font-size: clamp(24px, 7vw, 30px);
+    line-height: 1.05;
+  }
+
+  /* Strictly uniform description box across all 4 slides */
+  .hero-slide__description {
+    font-size: 12.5px;
+    line-height: 1.45;
+    min-height: 54px;
+    margin-bottom: 0.75rem;
+  }
+
+  .hero-slide__cta-group {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 8px;
+    width: 100%;
+  }
+
+  .hero-slide__btn-primary,
+  .hero-slide__btn-secondary {
+    width: 100%;
+    height: 40px;
+    justify-content: center;
+    text-align: center;
+    padding: 9px 16px;
+    font-size: 13.5px;
+    box-sizing: border-box;
+  }
+
+  /* Uniform photo dimensions across all 4 slides */
+  .hero-slide__col-visual {
+    height: 200px;
+    padding: 0 1rem;
+  }
+
+  .hero-slide__diagonal-frame {
+    border-radius: 8px;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+  }
+
+  /* Balanced slider controls between image and category panel */
+  .nirmex-hero__controls {
+    margin-top: 10px;
+    margin-bottom: 10px;
+    padding: 0 1rem;
+  }
+
+  .nirmex-hero__arrow {
+    width: 32px;
+    height: 32px;
+  }
+
+  .nirmex-hero__indicator-bar {
+    width: 28px;
+    height: 3px;
+  }
+
+  .nirmex-hero__indicator-number {
+    font-size: 12.5px;
+  }
+
+  /* Category information panel */
+  .hero-bottom-panel {
+    padding: 0 1rem;
+  }
+
+  .hero-bottom-panel__brand-block {
+    padding: 9px 12px;
+    min-height: 54px;
+  }
+
+  .hero-bottom-panel__brand-title {
+    font-size: 15px;
+  }
+
+  .hero-bottom-panel__brand-subtitle {
+    font-size: 10.5px;
+  }
+
+  .hero-bottom-card {
+    padding: 6px 9px;
+    min-height: 38px;
+  }
+
+  .hero-bottom-card__title {
+    font-size: 11.5px;
+  }
+
+  .hero-bottom-card__subtitle {
+    font-size: 10px;
+  }
+}
+
+/* Smallest Micro Mobile (320px - 360px) */
+@media (max-width: 360px) {
+  .hero-slide__col-text {
+    padding: 0.85rem 0.75rem 0.5rem 0.75rem;
+  }
+
+  .hero-slide__headline {
+    min-height: 60px;
+  }
+
+  .hero-slide__headline-accent {
+    font-size: 21px;
+  }
+
+  .hero-slide__headline-main {
+    font-size: 22px;
+  }
+
+  .hero-slide__description {
+    font-size: 12px;
+    min-height: 52px;
+  }
+
+  .hero-slide__col-visual {
+    height: 175px;
+    padding: 0 0.75rem;
+  }
+
+  .nirmex-hero__controls {
+    padding: 0 0.75rem;
+    margin-top: 8px;
+    margin-bottom: 8px;
+  }
+
+  .hero-bottom-panel {
+    padding: 0 0.75rem;
   }
 }
